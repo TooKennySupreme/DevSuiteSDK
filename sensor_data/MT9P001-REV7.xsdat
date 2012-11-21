@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sensor_data.xsl"?>
+<!--
+****************************************************************************************************
+*   If you are reading this, you are not taking advantage of the XML Stylesheet                    *
+*                                                                                                  *
+*   Instructions for viewing XML SDAT file can be found in:                                        *
+*   C:\Aptina Imaging [Dev]\sensor_data\!DevWare XML-formatted SDAT User Guide.pdf                 *
+****************************************************************************************************
+-->
+<sensor name="A-5100"
+	part_number="MT9P001"
+	version="7"
+	version_name="REV7"
+	width="2592"
+	height="1944"
+	image_type="BAYER"
+	bits_per_clock="12"
+	clocks_per_pixel="1"
+	pixel_clock_polarity="0"
+	full_width="2592"
+	full_height="1944"
+	reg_addr_size="8"
+	reg_data_size="16"
+	ship_base_address="0xBA 0x90">
+	<demo_system>
+		<version_reg_read reg="RESERVED_CORE_FD" mask="0x0FE0" value="7"></version_reg_read>
+		<part_number name="MT9P031"  serial="0xE6"  addr="0x01:8"  mask="0xFF:8" value="0x01"></part_number>
+	</demo_system>
+	<addr_spaces>
+		<space name="CORE" type="REG" value="0" desc="0: Core Registers"></space>
+	</addr_spaces>
+	<registers>
+		<reg  name="CHIP_VERSION_REG" addr="0x00" space="CORE" mask="0xFFFF" display_name="chip_version_reg" range="0x0000 0xFFFF" default="0x1801" rw="RO"><detail>Chip version.</detail>
+			<bitfield  name="DIGITAL_REV" mask="0x000F" display_name="0-3: digital_rev" range="0x0000 0x000F" rw="RO"></bitfield>
+			<bitfield  name="ANALOG_REV" mask="0x00F0" display_name="4-7: analog_rev" range="0x0000 0x000F" rw="RO"></bitfield>
+			<bitfield  name="PART_ID" mask="0xFF00" display_name="8-15: part_id" range="0x0000 0x00FF" rw="RO"></bitfield></reg>
+		<reg  name="ROW_WINDOW_START_REG" addr="0x01" space="CORE" mask="0x07FF" display_name="row_window_start_reg" range="0x0000 0x07FF" default="0x0036"></reg>
+		<reg  name="COL_WINDOW_START_REG" addr="0x02" space="CORE" mask="0x0FFF" display_name="col_window_start_reg" range="0x0000 0x0FFF" default="0x0010"></reg>
+		<reg  name="ROW_WINDOW_SIZE_REG" addr="0x03" space="CORE" mask="0x07FF" display_name="row_window_size_reg" range="0x0000 0x07FF" default="0x0797"></reg>
+		<reg  name="COL_WINDOW_SIZE_REG" addr="0x04" space="CORE" mask="0x0FFF" display_name="col_window_size_reg" range="0x0000 0x0FFF" default="0x0A1F"></reg>
+		<reg  name="HORZ_BLANK_REG" addr="0x05" space="CORE" mask="0x0FFF" display_name="horz_blank_reg" range="0x0000 0x07FF"></reg>
+		<reg  name="VERT_BLANK_REG" addr="0x06" space="CORE" mask="0x07FF" display_name="vert_blank_reg" range="0x0000 0x07FF" default="0x0019"></reg>
+		<reg  name="CONTROL_MODE_REG" addr="0x07" space="CORE" mask="0x5FFF" display_name="control_mode_reg" range="0x0000 0x4173" default="0x1F82">
+			<bitfield  name="SYNC" mask="0x0001" display_name="0: sync" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="CHIP_ENABLE" mask="0x0002" display_name="1: chip_enable" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_2" confidential="Y" mask="0x0004" display_name="2: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_3" confidential="Y" mask="0x0008" display_name="3: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_6" confidential="Y" mask="0x0040" display_name="6: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BITS_7_9" confidential="Y" mask="0x0380" display_name="7-9: Reserved" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="BITS_10_12" confidential="Y" mask="0x1C00" display_name="10-12: Reserved" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="BIT_14" confidential="Y" mask="0x4000" display_name="14: Reserved" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="SHUTTER_WIDTH_HI" addr="0x08" space="CORE" mask="0x000F" display_name="shutter_width_hi" range="0x0000 0x000F"></reg>
+		<reg  name="INTEG_TIME_REG" addr="0x09" space="CORE" mask="0xFFFF" display_name="integ_time_reg" range="0x0000 0xFFFF" default="0x0797"></reg>
+		<reg  name="PIXEL_CLOCK_CONTROL" addr="0x0A" space="CORE" mask="0x877F" display_name="pixel_clock_control" range="0x0000 0x877F">
+			<bitfield  name="DIVIDE" mask="0x007F" display_name="0-6: divide" range="0x0000 0x007F"></bitfield>
+			<bitfield  name="SHIFT" mask="0x0700" display_name="8-10: shift" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="INVERT" mask="0x8000" display_name="15: invert" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="RESTART_REG" addr="0x0B" space="CORE" mask="0x0007" display_name="restart_reg" range="0x0000 0x0007">
+			<bitfield  name="RESTART" mask="0x0001" display_name="0: restart" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="PAUSE" mask="0x0002" display_name="1: pause" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="TRIGGER" mask="0x0004" display_name="2: trigger" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="SHUTTER_DELAY_REG" addr="0x0C" space="CORE" mask="0x1FFF" display_name="shutter_delay_reg" range="0x0000 0x1FFF"></reg>
+		<reg  name="RESET_REG" addr="0x0D" space="CORE" mask="0x0001" display_name="reset_reg" range="0x0000 0x0001"></reg>
+		<reg  name="RESERVED_CORE_0F" addr="0x0F" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="PLL_CONTROL" addr="0x10" space="CORE" mask="0xE1F3" display_name="pll_control" range="0x0000 0xE1F3" default="0x0050">
+			<bitfield  name="PWR_PLL" mask="0x0001" display_name="0: pwr_pll" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="USE_PLL" mask="0x0002" display_name="1: use_pll" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BITS_4_7" confidential="Y" mask="0x00F0" display_name="4-7: Reserved" range="0x0000 0x000F"></bitfield>
+			<bitfield  name="BIT_8" confidential="Y" mask="0x0100" display_name="8: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BITS_13_14" confidential="Y" mask="0x6000" display_name="13-14: Reserved" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="BIT_15" confidential="Y" mask="0x8000" display_name="15: Reserved" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="PLL_CONFIG_1" addr="0x11" space="CORE" mask="0xFF3F" display_name="pll_config_1" range="0x0000 0xFF3F" default="0x6404">
+			<bitfield  name="N_DIVIDER" mask="0x003F" display_name="0-5: n_divider" range="0x0000 0x003F"></bitfield>
+			<bitfield  name="M_FACTOR" mask="0xFF00" display_name="8-15: m_factor" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="PLL_CONFIG_2" addr="0x12" space="CORE" mask="0x1F1F" display_name="pll_config_2" range="0x0000 0x1F1F">
+			<bitfield  name="P1_DIVIDER" mask="0x001F" display_name="0-4: p1_divider" range="0x0000 0x001F"></bitfield>
+			<bitfield  name="BITS_8_12" confidential="Y" mask="0x1F00" display_name="8-12: Reserved" range="0x0000 0x001F"></bitfield></reg>
+		<reg  name="RESERVED_CORE_14" addr="0x14" space="CORE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x0036"></reg>
+		<reg  name="RESERVED_CORE_15" addr="0x15" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" default="0x0010"></reg>
+		<reg  name="READ_MODE_1" addr="0x1E" space="CORE" mask="0x7FFF" display_name="read_mode_1" range="0x0000 0x7FFF" default="0x4006">
+			<bitfield  name="STROBE_END" mask="0x0003" display_name="0-1: strobe_end" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="STROBE_START" mask="0x000C" display_name="2-3: strobe_start" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="STROBE_ENABLE" mask="0x0010" display_name="4: strobe_enable" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="INVERT_STROBE" mask="0x0020" display_name="5: invert_strobe" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BULB_EXP" mask="0x0040" display_name="6: bulb_exp" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="GLOBAL_RST" mask="0x0080" display_name="7: global_rst" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="SNAPSHOT_MODE" mask="0x0100" display_name="8: snapshot_mode" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="INVERT_TRIGGER" mask="0x0200" display_name="9: invert_trigger" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="CONT_LINE_VALID" mask="0x0400" display_name="10: cont_line_valid" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="XOR_LINE_VALID" mask="0x0800" display_name="11: xor_line_valid" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="MAINTAIN_FRAME_RATE" mask="0x1000" display_name="12: maintain_frame_rate" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="OUT_BAD_FRAMES" mask="0x2000" display_name="13: out_bad_frames" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="ANTI_BLOOM" mask="0x4000" display_name="14: anti_bloom" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="READ_MODE_2" addr="0x20" space="CORE" mask="0xF872" display_name="read_mode_2" range="0x0000 0x7FFF" default="0x0040">
+			<bitfield  name="MAN_CHAN_OFF" mask="0x0010" display_name="4: man_chan_off" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="COL_SUM" mask="0x0020" display_name="5: col_sum" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="ROW_BLC" mask="0x0040" display_name="6: row_blc" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="SHOW_DARK_ROWS" mask="0x0800" display_name="11: show_dark_rows" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="SHOW_DARK_COLS" mask="0x1000" display_name="12: show_dark_cols" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_13" confidential="Y" mask="0x2000" display_name="13: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="MIRROR_COL" mask="0x4000" display_name="14: mirror_col" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="MIRROR_ROW" mask="0x8000" display_name="15: mirror_row" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="ROW_MODE" addr="0x22" space="CORE" mask="0x7737" display_name="row_mode" range="0x0000 0x7737">
+			<bitfield  name="ROW_SKIP" mask="0x0007" display_name="0-2: row_skip" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="ROW_BIN" mask="0x0030" display_name="4-5: row_bin" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="BITS_8_10" confidential="Y" mask="0x0700" display_name="8-10: Reserved" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="BITS_12_14" confidential="Y" mask="0x7000" display_name="12-14: Reserved" range="0x0000 0x0007"></bitfield></reg>
+		<reg  name="COL_MODE" addr="0x23" space="CORE" mask="0x0737" display_name="col_mode" range="0x0000 0x0737">
+			<bitfield  name="COL_SKIP" mask="0x0007" display_name="0-2: col_skip" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="COL_BIN" mask="0x0030" display_name="4-5: col_bin" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="BITS_8_10" confidential="Y" mask="0x0700" display_name="8-10: Reserved" range="0x0000 0x0007"></bitfield></reg>
+		<reg  name="RESERVED_CORE_24" addr="0x24" space="CORE" confidential="Y" mask="0x0F13" display_name="Reserved" range="0x0000 0x0F13" default="0x0002"></reg>
+		<reg  name="RESERVED_CORE_27" addr="0x27" space="CORE" confidential="Y" mask="0xF19F" display_name="Reserved" range="0x0000 0xF19F" default="0x000B"></reg>
+		<reg  name="RESERVED_CORE_29" addr="0x29" space="CORE" confidential="Y" mask="0xFFF9" display_name="Reserved" range="0x0000 0xFFF9" default="0x0481"></reg>
+		<reg  name="RESERVED_CORE_2A" addr="0x2A" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1086"></reg>
+		<reg  name="GREEN1_GAIN_REG" addr="0x2B" space="CORE" mask="0x7FFF" display_name="green1_gain_reg" range="0x0000 0x7FFF" default="0x0008">
+			<bitfield  name="GREEN1_GAIN_VALUE" mask="0x003F" display_name="0-5: green1_gain_value" range="0x0000 0x003F" datatype="ufixed3"></bitfield>
+			<bitfield  name="GREEN1_GAIN_DOUBLE_1" mask="0x0040" display_name="6: green1_gain_double_1" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="GREEN1_GAIN_DIGITAL" mask="0x7F00" display_name="8-14: green1_gain_digital" range="0x0000 0x007F"></bitfield></reg>
+		<reg  name="BLUE_GAIN_REG" addr="0x2C" space="CORE" mask="0x7FFF" display_name="blue_gain_reg" range="0x0000 0x7FFF" default="0x0008">
+			<bitfield  name="BLUE_GAIN_VALUE" mask="0x003F" display_name="0-5: blue_gain_value" range="0x0000 0x003F" datatype="ufixed3"></bitfield>
+			<bitfield  name="BLUE_GAIN_DOUBLE_1" mask="0x0040" display_name="6: blue_gain_double_1" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BLUE_GAIN_DIGITAL" mask="0x7F00" display_name="8-14: blue_gain_digital" range="0x0000 0x007F"></bitfield></reg>
+		<reg  name="RED_GAIN_REG" addr="0x2D" space="CORE" mask="0x7FFF" display_name="red_gain_reg" range="0x0000 0x7FFF" default="0x0008">
+			<bitfield  name="RED_GAIN_VALUE" mask="0x003F" display_name="0-5: red_gain_value" range="0x0000 0x003F" datatype="ufixed3"></bitfield>
+			<bitfield  name="RED_GAIN_DOUBLE_1" mask="0x0040" display_name="6: red_gain_double_1" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="RED_GAIN_DIGITAL" mask="0x7F00" display_name="8-14: red_gain_digital" range="0x0000 0x007F"></bitfield></reg>
+		<reg  name="GREEN2_GAIN_REG" addr="0x2E" space="CORE" mask="0x7FFF" display_name="green2_gain_reg" range="0x0000 0x7FFF" default="0x0008">
+			<bitfield  name="GREEN2_GAIN_VALUE" mask="0x003F" display_name="0-5: green2_gain_value" range="0x0000 0x003F" datatype="ufixed3"></bitfield>
+			<bitfield  name="GREEN2_GAIN_DOUBLE_1" mask="0x0040" display_name="6: green2_gain_double_1" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="GREEN2_GAIN_DIGITAL" mask="0x7F00" display_name="8-14: green2_gain_digital" range="0x0000 0x007F"></bitfield></reg>
+		<reg  name="RESERVED_CORE_30" addr="0x30" space="CORE" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF"></reg>
+		<reg  name="RESERVED_CORE_32" addr="0x32" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="GLOBAL_GAIN_REG" addr="0x35" space="CORE" mask="0xFFFF" display_name="global_gain_reg" range="0x0000 0xFFFF" default="0x0008"></reg>
+		<reg  name="RESERVED_CORE_3C" addr="0x3C" space="CORE" confidential="Y" mask="0x3F3F" display_name="Reserved" range="0x0000 0x3F3F" default="0x1010"></reg>
+		<reg  name="RESERVED_CORE_3D" addr="0x3D" space="CORE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007" default="0x0005"></reg>
+		<reg  name="RESERVED_CORE_3E" addr="0x3E" space="CORE" confidential="Y" mask="0x80C7" display_name="Reserved" range="0x0000 0x80C7" default="0x0040"></reg>
+		<reg  name="RESERVED_CORE_3F" addr="0x3F" space="CORE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007" default="0x0004"></reg>
+		<reg  name="RESERVED_CORE_40" addr="0x40" space="CORE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007" default="0x0007"></reg>
+		<reg  name="RESERVED_CORE_41" addr="0x41" space="CORE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007" default="0x0003"></reg>
+		<reg  name="RESERVED_CORE_42" addr="0x42" space="CORE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007" default="0x0005"></reg>
+		<reg  name="RESERVED_CORE_43" addr="0x43" space="CORE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007" default="0x0001"></reg>
+		<reg  name="RESERVED_CORE_44" addr="0x44" space="CORE" confidential="Y" mask="0x0707" display_name="Reserved" range="0x0000 0x0707" default="0x0203"></reg>
+		<reg  name="RESERVED_CORE_45" addr="0x45" space="CORE" confidential="Y" mask="0x3F3F" display_name="Reserved" range="0x0000 0x3F3F" default="0x1010"></reg>
+		<reg  name="RESERVED_CORE_46" addr="0x46" space="CORE" confidential="Y" mask="0x3F3F" display_name="Reserved" range="0x0000 0x3F3F" default="0x1010"></reg>
+		<reg  name="RESERVED_CORE_47" addr="0x47" space="CORE" confidential="Y" mask="0x3F3F" display_name="Reserved" range="0x0000 0x3F3F" default="0x1010"></reg>
+		<reg  name="RESERVED_CORE_48" addr="0x48" space="CORE" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F" default="0x0010"></reg>
+		<reg  name="ROW_BLACK_TARGET" addr="0x49" space="CORE" mask="0x0FFF" display_name="row_black_target" range="0x0000 0x0FFF" default="0x00A8"><detail>The target black level for the Row BLC algorithm.</detail></reg>
+		<reg  name="RESERVED_CORE_4A" addr="0x4A" space="CORE" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F" default="0x0010"></reg>
+		<reg  name="ROW_BLACK_DEFAULT_OFFSET" addr="0x4B" space="CORE" mask="0x0FFF" display_name="row_black_default_offset" range="0x0000 0x0FFF" default="0x0028"></reg>
+		<reg  name="RESERVED_CORE_4C" addr="0x4C" space="CORE" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F" default="0x0010"></reg>
+		<reg  name="RESERVED_CORE_4D" addr="0x4D" space="CORE" confidential="Y" mask="0x3F3F" display_name="Reserved" range="0x0000 0x3F3F" default="0x2020"></reg>
+		<reg  name="RESERVED_CORE_4E" addr="0x4E" space="CORE" confidential="Y" mask="0x3F3F" display_name="Reserved" range="0x0000 0x3F3F" default="0x1010"></reg>
+		<reg  name="RESERVED_CORE_4F" addr="0x4F" space="CORE" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F" default="0x0017"></reg>
+		<reg  name="RESERVED_CORE_50" addr="0x50" space="CORE" confidential="Y" mask="0x8000" display_name="Reserved" range="0x0000 0x0001" default="0x8000"></reg>
+		<reg  name="RESERVED_CORE_51" addr="0x51" space="CORE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007" default="0x0007"></reg>
+		<reg  name="RESERVED_CORE_52" addr="0x52" space="CORE" confidential="Y" mask="0x8000" display_name="Reserved" range="0x0000 0x0001" default="0x8000"></reg>
+		<reg  name="RESERVED_CORE_53" addr="0x53" space="CORE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007" default="0x0007"></reg>
+		<reg  name="RESERVED_CORE_54" addr="0x54" space="CORE" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F" default="0x0008"></reg>
+		<reg  name="RESERVED_CORE_56" addr="0x56" space="CORE" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F" default="0x0020"></reg>
+		<reg  name="RESERVED_CORE_57" addr="0x57" space="CORE" confidential="Y" mask="0x000F" display_name="Reserved" range="0x0000 0x000F" default="0x0004"></reg>
+		<reg  name="RESERVED_CORE_58" addr="0x58" space="CORE" confidential="Y" mask="0x8000" display_name="Reserved" range="0x0000 0x0001" default="0x8000"></reg>
+		<reg  name="RESERVED_CORE_59" addr="0x59" space="CORE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007" default="0x0007"></reg>
+		<reg  name="RESERVED_CORE_5A" addr="0x5A" space="CORE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007" default="0x0004"></reg>
+		<reg  name="BLC_SAMPLE_SIZE" addr="0x5B" space="CORE" mask="0x0001" display_name="blc_sample_size" range="0x0000 0x0001" default="0x0001"></reg>
+		<reg  name="BLC_TUNE1" addr="0x5C" space="CORE" mask="0x0FFF" display_name="blc_tune1" range="0x0000 0x0FFF" default="0x005A">
+			<bitfield  name="SETTLING_TIME" mask="0x00FF" display_name="0-7: settling_time" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="DELTA_DAMPING" mask="0x0F00" display_name="8-11: delta_damping" range="0x0000 0x000F"></bitfield></reg>
+		<reg  name="BLC_THRESHOLDS" addr="0x5D" space="CORE" mask="0x7F7F" display_name="blc_thresholds" range="0x0000 0x7F7F" default="0x2D13">
+			<bitfield  name="LOW_DELTA" mask="0x007F" display_name="0-6: low_delta" range="0x0000 0x007F"></bitfield>
+			<bitfield  name="HIGH_DELTA" mask="0x7F00" display_name="8-14: high_delta" range="0x0000 0x007F"></bitfield></reg>
+		<reg  name="BLC_TUNE2" addr="0x5E" space="CORE" mask="0x71FF" display_name="blc_tune2" range="0x0000 0x71FF" default="0x41FF">
+			<bitfield  name="MAX_ADJ" mask="0x01FF" display_name="0-8: max_adj" range="0x0000 0x01FF"></bitfield>
+			<bitfield  name="STEP_SIZE" mask="0x7000" display_name="12-14: step_size" range="0x0000 0x0007"></bitfield></reg>
+		<reg  name="CAL_THRESHOLD" addr="0x5F" space="CORE" mask="0x7F7F" display_name="cal_threshold" range="0x0000 0x7F7F" default="0x231D">
+			<bitfield  name="CAL_THRESHOLD_MIN" mask="0x007F" display_name="0-6: cal_threshold_min" range="0x0000 0x007F"></bitfield>
+			<bitfield  name="CAL_THRESHOLD_MAX" mask="0x7F00" display_name="8-14: cal_threshold_max" range="0x0000 0x007F"></bitfield></reg>
+		<reg  name="GREEN1_OFFSET" addr="0x60" space="CORE" mask="0x01FF" display_name="green1_offset" range="0x0000 0x01FF" default="0x0020" datatype="signed"></reg>
+		<reg  name="GREEN2_OFFSET" addr="0x61" space="CORE" mask="0x01FF" display_name="green2_offset" range="0x0000 0x01FF" default="0x0020" datatype="signed"></reg>
+		<reg  name="CAL_CTRL" addr="0x62" space="CORE" mask="0xF803" display_name="cal_ctrl" range="0x0000 0xF803">
+			<bitfield  name="MANUAL_BLC" mask="0x0001" display_name="0: manual_blc" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="DIS_CALIB" mask="0x0002" display_name="1: dis_calib" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="DIS_BIN_SEARCH" mask="0x0800" display_name="11: dis_bin_search" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="RESYNC_BL" mask="0x1000" display_name="12: resync_bl" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="LOCK_RB" mask="0x2000" display_name="13: lock_rb" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="LOCK_GREEN" mask="0x4000" display_name="14: lock_green" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="DIS_FAST_SAMP" mask="0x8000" display_name="15: dis_fast_samp" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="RED_OFFSET" addr="0x63" space="CORE" mask="0x01FF" display_name="red_offset" range="0x0000 0x01FF" default="0x0020" datatype="signed"></reg>
+		<reg  name="BLUE_OFFSET" addr="0x64" space="CORE" mask="0x01FF" display_name="blue_offset" range="0x0000 0x01FF" default="0x0020" datatype="signed"></reg>
+		<reg  name="RESERVED_CORE_65" addr="0x65" space="CORE" confidential="Y" mask="0x3FFF" display_name="Reserved" range="0x0000 0x3FFF"></reg>
+		<reg  name="RESERVED_CORE_68" addr="0x68" space="CORE" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F"></reg>
+		<reg  name="RESERVED_CORE_69" addr="0x69" space="CORE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF"></reg>
+		<reg  name="GRN1_CHANNEL_OFF" addr="0x6A" space="CORE" mask="0x003F" display_name="grn1_channel_off" range="0x0000 0x003F"></reg>
+		<reg  name="RED_CHANNEL_OFF" addr="0x6B" space="CORE" mask="0x003F" display_name="red_channel_off" range="0x0000 0x003F"><detail>See Green1_Channel_Offset.</detail></reg>
+		<reg  name="BLUE_CHANNEL_OFF" addr="0x6C" space="CORE" mask="0x003F" display_name="blue_channel_off" range="0x0000 0x003F"><detail>See Green1_Channel_Offset.</detail></reg>
+		<reg  name="GRN2_CHANNEL_OFF" addr="0x6D" space="CORE" mask="0x003F" display_name="grn2_channel_off" range="0x0000 0x003F"><detail>See Green1_Channel_Offset.</detail></reg>
+		<reg  name="RESERVED_CORE_70" addr="0x70" space="CORE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x0067"></reg>
+		<reg  name="RESERVED_CORE_71" addr="0x71" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x6404"></reg>
+		<reg  name="RESERVED_CORE_72" addr="0x72" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x6206"></reg>
+		<reg  name="RESERVED_CORE_73" addr="0x73" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1408"></reg>
+		<reg  name="RESERVED_CORE_74" addr="0x74" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x160A"></reg>
+		<reg  name="RESERVED_CORE_75" addr="0x75" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x330C"></reg>
+		<reg  name="RESERVED_CORE_76" addr="0x76" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x4735"></reg>
+		<reg  name="RESERVED_CORE_77" addr="0x77" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x4937"></reg>
+		<reg  name="RESERVED_CORE_78" addr="0x78" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x6039"></reg>
+		<reg  name="RESERVED_CORE_79" addr="0x79" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x6602"></reg>
+		<reg  name="RESERVED_CORE_7A" addr="0x7A" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x6404"></reg>
+		<reg  name="RESERVED_CORE_7B" addr="0x7B" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x6206"></reg>
+		<reg  name="RESERVED_CORE_7C" addr="0x7C" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x6206"></reg>
+		<reg  name="RESERVED_CORE_7D" addr="0x7D" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0xFF00"></reg>
+		<reg  name="RESERVED_CORE_7E" addr="0x7E" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x6408"></reg>
+		<reg  name="RESERVED_CORE_7F" addr="0x7F" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x6404"></reg>
+		<reg  name="SHUTTER_SEQ_LEN" addr="0x80" space="CORE" mask="0x00FF" display_name="shutter_seq_len" range="0x0000 0x00FF" default="0x0022"></reg>
+		<reg  name="RESERVED_CORE_81" addr="0x81" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1F04"></reg>
+		<reg  name="RESERVED_CORE_82" addr="0x82" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_83" addr="0x83" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1B06"></reg>
+		<reg  name="RESERVED_CORE_84" addr="0x84" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1D08"></reg>
+		<reg  name="RESERVED_CORE_86" addr="0x86" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1806"></reg>
+		<reg  name="RESERVED_CORE_87" addr="0x87" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1A08"></reg>
+		<reg  name="RESERVED_CORE_90" addr="0x90" space="CORE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x07D0"></reg>
+		<reg  name="RESERVED_CORE_91" addr="0x91" space="CORE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007"></reg>
+		<reg  name="RESERVED_CORE_92" addr="0x92" space="CORE" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F" default="0x0001"></reg>
+		<reg  name="RESERVED_CORE_93" addr="0x93" space="CORE" confidential="Y" mask="0x0001" display_name="Reserved" range="0x0000 0x0001"></reg>
+		<reg  name="RESERVED_CORE_95" addr="0x95" space="CORE" confidential="Y" mask="0xEFFF" display_name="Reserved" range="0x0000 0xEFFF"></reg>
+		<reg  name="RESERVED_CORE_96" addr="0x96" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CORE_97" addr="0x97" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_98" addr="0x98" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_99" addr="0x99" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_9A" addr="0x9A" space="CORE" confidential="Y" mask="0x803F" display_name="Reserved" range="0x0000 0x803F"></reg>
+		<reg  name="RESERVED_CORE_9B" addr="0x9B" space="CORE" confidential="Y" mask="0x803F" display_name="Reserved" range="0x0000 0x803F"></reg>
+		<reg  name="RESERVED_CORE_9C" addr="0x9C" space="CORE" confidential="Y" mask="0x803F" display_name="Reserved" range="0x0000 0x803F"></reg>
+		<reg  name="RESERVED_CORE_A0" addr="0xA0" space="CORE" confidential="Y" mask="0x007F" display_name="Reserved" range="0x0000 0x007F"></reg>
+		<reg  name="RESERVED_CORE_A1" addr="0xA1" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_A2" addr="0xA2" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_A3" addr="0xA3" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_A4" addr="0xA4" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_A5" addr="0xA5" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_A6" addr="0xA6" space="CORE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF"></reg>
+		<reg  name="RESERVED_CORE_A7" addr="0xA7" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_A8" addr="0xA8" space="CORE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF"></reg>
+		<reg  name="RESERVED_CORE_A9" addr="0xA9" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_AA" addr="0xAA" space="CORE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF"></reg>
+		<reg  name="RESERVED_CORE_AB" addr="0xAB" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" rw="RO"></reg>
+		<reg  name="RESERVED_CORE_AC" addr="0xAC" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" rw="RO"></reg>
+		<reg  name="RESERVED_CORE_AD" addr="0xAD" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CORE_AE" addr="0xAE" space="CORE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x0020"></reg>
+		<reg  name="RESERVED_CORE_AF" addr="0xAF" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_B0" addr="0xB0" space="CORE" confidential="Y" mask="0xFEFE" display_name="Reserved" range="0x0000 0xFEFE"></reg>
+		<reg  name="RESERVED_CORE_B1" addr="0xB1" space="CORE" confidential="Y" mask="0xFEFE" display_name="Reserved" range="0x0000 0xFEFE"></reg>
+		<reg  name="RESERVED_CORE_B2" addr="0xB2" space="CORE" confidential="Y" mask="0xFEFE" display_name="Reserved" range="0x0000 0xFEFE"></reg>
+		<reg  name="RESERVED_CORE_B3" addr="0xB3" space="CORE" confidential="Y" mask="0xFEFE" display_name="Reserved" range="0x0000 0xFEFE"></reg>
+		<reg  name="RESERVED_CORE_B4" addr="0xB4" space="CORE" confidential="Y" mask="0xFEFE" display_name="Reserved" range="0x0000 0xFEFE"></reg>
+		<reg  name="RESERVED_CORE_B5" addr="0xB5" space="CORE" confidential="Y" mask="0xFEFE" display_name="Reserved" range="0x0000 0xFEFE"></reg>
+		<reg  name="RESERVED_CORE_B6" addr="0xB6" space="CORE" confidential="Y" mask="0xFEFE" display_name="Reserved" range="0x0000 0xFEFE"></reg>
+		<reg  name="RESERVED_CORE_B7" addr="0xB7" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_B8" addr="0xB8" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_B9" addr="0xB9" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_BA" addr="0xBA" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_BB" addr="0xBB" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_BC" addr="0xBC" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_BD" addr="0xBD" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_BE" addr="0xBE" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF"></reg>
+		<reg  name="RESERVED_CORE_BF" addr="0xBF" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" datatype="signed"></reg>
+		<reg  name="RESERVED_CORE_C0" addr="0xC0" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" datatype="signed"></reg>
+		<reg  name="RESERVED_CORE_C1" addr="0xC1" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" datatype="signed"></reg>
+		<reg  name="RESERVED_CORE_C2" addr="0xC2" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" datatype="signed"></reg>
+		<reg  name="RESERVED_CORE_C3" addr="0xC3" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" datatype="signed"></reg>
+		<reg  name="RESERVED_CORE_C4" addr="0xC4" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" datatype="signed"></reg>
+		<reg  name="RESERVED_CORE_C5" addr="0xC5" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" datatype="signed"></reg>
+		<reg  name="RESERVED_CORE_C6" addr="0xC6" space="CORE" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" datatype="signed"></reg>
+		<reg  name="RESERVED_CORE_C7" addr="0xC7" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_C8" addr="0xC8" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_C9" addr="0xC9" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_CA" addr="0xCA" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_CB" addr="0xCB" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_CC" addr="0xCC" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_CD" addr="0xCD" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_CE" addr="0xCE" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_CF" addr="0xCF" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_D0" addr="0xD0" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_D1" addr="0xD1" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_D2" addr="0xD2" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_D3" addr="0xD3" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_D4" addr="0xD4" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_D5" addr="0xD5" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_D6" addr="0xD6" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_D7" addr="0xD7" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_D8" addr="0xD8" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_D9" addr="0xD9" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_DA" addr="0xDA" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_DB" addr="0xDB" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_DC" addr="0xDC" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_DD" addr="0xDD" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_DE" addr="0xDE" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_DF" addr="0xDF" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_E0" addr="0xE0" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_E1" addr="0xE1" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_E2" addr="0xE2" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_E3" addr="0xE3" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_E4" addr="0xE4" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_E5" addr="0xE5" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_E6" addr="0xE6" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_E7" addr="0xE7" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_E8" addr="0xE8" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_E9" addr="0xE9" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_EA" addr="0xEA" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_EB" addr="0xEB" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_EC" addr="0xEC" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_ED" addr="0xED" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_EE" addr="0xEE" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_EF" addr="0xEF" space="CORE" confidential="Y" mask="0x1FFF" display_name="Reserved" range="0x0000 0x1FFF"></reg>
+		<reg  name="RESERVED_CORE_F0" addr="0xF0" space="CORE" confidential="Y" mask="0x0001" display_name="Reserved" range="0x0000 0x0001"></reg>
+		<reg  name="RESERVED_CORE_F1" addr="0xF1" space="CORE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF"></reg>
+		<reg  name="CHIP_ENABLE_REG" addr="0xF8" space="CORE" mask="0x0003" display_name="chip_enable_reg" range="0x0000 0x0003" default="0x0001">
+			<bitfield  name="CHIP_ENABLE" mask="0x0001" display_name="0: chip_enable" range="0x0000 0x0001"><detail>Mirror of R7[1].</detail></bitfield>
+			<bitfield  name="SYNC" mask="0x0002" display_name="1: sync" range="0x0000 0x0001"><detail>Mirror of R7[0].</detail></bitfield></reg>
+		<reg  name="RESERVED_CORE_FA" addr="0xFA" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CORE_FB" addr="0xFB" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CORE_FC" addr="0xFC" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CORE_FD" addr="0xFD" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="CHIP_VERSION_REG2" addr="0xFF" space="CORE" mask="0xFFFF" display_name="chip_version_reg2" range="0x0000 0xFFFF" default="0x1801" rw="RO"></reg>
+
+
+
+	</registers>
+
+<copyright>
+  Copyright (c) 2012 Aptina Imaging Corporation.   All rights reserved.
+
+
+  No permission to use, copy, modify, or distribute this software and/or
+  its documentation for any purpose has been granted by Aptina Imaging Corporation.
+  If any such permission has been granted ( by separate agreement ), it
+  is required that the above copyright notice appear in all copies and
+  that both that copyright notice and this permission notice appear in
+  supporting documentation, and that the name of Aptina Imaging Corporation or any
+  of its trademarks may not be used in advertising or publicity pertaining
+  to distribution of the software without specific, written prior permission.
+
+
+  This software and any associated documentation are provided AS IS and
+  without warranty of any kind.   APTINA IMAGING CORPORATION EXPRESSLY DISCLAIMS
+  ALL WARRANTIES EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO, NONINFRINGEMENT
+  OF THIRD PARTY RIGHTS, AND ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS
+  FOR A PARTICULAR PURPOSE.  APTINA DOES NOT WARRANT THAT THE FUNCTIONS CONTAINED
+  IN THIS SOFTWARE WILL MEET YOUR REQUIREMENTS, OR THAT THE OPERATION OF THIS SOFTWARE
+  WILL BE UNINTERRUPTED OR ERROR-FREE.  FURTHERMORE, APTINA DOES NOT WARRANT OR
+  MAKE ANY REPRESENTATIONS REGARDING THE USE OR THE RESULTS OF THE USE OF ANY
+  ACCOMPANYING DOCUMENTATION IN TERMS OF ITS CORRECTNESS, ACCURACY, RELIABILITY,
+  OR OTHERWISE.
+</copyright>
+<revision>
+// $Revision: 30204 $
+// $Date: 2012-01-02 09:51:53 -0800 (Mon, 02 Jan 2012) $
+//
+// product last modified: none   version last modified: 2008-10-24 13:36:00   register last modified: 2009-12-04 08:58:43 
+</revision>
+</sensor>

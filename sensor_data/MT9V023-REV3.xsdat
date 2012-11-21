@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sensor_data.xsl"?>
+<!--
+****************************************************************************************************
+*   If you are reading this, you are not taking advantage of the XML Stylesheet                    *
+*                                                                                                  *
+*   Instructions for viewing XML SDAT file can be found in:                                        *
+*   C:\Aptina Imaging [Dev]\sensor_data\!DevWare XML-formatted SDAT User Guide.pdf                 *
+****************************************************************************************************
+-->
+<sensor name="A-0351"
+	part_number="MT9V023"
+	version="3"
+	version_name="REV3"
+	width="752"
+	height="480"
+	image_type="BAYER"
+	bits_per_clock="10"
+	clocks_per_pixel="1"
+	pixel_clock_polarity="1"
+	full_width="752"
+	full_height="480"
+	reg_addr_size="8"
+	reg_data_size="16"
+	ship_base_address="0xB8 0xB0 0x98 0x90">
+	<demo_system>
+		<version_reg_read reg="RESERVED_CORE_6B" mask="0x09E0" value="3"></version_reg_read>
+	</demo_system>
+	<addr_spaces>
+		<space name="CORE" type="REG" value="0" desc="0: Core Registers"></space>
+	</addr_spaces>
+	<registers>
+		<reg  name="CHIP_VERSION_REG" addr="0x00" space="CORE" mask="0xFFFF" display_name="chip_version_reg" range="0x0000 0xFFFF" default="0x1324" rw="RO"><detail>Chip version - Read only</detail>
+			<bitfield  name="BITS_0_2" confidential="Y" mask="0x0007" display_name="0-2: Reserved" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="BIT_3" confidential="Y" mask="0x0008" display_name="3: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BITS_4_7" confidential="Y" mask="0x00F0" display_name="4-7: Reserved" range="0x0000 0x000F"></bitfield>
+			<bitfield  name="BITS_8_15" confidential="Y" mask="0xFF00" display_name="8-15: Reserved" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="COL_WINDOW_START_CONTEXTA_REG" addr="0x01" space="CORE" mask="0x03FF" display_name="col_window_start_contexta_reg" range="0x0000 0x03FF" default="0x0001"><detail>Range 1-752</detail></reg>
+		<reg  name="ROW_WINDOW_START_CONTEXTA_REG" addr="0x02" space="CORE" mask="0x01FF" display_name="row_window_start_contexta_reg" range="0x0000 0x01FF" default="0x0004"></reg>
+		<reg  name="ROW_WINDOW_SIZE_CONTEXTA_REG" addr="0x03" space="CORE" mask="0x01FF" display_name="row_window_size_contexta_reg" range="0x0000 0x01FF" default="0x01E0"><detail>Number of rows</detail></reg>
+		<reg  name="COL_WINDOW_SIZE_CONTEXTA_REG" addr="0x04" space="CORE" mask="0x03FF" display_name="col_window_size_contexta_reg" range="0x0000 0x03FF" default="0x02F0"><detail>Number of columns</detail></reg>
+		<reg  name="HORZ_BLANK_CONTEXTA_REG" addr="0x05" space="CORE" mask="0x03FF" display_name="horz_blank_contexta_reg" range="0x0000 0x03FF" default="0x005E"><detail>Number of blank columns</detail></reg>
+		<reg  name="VERT_BLANK_CONTEXTA_REG" addr="0x06" space="CORE" mask="0x7FFF" display_name="vert_blank_contexta_reg" range="0x0000 0x7FFF" default="0x002D"><detail>Number of blank rows</detail></reg>
+		<reg  name="CONTROL_MODE_REG" addr="0x07" space="CORE" mask="0x8FFF" display_name="control_mode_reg" range="0x0000 0x8FFF" default="0x0388">
+			<bitfield  name="SCAN_MODE" mask="0x0007" display_name="0-2: scan_mode" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="OPERATING_MODE" mask="0x0018" display_name="3-4: operating_mode" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="STEREO_MODE" mask="0x0020" display_name="5: stereo_mode" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="STEREO_MASTER_SLAVE" mask="0x0040" display_name="6: stereo_master_slave" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="ENABLE_PARALLEL_OUT" mask="0x0080" display_name="7: enable_parallel_out" range="0x0000 0x0001"><detail>0: output disabled; 1: output enabled</detail></bitfield>
+			<bitfield  name="SIMULTANEOUS_SEQ" mask="0x0100" display_name="8: simultaneous_seq" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_9" confidential="Y" mask="0x0200" display_name="9: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_10" confidential="Y" mask="0x0400" display_name="10: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_11" confidential="Y" mask="0x0800" display_name="11: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="CONTEXTB_ENABLE" mask="0x8000" display_name="15: contextb_enable" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="COARSE_SHUTTER_WIDTH_1_CONTEXTA" addr="0x08" space="CORE" mask="0x7FFF" display_name="coarse_shutter_width_1_contexta" range="0x0000 0x7FFF" default="0x01BB"><detail>Row number of first knee</detail></reg>
+		<reg  name="COARSE_SHUTTER_WIDTH_2_CONTEXTA" addr="0x09" space="CORE" mask="0x7FFF" display_name="coarse_shutter_width_2_contexta" range="0x0000 0x7FFF" default="0x01D9"><detail>Row number of second knee</detail></reg>
+		<reg  name="SHUTTER_WIDTH_CONTROL_CONTEXTA" addr="0x0A" space="CORE" mask="0x03FF" display_name="shutter_width_control_contexta" range="0x0000 0x03FF" default="0x0164">
+			<bitfield  name="T2_RATIO" mask="0x000F" display_name="0-3: t2_ratio" range="0x0000 0x000F"><detail>Range: 1-4</detail></bitfield>
+			<bitfield  name="T3_RATIO" mask="0x00F0" display_name="4-7: t3_ratio" range="0x0000 0x000F"><detail>Range: 1-4</detail></bitfield>
+			<bitfield  name="AE_ADJUST_EN" mask="0x0100" display_name="8: ae_adjust_en" range="0x0000 0x0001"><detail>0 = Auto adjust disabled.&#10;1 = Auto adjust enabled.</detail></bitfield>
+			<bitfield  name="SINGLE_KNEE_EN" mask="0x0200" display_name="9: single_knee_en" range="0x0000 0x0001"><detail>Only knee1 ratio is used</detail></bitfield></reg>
+		<reg  name="COARSE_SHUTTER_WIDTH_TOTAL_CONTEXTA" addr="0x0B" space="CORE" mask="0x7FFF" display_name="coarse_shutter_width_total_contexta" range="0x0000 0x7FFF" default="0x01E0"><detail>Total coarse integration time in rows</detail></reg>
+		<reg  name="RESET_REG" addr="0x0C" space="CORE" mask="0x0003" display_name="reset_reg" range="0x0000 0x0003"><detail>Write only</detail>
+			<bitfield  name="SOFT_RESET" mask="0x0001" display_name="0: soft_reset" range="0x0000 0x0001"><detail>Reset digital flops except SHIP settings</detail></bitfield>
+			<bitfield  name="AUTO_BLOCK_RESET" mask="0x0002" display_name="1: auto_block_reset" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="READ_MODE_REG" addr="0x0D" space="CORE" mask="0x03FF" display_name="read_mode_reg" range="0x0000 0x03FF" default="0x0300">
+			<bitfield  name="BIN_ROW_CONTEXTA" mask="0x0003" display_name="0-1: bin_row_contexta" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIN_COL_CONTEXTA" mask="0x000C" display_name="2-3: bin_col_contexta" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="FLIP_ROW_CONTEXTA" mask="0x0010" display_name="4: flip_row_contexta" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="FLIP_COL_CONTEXTA" mask="0x0020" display_name="5: flip_col_contexta" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="SHOW_DARK_ROWS" mask="0x0040" display_name="6: show_dark_rows" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="SHOW_DARK_COLS" mask="0x0080" display_name="7: show_dark_cols" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_8" confidential="Y" mask="0x0100" display_name="8: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_9" confidential="Y" mask="0x0200" display_name="9: Reserved" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="READ_MODE2_REG" addr="0x0E" space="CORE" mask="0x003F" display_name="read_mode2_reg" range="0x0000 0x003F">
+			<bitfield  name="BIN_ROW_CONTEXTB" mask="0x0003" display_name="0-1: bin_row_contextb" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIN_COL_CONTEXTB" mask="0x000C" display_name="2-3: bin_col_contextb" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="FLIP_ROWCONTEXTB" mask="0x0010" display_name="4: flip_rowcontextb" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="FLIP_COL_CONTEXTB" mask="0x0020" display_name="5: flip_col_contextb" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="PIXEL_OPERATION_MODE" addr="0x0F" space="CORE" mask="0x0103" display_name="pixel_operation_mode" range="0x0000 0x0103" default="0x0100">
+			<bitfield  name="HI_DY_ENABLE_CONTEXTA" mask="0x0001" display_name="0: hi_dy_enable_contexta" range="0x0000 0x0001"><detail>0: disables saturation voltage control</detail></bitfield>
+			<bitfield  name="COLOR_MONO" mask="0x0002" display_name="1: color_mono" range="0x0000 0x0001"><detail>0: mono; 1: color</detail></bitfield>
+			<bitfield  name="HI_DY_ENABLE_CONTEXTB" mask="0x0100" display_name="8: hi_dy_enable_contextb" range="0x0000 0x0001"><detail>0: disables saturation voltage control</detail></bitfield></reg>
+		<reg  name="RESERVED_CORE_10" addr="0x10" space="CORE" confidential="Y" mask="0x007F" display_name="Reserved" range="0x0000 0x007F" default="0x0040"></reg>
+		<reg  name="RESERVED_CORE_11" addr="0x11" space="CORE" confidential="Y" mask="0x80FF" display_name="Reserved" range="0x0000 0x80FF" default="0x8042"></reg>
+		<reg  name="RESERVED_CORE_12" addr="0x12" space="CORE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x0022"></reg>
+		<reg  name="RESERVED_CORE_13" addr="0x13" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x2D32"></reg>
+		<reg  name="RESERVED_CORE_14" addr="0x14" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0E02"></reg>
+		<reg  name="RESERVED_CORE_15" addr="0x15" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0E32"></reg>
+		<reg  name="RESERVED_CORE_16" addr="0x16" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x2802"></reg>
+		<reg  name="RESERVED_CORE_17" addr="0x17" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x3E38"></reg>
+		<reg  name="RESERVED_CORE_18" addr="0x18" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x3E38"></reg>
+		<reg  name="RESERVED_CORE_19" addr="0x19" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x2802"></reg>
+		<reg  name="RESERVED_CORE_1A" addr="0x1A" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0428"></reg>
+		<reg  name="LED_OUT_CONTROL" addr="0x1B" space="CORE" mask="0x0003" display_name="led_out_control" range="0x0000 0x0003">
+			<bitfield  name="DELAY" mask="0x0001" display_name="0: delay" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="PULSE_WIDTH" mask="0x0002" display_name="1: pulse_width" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="DATA_COMPRESSION" addr="0x1C" space="CORE" mask="0x0303" display_name="data_compression" range="0x0000 0x0303" default="0x0302"><detail>0-1: Invalid; 2: 10bit linear; 3: 12-&gt;10</detail>
+			<bitfield  name="ADC_CONTEXTA" mask="0x0003" display_name="0-1: adc_contexta" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="ADC_CONTEXTB" mask="0x0300" display_name="8-9: adc_contextb" range="0x0000 0x0003"></bitfield></reg>
+		<reg  name="RESERVED_CORE_1D" addr="0x1D" space="CORE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x0040"></reg>
+		<reg  name="RESERVED_CORE_1E" addr="0x1E" space="CORE" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF"></reg>
+		<reg  name="RESERVED_CORE_1F" addr="0x1F" space="CORE" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF"></reg>
+		<reg  name="RESERVED_CORE_20" addr="0x20" space="CORE" confidential="Y" mask="0x03CF" display_name="Reserved" range="0x0000 0x03CF" default="0x01C1"></reg>
+		<reg  name="RESERVED_CORE_21" addr="0x21" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0020"></reg>
+		<reg  name="RESERVED_CORE_22" addr="0x22" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0020"></reg>
+		<reg  name="RESERVED_CORE_23" addr="0x23" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0010"></reg>
+		<reg  name="RESERVED_CORE_24" addr="0x24" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0010"></reg>
+		<reg  name="RESERVED_CORE_25" addr="0x25" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0020"></reg>
+		<reg  name="RESERVED_CORE_26" addr="0x26" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0004"></reg>
+		<reg  name="RESERVED_CORE_27" addr="0x27" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x000C"></reg>
+		<reg  name="RESERVED_CORE_28" addr="0x28" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0010"></reg>
+		<reg  name="RESERVED_CORE_29" addr="0x29" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0010"></reg>
+		<reg  name="RESERVED_CORE_2A" addr="0x2A" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0020"></reg>
+		<reg  name="RESERVED_CORE_2B" addr="0x2B" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0004"></reg>
+		<reg  name="VREF_ADC_CONTROL" addr="0x2C" space="CORE" mask="0xFFFF" display_name="vref_adc_control" range="0x0000 0xFFFF" default="0x0004">
+			<bitfield  name="VOLTAGE_LEVEL" mask="0x0007" display_name="0-2: voltage_level" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="BITS_3_15" confidential="Y" mask="0xFFF8" display_name="3-15: Reserved" range="0x0000 0x1FFF"></bitfield></reg>
+		<reg  name="RESERVED_CORE_2D" addr="0x2D" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0004"></reg>
+		<reg  name="RESERVED_CORE_2E" addr="0x2E" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0007"></reg>
+		<reg  name="RESERVED_CORE_2F" addr="0x2F" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0004"></reg>
+		<reg  name="RESERVED_CORE_30" addr="0x30" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0003"></reg>
+		<reg  name="V1_CONTROL_CONTEXTA" addr="0x31" space="CORE" mask="0x003F" display_name="v1_control_contexta" range="0x0000 0x003F" default="0x0027"><detail>V1 voltage level</detail></reg>
+		<reg  name="V2_CONTROL_CONTEXTA" addr="0x32" space="CORE" mask="0x003F" display_name="v2_control_contexta" range="0x0000 0x003F" default="0x001A"><detail>V2 voltage level</detail></reg>
+		<reg  name="V3_CONTROL_CONTEXTA" addr="0x33" space="CORE" mask="0x003F" display_name="v3_control_contexta" range="0x0000 0x003F" default="0x0005"><detail>V3 voltage level</detail></reg>
+		<reg  name="V4_CONTROL_CONTEXTA" addr="0x34" space="CORE" mask="0x003F" display_name="v4_control_contexta" range="0x0000 0x003F" default="0x0003"><detail>V4 voltage level</detail></reg>
+		<reg  name="GLOBAL_GAIN_CONTEXTA_REG" addr="0x35" space="CORE" mask="0x807F" display_name="global_gain_contexta_reg" range="0x0000 0x807F" default="0x0010">
+			<bitfield  name="GAIN" mask="0x007F" display_name="0-6: gain" range="0x0000 0x007F"></bitfield>
+			<bitfield  name="ATTENU" mask="0x8000" display_name="15: attenu" range="0x0000 0x0001"><detail>When set , analog gain will be forced to 0.75X</detail></bitfield></reg>
+		<reg  name="GLOBAL_GAIN_CONTEXTB_REG" addr="0x36" space="CORE" mask="0x807F" display_name="global_gain_contextb_reg" range="0x0000 0x807F" default="0x8010">
+			<bitfield  name="GAIN" mask="0x007F" display_name="0-6: gain" range="0x0000 0x007F"></bitfield>
+			<bitfield  name="ATTENU" mask="0x8000" display_name="15: attenu" range="0x0000 0x0001"><detail>When set , analog gain will be forced to 0.75X</detail></bitfield></reg>
+		<reg  name="RESERVED_CORE_37" addr="0x37" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CORE_38" addr="0x38" space="CORE" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF"></reg>
+		<reg  name="V1_CONTROL_CONTEXTB" addr="0x39" space="CORE" mask="0x003F" display_name="v1_control_contextb" range="0x0000 0x003F" default="0x0027"><detail>V1 voltage level</detail></reg>
+		<reg  name="V2_CONTROL_CONTEXTB" addr="0x3A" space="CORE" mask="0x003F" display_name="v2_control_contextb" range="0x0000 0x003F" default="0x0026"><detail>V2 voltage level</detail></reg>
+		<reg  name="V3_CONTROL_CONTEXTB" addr="0x3B" space="CORE" mask="0x003F" display_name="v3_control_contextb" range="0x0000 0x003F" default="0x0005"><detail>V3 voltage level</detail></reg>
+		<reg  name="V4_CONTROL_CONTEXTB" addr="0x3C" space="CORE" mask="0x003F" display_name="v4_control_contextb" range="0x0000 0x003F" default="0x0003"><detail>V4 voltage level</detail></reg>
+		<reg  name="CALIB_VAL_CONTEXTB" addr="0x40" space="CORE" mask="0x00FF" display_name="calib_val_contextb" range="0x0000 0x00FF" datatype="signed"><detail>2&apos;s complement Range:-1.27 to 1.27</detail></reg>
+		<reg  name="TARGET_DARK_AVG" addr="0x42" space="CORE" mask="0x00FF" display_name="target_dark_avg" range="0x0000 0x00FF" rw="RO"><detail>Frame average dark level</detail></reg>
+		<reg  name="DARK_AVG_THRESHOLDS" addr="0x46" space="CORE" mask="0xFFFF" display_name="dark_avg_thresholds" range="0x0000 0xFFFF" default="0x231D">
+			<bitfield  name="LO_THRESHOLD" mask="0x00FF" display_name="0-7: lo_threshold" range="0x0000 0x00FF"><detail>Lower threshold for targeted black level in ADC LSBs.</detail></bitfield>
+			<bitfield  name="HI_THRESHOLD" mask="0xFF00" display_name="8-15: hi_threshold" range="0x0000 0x00FF"><detail>Upper threshold for targeted black level in ADC LSBs.</detail></bitfield></reg>
+		<reg  name="CALIB_CONTROL_REG" addr="0x47" space="CORE" mask="0x01E1" display_name="calib_control_reg" range="0x0000 0x01E1" default="0x0080">
+			<bitfield  name="MANUAL_OVERRIDE_CONTEXTA" mask="0x0001" display_name="0: manual_override_contexta" range="0x0000 0x0001"><detail>0: Default; 1: Override automatic BLC</detail></bitfield>
+			<bitfield  name="NUM_FRAME" mask="0x00E0" display_name="5-7: num_frame" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="MANUAL_OVERRIDE_CONTEXTB" mask="0x0100" display_name="8: manual_override_contextb" range="0x0000 0x0001"><detail>0: Default; 1: Override automatic BLC</detail></bitfield></reg>
+		<reg  name="CALIB_VAL_CONTEXTA" addr="0x48" space="CORE" mask="0x00FF" display_name="calib_val_contexta" range="0x0000 0x00FF" datatype="signed"><detail>2&apos;s complement Range:-1.27 to 1.27</detail></reg>
+		<reg  name="STEP_SIZE_AVG_MODE" addr="0x4C" space="CORE" mask="0x001F" display_name="step_size_avg_mode" range="0x0000 0x001F" default="0x0002"><detail>1 calib LSB=1/4 ADC</detail></reg>
+		<reg  name="RESERVED_CORE_60" addr="0x60" space="CORE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x03FF"></reg>
+		<reg  name="RESERVED_CORE_67" addr="0x67" space="CORE" confidential="Y" mask="0x83FF" display_name="Reserved" range="0x0000 0x83FF"></reg>
+		<reg  name="RESERVED_CORE_68" addr="0x68" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CORE_69" addr="0x69" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CORE_6A" addr="0x6A" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CORE_6B" addr="0x6B" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CORE_6C" addr="0x6C" space="CORE" confidential="Y" mask="0x0001" display_name="Reserved" range="0x0000 0x0001"></reg>
+		<reg  name="ROW_NOISE_CONTROL" addr="0x70" space="CORE" mask="0xFFFF" display_name="row_noise_control" range="0x0000 0xFFFF">
+			<bitfield  name="NOISE_CORR_EN_CONTEXTA" mask="0x0001" display_name="0: noise_corr_en_contexta" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="USE_BLC_DARK_AVG_CONTEXTA" mask="0x0002" display_name="1: use_blc_dark_avg_contexta" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="NOISE_CORR_EN_CONTEXTB" mask="0x0100" display_name="8: noise_corr_en_contextb"></bitfield>
+			<bitfield  name="USE_BLC_DARK_AVG_CONTEXTB" mask="0x0200" display_name="9: use_blc_dark_avg_contextb"></bitfield></reg>
+		<reg  name="NOISE_CONSTANT" addr="0x71" space="CORE" mask="0x03FF" display_name="noise_constant" range="0x0000 0x03FF" default="0x002A"></reg>
+		<reg  name="PIXCLK_CONTROL" addr="0x72" space="CORE" mask="0x003F" display_name="pixclk_control" range="0x0000 0x003F">
+			<bitfield  name="INVERT_LV" mask="0x0001" display_name="0: invert_lv" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="INVERT_FV" mask="0x0002" display_name="1: invert_fv" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="XOR_LV_FV" mask="0x0004" display_name="2: xor_lv_fv" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="CONTINUOUS_LV" mask="0x0008" display_name="3: continuous_lv" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="INVERT_PIXCLK" mask="0x0010" display_name="4: invert_pixclk" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_5" confidential="Y" mask="0x0020" display_name="5: Reserved" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="TEST_DATA" addr="0x7F" space="CORE" mask="0x7FFF" display_name="test_data" range="0x0000 0x3FFF"><detail>Digital Test Pattern</detail>
+			<bitfield  name="TEST_DATA" mask="0x03FF" display_name="0-9: test_data" range="0x0000 0x03FF"></bitfield>
+			<bitfield  name="USE_TEST_DATA" mask="0x0400" display_name="10: use_test_data" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="SHADED_GRAY_MODES" mask="0x1800" display_name="11-12: shaded_gray_modes" range="0x0000 0x0003"><detail>0: nothing; 1: vertical; 2: horizontal; 3: diagonal</detail></bitfield>
+			<bitfield  name="TEST_ENABLE" mask="0x2000" display_name="13: test_enable" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="FLIP_TEST_DATA" mask="0x4000" display_name="14: flip_test_data" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="TILE_X0_Y0" addr="0x80" space="CORE" mask="0x0FFF" display_name="tile_x0_y0" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X1_Y0" addr="0x81" space="CORE" mask="0x0FFF" display_name="tile_x1_y0" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X2_Y0" addr="0x82" space="CORE" mask="0x0FFF" display_name="tile_x2_y0" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X3_Y0" addr="0x83" space="CORE" mask="0x0FFF" display_name="tile_x3_y0" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X4_Y0" addr="0x84" space="CORE" mask="0x0FFF" display_name="tile_x4_y0" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X0_Y1" addr="0x85" space="CORE" mask="0x0FFF" display_name="tile_x0_y1" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X1_Y1" addr="0x86" space="CORE" mask="0x0FFF" display_name="tile_x1_y1" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X2_Y1" addr="0x87" space="CORE" mask="0x0FFF" display_name="tile_x2_y1" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X3_Y1" addr="0x88" space="CORE" mask="0x0FFF" display_name="tile_x3_y1" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X4_Y1" addr="0x89" space="CORE" mask="0x0FFF" display_name="tile_x4_y1" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X0_Y2" addr="0x8A" space="CORE" mask="0x0FFF" display_name="tile_x0_y2" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X1_Y2" addr="0x8B" space="CORE" mask="0x0FFF" display_name="tile_x1_y2" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X2_Y2" addr="0x8C" space="CORE" mask="0x0FFF" display_name="tile_x2_y2" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X3_Y2" addr="0x8D" space="CORE" mask="0x0FFF" display_name="tile_x3_y2" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X4_Y2" addr="0x8E" space="CORE" mask="0x0FFF" display_name="tile_x4_y2" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X0_Y3" addr="0x8F" space="CORE" mask="0x0FFF" display_name="tile_x0_y3" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X1_Y3" addr="0x90" space="CORE" mask="0x0FFF" display_name="tile_x1_y3" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X2_Y3" addr="0x91" space="CORE" mask="0x0FFF" display_name="tile_x2_y3" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X3_Y3" addr="0x92" space="CORE" mask="0x0FFF" display_name="tile_x3_y3" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X4_Y3" addr="0x93" space="CORE" mask="0x0FFF" display_name="tile_x4_y3" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X0_Y4" addr="0x94" space="CORE" mask="0x0FFF" display_name="tile_x0_y4" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X1_Y4" addr="0x95" space="CORE" mask="0x0FFF" display_name="tile_x1_y4" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X2_Y4" addr="0x96" space="CORE" mask="0x0FFF" display_name="tile_x2_y4" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X3_Y4" addr="0x97" space="CORE" mask="0x0FFF" display_name="tile_x3_y4" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="TILE_X4_Y4" addr="0x98" space="CORE" mask="0x0FFF" display_name="tile_x4_y4" range="0x0000 0x0FFF" default="0x04F4">
+			<bitfield  name="DIG_GAIN_CONTEXTA" mask="0x000F" display_name="0-3: dig_gain_contexta" range="0x0000 0x000F"><detail>Range:1-15; DGain=tiled_gain*0.25</detail></bitfield>
+			<bitfield  name="WEIGHT" mask="0x00F0" display_name="4-7: weight" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield>
+			<bitfield  name="DIG_GAIN_CONTEXTB" mask="0x0F00" display_name="8-11: dig_gain_contextb" range="0x0000 0x000F"><detail>Range:1-15</detail></bitfield></reg>
+		<reg  name="X0_SLASH5" addr="0x99" space="CORE" mask="0x03FF" display_name="x0_slash5" range="0x0000 0x03FF"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="X1_SLASH5" addr="0x9A" space="CORE" mask="0x03FF" display_name="x1_slash5" range="0x0000 0x03FF" default="0x0096"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="X2_SLASH5" addr="0x9B" space="CORE" mask="0x03FF" display_name="x2_slash5" range="0x0000 0x03FF" default="0x012C"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="X3_SLASH5" addr="0x9C" space="CORE" mask="0x03FF" display_name="x3_slash5" range="0x0000 0x03FF" default="0x01C2"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="X4_SLASH5" addr="0x9D" space="CORE" mask="0x03FF" display_name="x4_slash5" range="0x0000 0x03FF" default="0x0258"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="X5_SLASH5" addr="0x9E" space="CORE" mask="0x03FF" display_name="x5_slash5" range="0x0000 0x03FF" default="0x02F0"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="Y0_SLASH5" addr="0x9F" space="CORE" mask="0x01FF" display_name="y0_slash5" range="0x0000 0x01FF"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="Y1_SLASH5" addr="0xA0" space="CORE" mask="0x01FF" display_name="y1_slash5" range="0x0000 0x01FF" default="0x0060"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="Y2_SLASH5" addr="0xA1" space="CORE" mask="0x01FF" display_name="y2_slash5" range="0x0000 0x01FF" default="0x00C0"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="Y3_SLASH5" addr="0xA2" space="CORE" mask="0x01FF" display_name="y3_slash5" range="0x0000 0x01FF" default="0x0120"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="Y4_SLASH5" addr="0xA3" space="CORE" mask="0x01FF" display_name="y4_slash5" range="0x0000 0x01FF" default="0x0180"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="Y5_SLASH5" addr="0xA4" space="CORE" mask="0x01FF" display_name="y5_slash5" range="0x0000 0x01FF" default="0x01E0"><detail>Digital Tile Coordinates</detail></reg>
+		<reg  name="DESIRED_BIN" addr="0xA5" space="CORE" mask="0x003F" display_name="desired_bin" range="0x0000 0x003F" default="0x003A"><detail>How bright image is intended</detail></reg>
+		<reg  name="EXP_SKIP_FRM_H" addr="0xA6" space="CORE" mask="0x000F" display_name="exp_skip_frm_h" range="0x0000 0x000F" default="0x0002"><detail>Number of frames AE skips before updating registers</detail></reg>
+		<reg  name="EXP_LPF" addr="0xA8" space="CORE" mask="0x0003" display_name="exp_lpf" range="0x0000 0x0003"></reg>
+		<reg  name="GAIN_SKIP_FRM" addr="0xA9" space="CORE" mask="0x000F" display_name="gain_skip_frm" range="0x0000 0x000F" default="0x0002"><detail># frames AutoGain-High skips before updaing regs</detail></reg>
+		<reg  name="GAIN_LPF_H" addr="0xAA" space="CORE" mask="0x0003" display_name="gain_lpf_h" range="0x0000 0x0003" default="0x0002"></reg>
+		<reg  name="MAX_GAIN" addr="0xAB" space="CORE" mask="0x007F" display_name="max_gain" range="0x0000 0x007F" default="0x0040"></reg>
+		<reg  name="MIN_COARSE_EXPOSURE" addr="0xAC" space="CORE" mask="0xFFFF" display_name="min_coarse_exposure" range="0x0000 0xFFFF" default="0x0001"></reg>
+		<reg  name="MAX_COARSE_EXPOSURE" addr="0xAD" space="CORE" mask="0xFFFF" display_name="max_coarse_exposure" range="0x0000 0xFFFF" default="0x01E0"></reg>
+		<reg  name="BIN_DIFF_THRESHOLD" addr="0xAE" space="CORE" mask="0x00FF" display_name="bin_diff_threshold" range="0x0000 0x00FF" default="0x0014"></reg>
+		<reg  name="AUTO_BLOCK_CONTROL" addr="0xAF" space="CORE" mask="0x0303" display_name="auto_block_control" range="0x0000 0x0303" default="0x0003">
+			<bitfield  name="AEC_ENABLE_CONTEXTA" mask="0x0001" display_name="0: aec_enable_contexta" range="0x0000 0x0001"><detail>Enables Automatic Exposure Control</detail></bitfield>
+			<bitfield  name="AGCH_ENABLE_CONTEXTA" mask="0x0002" display_name="1: agch_enable_contexta" range="0x0000 0x0001"><detail>Enables Automatic Gain Control</detail></bitfield>
+			<bitfield  name="AEC_ENABLE_CONTEXTB" mask="0x0100" display_name="8: aec_enable_contextb" range="0x0000 0x0001"><detail>Enables Automatic Exposure Control</detail></bitfield>
+			<bitfield  name="AGCH_ENABLE_CONTEXTB" mask="0x0200" display_name="9: agch_enable_contextb" range="0x0000 0x0001"><detail>Enables Automatic Gain Control</detail></bitfield></reg>
+		<reg  name="PIXEL_COUNT" addr="0xB0" space="CORE" mask="0xFFFF" display_name="pixel_count" range="0x0000 0xFFFF" default="0xABE0"><detail>Pixel count of the histogram</detail></reg>
+		<reg  name="LVDS_MASTER_CONTROL" addr="0xB1" space="CORE" mask="0x000F" display_name="lvds_master_control" range="0x0000 0x000F" default="0x0002">
+			<bitfield  name="PLL_BYPASS" mask="0x0001" display_name="0: pll_bypass" range="0x0000 0x0001"><detail>0:internal shift-clk from pll; 1: shift-clk from LVDS_BYPASS_CLK</detail></bitfield>
+			<bitfield  name="LVDS_POWERDOWN" mask="0x0002" display_name="1: lvds_powerdown" range="0x0000 0x0001"><detail>1: powerdown LVDS block</detail></bitfield>
+			<bitfield  name="PLL_TST_MODE" mask="0x0004" display_name="2: pll_tst_mode" range="0x0000 0x0001"><detail>1: PLL output freq == sys_clk freq</detail></bitfield>
+			<bitfield  name="LVDS_TST_MODE" mask="0x0008" display_name="3: lvds_tst_mode" range="0x0000 0x0001"><detail>1: lvds_serial_data_out drives square wave</detail></bitfield></reg>
+		<reg  name="LVDS_SHFT_CLK_CONTROL" addr="0xB2" space="CORE" mask="0x0017" display_name="lvds_shft_clk_control" range="0x0000 0x0017" default="0x0010">
+			<bitfield  name="DELAY" mask="0x0007" display_name="0-2: delay" range="0x0000 0x0007"><detail>Selects SHFT-CLK delay that minimizes inter-sensor skew</detail></bitfield>
+			<bitfield  name="POWERDOWN" mask="0x0010" display_name="4: powerdown" range="0x0000 0x0001"><detail>1: powerdown LVDS driver</detail></bitfield></reg>
+		<reg  name="LVDS_DATA_CONTROL" addr="0xB3" space="CORE" mask="0x0017" display_name="lvds_data_control" range="0x0000 0x0017" default="0x0010">
+			<bitfield  name="DELAY" mask="0x0007" display_name="0-2: delay" range="0x0000 0x0007"><detail>Selects DATA delay that minimizes inter-sensor skew</detail></bitfield>
+			<bitfield  name="POWERDOWN" mask="0x0010" display_name="4: powerdown" range="0x0000 0x0001"><detail>1: powerdown LVDS driver</detail></bitfield></reg>
+		<reg  name="LVDS_DATA_STREAM_LATENCY" addr="0xB4" space="CORE" mask="0x0003" display_name="lvds_data_stream_latency" range="0x0000 0x0003"><detail>so that 2 streams are in sync</detail></reg>
+		<reg  name="LVDS_INTERNAL_SYNC" addr="0xB5" space="CORE" mask="0x0001" display_name="lvds_internal_sync" range="0x0000 0x0001"></reg>
+		<reg  name="LVDS_USE_10BIT_PIXELS" addr="0xB6" space="CORE" mask="0x0001" display_name="lvds_use_10bit_pixels" range="0x0000 0x0001"><detail>0:8bit pixel 2 bit control; 1: 10bit pixel</detail></reg>
+		<reg  name="STEREO_ERROR_CONTROL" addr="0xB7" space="CORE" mask="0x0007" display_name="stereo_error_control" range="0x0000 0x0007">
+			<bitfield  name="ENABLE_ERROR_DETECT" mask="0x0001" display_name="0: enable_error_detect" range="0x0000 0x0001"><detail>Set this bit to enable stereo error detect mechanism.</detail></bitfield>
+			<bitfield  name="STICKY_ERROR_FLAG" mask="0x0002" display_name="1: sticky_error_flag" range="0x0000 0x0001"><detail>1: The stereo error detect flag once high stays high</detail></bitfield>
+			<bitfield  name="CLEAR_ERROR_FLAG" mask="0x0004" display_name="2: clear_error_flag" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="STEREO_ERROR_FLAG" addr="0xB8" space="CORE" mask="0x0001" display_name="stereo_error_flag" range="0x0000 0x0001" rw="RO"></reg>
+		<reg  name="LVDS_DATA_OUTPUT" addr="0xB9" space="CORE" mask="0xFFFF" display_name="lvds_data_output" range="0x0000 0xFFFF" rw="RO"><detail>In Master sensor - contains both pixel values</detail></reg>
+		<reg  name="AGC_GAIN" addr="0xBA" space="CORE" mask="0x007F" display_name="agc_gain" range="0x0000 0x007F" rw="RO"><detail>Gain obtained from AGC algorithm [initial value of R189]</detail></reg>
+		<reg  name="AEC_EXPOSURE" addr="0xBB" space="CORE" mask="0xFFFF" display_name="aec_exposure" range="0x0000 0xFFFF" rw="RO"><detail>Exposure obtained from AEC algorithm [initial value of R11]</detail></reg>
+		<reg  name="CURRENT_BIN" addr="0xBC" space="CORE" mask="0x003F" display_name="current_bin" range="0x0000 0x003F" rw="RO"><detail>Current bin of histogram</detail></reg>
+		<reg  name="INTERLACE_FIELD_VBLANK" addr="0xBF" space="CORE" mask="0x01FF" display_name="interlace_field_vblank" range="0x0000 0x01FF" default="0x0016"><detail>for interlace mode only</detail></reg>
+		<reg  name="IMAGE_CAPTURE_NUM" addr="0xC0" space="CORE" mask="0x00FF" display_name="image_capture_num" range="0x0000 0x00FF" default="0x000A"></reg>
+		<reg  name="THERMAL_INFO" addr="0xC1" space="CORE" mask="0x03FF" display_name="thermal_info" range="0x0000 0x03FF" rw="RO"></reg>
+		<reg  name="ANALOG_CONTROLS" addr="0xC2" space="CORE" mask="0xFFFF" display_name="analog_controls" range="0x0000 0xFFFF" default="0x0840"><detail>Analog Controls</detail>
+			<bitfield  name="BIT_0" confidential="Y" mask="0x0001" display_name="0: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_1" confidential="Y" mask="0x0002" display_name="1: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_2" confidential="Y" mask="0x0004" display_name="2: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_3" confidential="Y" mask="0x0008" display_name="3: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_4" confidential="Y" mask="0x0010" display_name="4: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_5" confidential="Y" mask="0x0020" display_name="5: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_6" confidential="Y" mask="0x0040" display_name="6: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="ANTI_ECLIPSE" mask="0x0080" display_name="7: anti_eclipse" range="0x0000 0x0001"><detail>Setting this bit turns on anti-eclipse circuitry.</detail></bitfield>
+			<bitfield  name="BIT_9" confidential="Y" mask="0x0200" display_name="9: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_10" confidential="Y" mask="0x0400" display_name="10: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="V_RST_LIM" mask="0x3800" display_name="11-13: v_rst_lim" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="BIT_14" confidential="Y" mask="0x4000" display_name="14: Reserved" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="RESERVED_CORE_C3" addr="0xC3" space="CORE" confidential="Y" mask="0x01FF" display_name="Reserved" range="0x0000 0x01FF" default="0x007F"></reg>
+		<reg  name="RESERVED_CORE_C4" addr="0xC4" space="CORE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x007F"></reg>
+		<reg  name="RESERVED_CORE_C5" addr="0xC5" space="CORE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x007F"></reg>
+		<reg  name="NTSC_FV_CONTROL" addr="0xC6" space="CORE" mask="0xFFFF" display_name="ntsc_fv_control" range="0x0000 0xFFFF">
+			<bitfield  name="EXTEND_FV" mask="0x0001" display_name="0: extend_fv" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="PED_SYNC" mask="0x0002" display_name="1: ped_sync" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="NTSC_HBLANK" addr="0xC7" space="CORE" mask="0xFFFF" display_name="ntsc_hblank" range="0x0000 0xFFFF" default="0x4416">
+			<bitfield  name="FRONT_PORCH_WIDTH" mask="0x00FF" display_name="0-7: front_porch_width" range="0x0000 0x00FF"><detail>In number of master clock cycle</detail></bitfield>
+			<bitfield  name="SYNC_WIDTH" mask="0xFF00" display_name="8-15: sync_width" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="NTSC_VBLANK" addr="0xC8" space="CORE" mask="0xFFFF" display_name="ntsc_vblank" range="0x0000 0xFFFF" default="0x4421"><detail>NTSC Vertical Blank Control</detail>
+			<bitfield  name="EQ_PULSE_WIDTH" mask="0x00FF" display_name="0-7: eq_pulse_width" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="VERT_SERR_WIDTH" mask="0xFF00" display_name="8-15: vert_serr_width" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="COL_WINDOW_START_CONTEXTB_REG" addr="0xC9" space="CORE" mask="0x03FF" display_name="col_window_start_contextb_reg" range="0x0000 0x03FF" default="0x0001"><detail>Range 1-752</detail></reg>
+		<reg  name="ROW_WINDOW_START_CONTEXTB_REG" addr="0xCA" space="CORE" mask="0x01FF" display_name="row_window_start_contextb_reg" range="0x0000 0x01FF" default="0x0004"></reg>
+		<reg  name="ROW_WINDOW_SIZE_CONTEXTB_REG" addr="0xCB" space="CORE" mask="0x01FF" display_name="row_window_size_contextb_reg" range="0x0000 0x01FF" default="0x01E0"><detail>Number of rows</detail></reg>
+		<reg  name="COL_WINDOW_SIZE_CONTEXTB_REG" addr="0xCC" space="CORE" mask="0x03FF" display_name="col_window_size_contextb_reg" range="0x0000 0x03FF" default="0x02F0"><detail>Number of columns</detail></reg>
+		<reg  name="HORZ_BLANK_CONTEXTB_REG" addr="0xCD" space="CORE" mask="0x03FF" display_name="horz_blank_contextb_reg" range="0x0000 0x03FF" default="0x005E"><detail>Number of blank columns</detail></reg>
+		<reg  name="VERT_BLANK_CONTEXTB_REG" addr="0xCE" space="CORE" mask="0x7FFF" display_name="vert_blank_contextb_reg" range="0x0000 0x7FFF" default="0x002D"><detail>Number of blank rows</detail></reg>
+		<reg  name="COARSE_SHUTTER_WIDTH_1_CONTEXTB" addr="0xCF" space="CORE" mask="0x7FFF" display_name="coarse_shutter_width_1_contextb" range="0x0000 0x7FFF" default="0x01DE"><detail>Row number of first knee</detail></reg>
+		<reg  name="COARSE_SHUTTER_WIDTH_2_CONTEXTB" addr="0xD0" space="CORE" mask="0x7FFF" display_name="coarse_shutter_width_2_contextb" range="0x0000 0x7FFF" default="0x01DF"><detail>Row number of second knee</detail></reg>
+		<reg  name="SHUTTER_WIDTH_CONTROL_CONTEXTB" addr="0xD1" space="CORE" mask="0x03FF" display_name="shutter_width_control_contextb" range="0x0000 0x03FF" default="0x0064">
+			<bitfield  name="T2_RATIO" mask="0x000F" display_name="0-3: t2_ratio" range="0x0000 0x000F"><detail>Range: 1-4</detail></bitfield>
+			<bitfield  name="T3_RATIO" mask="0x00F0" display_name="4-7: t3_ratio" range="0x0000 0x000F"><detail>Range: 1-4</detail></bitfield>
+			<bitfield  name="AE_ADJUST_EN" mask="0x0100" display_name="8: ae_adjust_en" range="0x0000 0x0001"><detail>0 = Auto adjust disabled.&#10;1 = Auto adjust enabled.</detail></bitfield>
+			<bitfield  name="SINGLE_KNEE_EN" mask="0x0200" display_name="9: single_knee_en" range="0x0000 0x0001"><detail>Only knee1 ratio is used</detail></bitfield></reg>
+		<reg  name="COARSE_SHUTTER_WIDTH_TOTAL_CONTEXTB" addr="0xD2" space="CORE" mask="0x7FFF" display_name="coarse_shutter_width_total_contextb" range="0x0000 0x7FFF" default="0x01E0"><detail>Total coarse integration time in rows</detail></reg>
+		<reg  name="FINE_SHUTTER_WIDTH_1_CONTEXTA" addr="0xD3" space="CORE" mask="0x07FF" display_name="fine_shutter_width_1_contexta" range="0x0000 0x07FF"></reg>
+		<reg  name="FINE_SHUTTER_WIDTH_2_CONTEXTA" addr="0xD4" space="CORE" mask="0x07FF" display_name="fine_shutter_width_2_contexta" range="0x0000 0x07FF"></reg>
+		<reg  name="FINE_SHUTTER_WIDTH_TOTAL_CONTEXTA" addr="0xD5" space="CORE" mask="0x07FF" display_name="fine_shutter_width_total_contexta" range="0x0000 0x07FF"></reg>
+		<reg  name="FINE_SHUTTER_WIDTH_1_CONTEXTB" addr="0xD6" space="CORE" mask="0x07FF" display_name="fine_shutter_width_1_contextb" range="0x0000 0x07FF"></reg>
+		<reg  name="FINE_SHUTTER_WIDTH_2_CONTEXTB" addr="0xD7" space="CORE" mask="0x07FF" display_name="fine_shutter_width_2_contextb" range="0x0000 0x07FF"></reg>
+		<reg  name="FINE_SHUTTER_WIDTH_TOTAL_CONTEXTB" addr="0xD8" space="CORE" mask="0x07FF" display_name="fine_shutter_width_total_contextb" range="0x0000 0x07FF"></reg>
+		<reg  name="MONITOR_MODE_CONTROL" addr="0xD9" space="CORE" mask="0x0001" display_name="monitor_mode_control" range="0x0000 0x0001"><detail>0: normal mode; 1: trigger every 5 minutes</detail></reg>
+		<reg  name="BYTEWISE_ADDR_REG" addr="0xF0" space="CORE" mask="0xFFFF" display_name="bytewise_addr_reg" range="0x0000 0xFFFF"><detail>Bytewise Address</detail></reg>
+		<reg  name="REGISTER_LOCK_REG" addr="0xFE" space="CORE" mask="0xFFFF" display_name="register_lock_reg" range="0x0000 0xFFFF" default="0xBEEF"></reg>
+		<reg  name="RESERVED_CORE_FF" addr="0xFF" space="CORE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1324" rw="RO"></reg>
+
+
+
+	</registers>
+
+<copyright>
+  Copyright (c) 2012 Aptina Imaging Corporation.   All rights reserved.
+
+
+  No permission to use, copy, modify, or distribute this software and/or
+  its documentation for any purpose has been granted by Aptina Imaging Corporation.
+  If any such permission has been granted ( by separate agreement ), it
+  is required that the above copyright notice appear in all copies and
+  that both that copyright notice and this permission notice appear in
+  supporting documentation, and that the name of Aptina Imaging Corporation or any
+  of its trademarks may not be used in advertising or publicity pertaining
+  to distribution of the software without specific, written prior permission.
+
+
+  This software and any associated documentation are provided AS IS and
+  without warranty of any kind.   APTINA IMAGING CORPORATION EXPRESSLY DISCLAIMS
+  ALL WARRANTIES EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO, NONINFRINGEMENT
+  OF THIRD PARTY RIGHTS, AND ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS
+  FOR A PARTICULAR PURPOSE.  APTINA DOES NOT WARRANT THAT THE FUNCTIONS CONTAINED
+  IN THIS SOFTWARE WILL MEET YOUR REQUIREMENTS, OR THAT THE OPERATION OF THIS SOFTWARE
+  WILL BE UNINTERRUPTED OR ERROR-FREE.  FURTHERMORE, APTINA DOES NOT WARRANT OR
+  MAKE ANY REPRESENTATIONS REGARDING THE USE OR THE RESULTS OF THE USE OF ANY
+  ACCOMPANYING DOCUMENTATION IN TERMS OF ITS CORRECTNESS, ACCURACY, RELIABILITY,
+  OR OTHERWISE.
+</copyright>
+<revision>
+// $Revision:  $
+// $Date:  $
+//
+// product last modified: none   version last modified: 2008-11-03 11:55:56   register last modified: 2009-12-07 08:51:49 
+</revision>
+</sensor>

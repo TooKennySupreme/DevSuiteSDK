@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sensor_data.xsl"?>
+<!--
+****************************************************************************************************
+*   If you are reading this, you are not taking advantage of the XML Stylesheet                    *
+*                                                                                                  *
+*   Instructions for viewing XML SDAT file can be found in:                                        *
+*   C:\Aptina Imaging [Dev]\sensor_data\!DevWare XML-formatted SDAT User Guide.pdf                 *
+****************************************************************************************************
+-->
+<sensor name="A-0354SOC"
+	part_number="MT9V125"
+	version="3"
+	version_name="REV3"
+	width="720"
+	height="243"
+	image_type="YCBCR"
+	bits_per_clock="8"
+	clocks_per_pixel="2"
+	pixel_clock_polarity="1"
+	full_width="720"
+	full_height="486"
+	reg_addr_size="8"
+	reg_data_size="16"
+	ship_base_address="0xBA 0x90">
+	<demo_system>
+		<version_reg_write reg="RESERVED_SENSOR_F9" mask="0x0080" value="1"></version_reg_write>
+		<version_reg_read reg="RESERVED_SENSOR_FD" mask="0x0FE0" value="3"></version_reg_read>
+		<part_number name="MT9V135"  serial="0xE6"  addr="0x01:8"  mask="0xFF:8" value="0x01"></part_number>
+	</demo_system>
+	<addr_spaces>
+		<space name="SENSOR" type="REG" value="0" desc="0: Sensor Core Registers"></space>
+		<space name="COLPIPE" type="REG" value="1" desc="1: Color Pipe"></space>
+		<space name="CAMCTRL" type="REG" value="2" desc="2: Camera Control"></space>
+	</addr_spaces>
+	<registers>
+		<reg  name="CHIP_VERSION_REG" addr="0x00" space="SENSOR" mask="0xFFFF" display_name="chip_version_reg" range="0x0000 0xFFFF" default="0x129E" rw="RO"><detail>Chip version. Read only</detail>
+			<bitfield  name="BITS_0_2" confidential="Y" mask="0x0007" display_name="0-2: Reserved" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="BIT_3" confidential="Y" mask="0x0008" display_name="3: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BITS_4_7" confidential="Y" mask="0x00F0" display_name="4-7: Reserved" range="0x0000 0x000F"></bitfield>
+			<bitfield  name="BITS_8_15" confidential="Y" mask="0xFF00" display_name="8-15: Reserved" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="ROW_WINDOW_START_REG" addr="0x01" space="SENSOR" mask="0x07FF" display_name="row_window_start_reg" range="0x0000 0x07FF" default="0x0015"><detail>Start row address</detail></reg>
+		<reg  name="COL_WINDOW_START_REG" addr="0x02" space="SENSOR" mask="0x07FF" display_name="col_window_start_reg" range="0x0000 0x07FF" default="0x002E"><detail>Start column address</detail></reg>
+		<reg  name="RESERVED_SENSOR_03" addr="0x03" space="SENSOR" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x01E0"></reg>
+		<reg  name="RESERVED_SENSOR_04" addr="0x04" space="SENSOR" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x0280"></reg>
+		<reg  name="HORZ_BLANK" addr="0x05" space="SENSOR" mask="0x3FFF" display_name="horz_blank" range="0x0000 0x3FFF" default="0x00D2"><detail>Horizontal blanking (in columns)</detail></reg>
+		<reg  name="VERT_BLANK" addr="0x06" space="SENSOR" mask="0x7FFF" display_name="vert_blank" range="0x0000 0x7FFF" default="0x000E"><detail>Vertical blanking before active odd field (in rows)</detail></reg>
+		<reg  name="FIELD_LENGTH" addr="0x07" space="SENSOR" mask="0x00FF" display_name="field_length" range="0x0001 0x00FF" default="0x00F0"><detail>Field height (in rows)</detail></reg>
+		<reg  name="INTEG_TIME_REG" addr="0x09" space="SENSOR" mask="0xFFFF" display_name="integ_time_reg" range="0x0000 0xFFFF" default="0x01D6"><detail>Number of rows of integration</detail></reg>
+		<reg  name="PIXCLK_SPEED_CTRL_REG" addr="0x0A" space="SENSOR" mask="0xFFFF" display_name="pixclk_speed_ctrl_reg" range="0x0000 0xFFFF" default="0x0011">
+			<bitfield  name="BITS_0_3" confidential="Y" mask="0x000F" display_name="0-3: Reserved" range="0x0000 0x000F"></bitfield>
+			<bitfield  name="BITS_4_7" confidential="Y" mask="0x00F0" display_name="4-7: Reserved" range="0x0000 0x000F"></bitfield>
+			<bitfield  name="PIXCLK_INVERT" mask="0x0100" display_name="8: pixclk_invert" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_13" confidential="Y" mask="0x2000" display_name="13: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BITS_14_15" confidential="Y" mask="0xC000" display_name="14-15: Reserved" range="0x0000 0x0003"></bitfield></reg>
+		<reg  name="EXTRA_DELAY_REG" addr="0x0B" space="SENSOR" mask="0x3FFF" display_name="extra_delay_reg" range="0x0000 0x3FFF"><detail>Extra vertical blanking (in pixel clocks)</detail></reg>
+		<reg  name="SHUTTER_DELAY_REG" addr="0x0C" space="SENSOR" mask="0x3FFF" display_name="shutter_delay_reg" range="0x0000 0x3FFF"><detail>Shutter delay (in pixel clocks)</detail></reg>
+		<reg  name="RESET_REG" addr="0x0D" space="SENSOR" mask="0xFFFF" display_name="reset_reg" range="0x0000 0xFFFF" default="0x0108">
+			<bitfield  name="RESET" mask="0x0001" display_name="0: reset" range="0x0000 0x0001"><detail>0: Resume 1: Reset</detail></bitfield>
+			<bitfield  name="RESTART" mask="0x0002" display_name="1: restart" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="STANDBY" mask="0x0004" display_name="2: standby" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="RESET_REG_BIT_3" mask="0x0008" display_name="3: reset_reg_bit_3" range="0x0000 0x0001"><detail>0: Stop sensor readout; 1: Normal operation</detail></bitfield>
+			<bitfield  name="OUTPUT_DISABLE" mask="0x0010" display_name="4: output_disable" range="0x0000 0x0001"><detail>0: Normal 1: pins go high-impedance</detail></bitfield>
+			<bitfield  name="SOC_RESET" mask="0x0020" display_name="5: soc_reset" range="0x0000 0x0001"><detail>0: Resume 1: Reset</detail></bitfield>
+			<bitfield  name="DRIVE_PINS" mask="0x0040" display_name="6: drive_pins" range="0x0000 0x0001"><detail>0: Outputs hi-z when STANDBY pin asserted; 1: Outputs unaffected by STANDBY pin</detail></bitfield>
+			<bitfield  name="INHIBIT_STANDBY" mask="0x0080" display_name="7: inhibit_standby" range="0x0000 0x0001"><detail>0: standby pin causes standby; 1: standby pin does not cause standby</detail></bitfield>
+			<bitfield  name="SHOW_BAD_FRAMES" mask="0x0100" display_name="8: show_bad_frames" range="0x0000 0x0001"><detail>0: only good frames; 1: all frames</detail></bitfield>
+			<bitfield  name="RESTART_FRAMES" mask="0x0200" display_name="9: restart_frames" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="TOGGLE_SADDR" mask="0x0400" display_name="10: toggle_saddr" range="0x0000 0x0001"><detail>0: Default two-wire serial interface addr [0xBA]; 1: Alternate addr [0x90]</detail></bitfield>
+			<bitfield  name="BIT_12" confidential="Y" mask="0x1000" display_name="12: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="STOP_SOC" mask="0x2000" display_name="13: stop_soc" range="0x0000 0x0001"><detail>Setting this bit turns off all SOC clocks.</detail></bitfield>
+			<bitfield  name="SYNC_CHANGES" mask="0x8000" display_name="15: sync_changes" range="0x0000 0x0001"><detail>0: normal update; 1: Inhibit update to frame-start-synced registers</detail></bitfield></reg>
+		<reg  name="RESERVED_SENSOR_10" addr="0x10" space="SENSOR" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F"></reg>
+		<reg  name="VERT_BLANK_EVEN" addr="0x11" space="SENSOR" mask="0x007F" display_name="vert_blank_even" range="0x0000 0x007F" default="0x000F"><detail>Vertical blanking before active even field (in rows)</detail></reg>
+		<reg  name="RESERVED_SENSOR_12" addr="0x12" space="SENSOR" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x0500"></reg>
+		<reg  name="RESERVED_SENSOR_13" addr="0x13" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x020D"></reg>
+		<reg  name="RESERVED_SENSOR_14" addr="0x14" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0271"></reg>
+		<reg  name="READ_MODE" addr="0x20" space="SENSOR" mask="0xC3CD" display_name="read_mode" range="0x0000 0xC3CD" default="0x0300">
+			<bitfield  name="READ_MODE_REG_BOT_TOP" mask="0x0001" display_name="0: read_mode_reg_bot_top" range="0x0000 0x0001"><detail>0: Sensor reads top to bottom 1: Bottom to top</detail></bitfield>
+			<bitfield  name="FIRST_FIELD_EVEN_NTSC" mask="0x0004" display_name="2: first_field_even_ntsc" range="0x0000 0x0001"><detail>0:First Field Odd; 1:First Field Even</detail></bitfield>
+			<bitfield  name="FIRST_FIELD_EVEN_PAL" mask="0x0008" display_name="3: first_field_even_pal" range="0x0000 0x0001"><detail>0:First Field Odd; 1:First Field Even</detail></bitfield>
+			<bitfield  name="BIT_6" confidential="Y" mask="0x0040" display_name="6: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_7" confidential="Y" mask="0x0080" display_name="7: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="OVER_SIZED" mask="0x0100" display_name="8: over_sized" range="0x0000 0x0001"><detail>0: Do not read border pixels; 1: Readout 4 border pixels</detail></bitfield>
+			<bitfield  name="SHOW_BORDER" mask="0x0200" display_name="9: show_border" range="0x0000 0x0001"><detail>0: LV and FV inactive for border pixels; 1: LV and FV active for border pixels</detail></bitfield>
+			<bitfield  name="LINE_VALID" mask="0x4000" display_name="14: line_valid" range="0x0000 0x0001"><detail>0: LV inactive when FV inactive 1: LV active when FV inactive</detail></bitfield>
+			<bitfield  name="XOR_LINE_VALID" mask="0x8000" display_name="15: xor_line_valid" range="0x0000 0x0001"><detail>0:LV = LV; 1: XOR LV with FV</detail></bitfield></reg>
+		<reg  name="DARK_ROWS_COLS_REG" addr="0x22" space="SENSOR" mask="0x7FFF" display_name="dark_rows_cols_reg" range="0x0000 0x7FFF" default="0x010D">
+			<bitfield  name="BITS_0_2" confidential="Y" mask="0x0007" display_name="0-2: Reserved" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="BIT_3" confidential="Y" mask="0x0008" display_name="3: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BITS_4_6" confidential="Y" mask="0x0070" display_name="4-6: Reserved" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="DARK_ROWS_SHOW" mask="0x0080" display_name="7: dark_rows_show" range="0x0000 0x0001"><detail>0: Don&apos;t show dark rows; 1: Show dark rows</detail></bitfield>
+			<bitfield  name="DARK_COLS_ENABLE" mask="0x0100" display_name="8: dark_cols_enable" range="0x0000 0x0001"><detail>0: Don&apos;t read dark columns; 1: Read dark columns</detail></bitfield>
+			<bitfield  name="DARK_COLS_SHOW" mask="0x0200" display_name="9: dark_cols_show" range="0x0000 0x0001"><detail>0: Don&apos;t show dark columns; 1: Show dark columns</detail></bitfield></reg>
+		<reg  name="EXTRA_RESET_REG" addr="0x24" space="SENSOR" mask="0xFFFF" display_name="extra_reset_reg" range="0x0000 0xFFFF" default="0x4000">
+			<bitfield  name="NEXT_ROW_RESET" mask="0x4000" display_name="14: next_row_reset" range="0x0000 0x0001"><detail>[avoid washed-out images under bright illumination</detail></bitfield></reg>
+		<reg  name="GREEN1_GAIN_REG" addr="0x2B" space="SENSOR" mask="0x0FFF" display_name="green1_gain_reg" range="0x0000 0x0FFF" default="0x0020">
+			<bitfield  name="GREEN1_GAIN_VALUE" mask="0x007F" display_name="0-6: green1_gain_value" range="0x0000 0x007F" datatype="ufixed5"><detail>Initial gain = bits[6:0] * 0.03125</detail></bitfield>
+			<bitfield  name="GREEN1_GAIN_REG_GREEN1_GAIN_DOUBLE_7_8" mask="0x0180" display_name="7-8: green1_gain_reg_green1_gain_double_7_8" range="0x0000 0x0003"><detail>Analog gain = [Bit8 +1]*[Bit7 +1]*Initial gain</detail></bitfield>
+			<bitfield  name="GREEN1_GAIN_REG_GREEN1_GAIN_DOUBLE_9_11" mask="0x0E00" display_name="9-11: green1_gain_reg_green1_gain_double_9_11" range="0x0000 0x0007"><detail>Total gain = [Bit11 +1]*[Bit10 +1]*[Bit9 +1]*Analog gain</detail></bitfield></reg>
+		<reg  name="BLUE_GAIN_REG" addr="0x2C" space="SENSOR" mask="0x0FFF" display_name="blue_gain_reg" range="0x0000 0x0FFF" default="0x0020">
+			<bitfield  name="BLUE_GAIN_VALUE" mask="0x007F" display_name="0-6: blue_gain_value" range="0x0000 0x007F" datatype="ufixed5"><detail>Initial gain = bits[6:0] * 0.03125</detail></bitfield>
+			<bitfield  name="BLUE_GAIN_REG_BLUE_GAIN_DOUBLE_7_8" mask="0x0180" display_name="7-8: blue_gain_reg_blue_gain_double_7_8" range="0x0000 0x0003"><detail>Analog gain = [Bit8 +1]*[Bit7 +1]*Initial gain</detail></bitfield>
+			<bitfield  name="BLUE_GAIN_REG_BLUE_GAIN_DOUBLE_9_11" mask="0x0E00" display_name="9-11: blue_gain_reg_blue_gain_double_9_11" range="0x0000 0x0007"><detail>Total gain = [Bit11 +1]*[Bit10 +1]*[Bit9 +1]*Analog gain</detail></bitfield></reg>
+		<reg  name="RED_GAIN_REG" addr="0x2D" space="SENSOR" mask="0x0FFF" display_name="red_gain_reg" range="0x0000 0x0FFF" default="0x0020">
+			<bitfield  name="RED_GAIN_VALUE" mask="0x007F" display_name="0-6: red_gain_value" range="0x0000 0x007F" datatype="ufixed5"><detail>Initial gain = bits[6:0] * 0.03125</detail></bitfield>
+			<bitfield  name="RED_GAIN_REG_RED_GAIN_DOUBLE_7_8" mask="0x0180" display_name="7-8: red_gain_reg_red_gain_double_7_8" range="0x0000 0x0003"><detail>Analog gain = [Bit8 +1]*[Bit7 +1]*Initial Gain</detail></bitfield>
+			<bitfield  name="RED_GAIN_REG_RED_GAIN_DOUBLE_9_11" mask="0x0E00" display_name="9-11: red_gain_reg_red_gain_double_9_11" range="0x0000 0x0007"><detail>Total gain = [Bit11 +1]*[Bit10 +1]*[Bit9 +1]*Analog gain</detail></bitfield></reg>
+		<reg  name="GREEN2_GAIN_REG" addr="0x2E" space="SENSOR" mask="0x0FFF" display_name="green2_gain_reg" range="0x0000 0x0FFF" default="0x0020">
+			<bitfield  name="GREEN2_GAIN_VALUE" mask="0x007F" display_name="0-6: green2_gain_value" range="0x0000 0x007F" datatype="ufixed5"><detail>Initial gain = bits[6:0] * 0.03125</detail></bitfield>
+			<bitfield  name="GREEN2_GAIN_REG_GREEN2_GAIN_DOUBLE_7_8" mask="0x0180" display_name="7-8: green2_gain_reg_green2_gain_double_7_8" range="0x0000 0x0003"><detail>Analog gain = [Bit8 +1]*[Bit7 +1]*Initial gain</detail></bitfield>
+			<bitfield  name="GREEN2_GAIN_REG_GREEN2_GAIN_DOUBLE_9_11" mask="0x0E00" display_name="9-11: green2_gain_reg_green2_gain_double_9_11" range="0x0000 0x0007"><detail>Total gain = [Bit11 +1]*[Bit10 +1]*[Bit9 +1]*Analog gain</detail></bitfield></reg>
+		<reg  name="GLOBAL_GAIN_REG" addr="0x2F" space="SENSOR" mask="0x8FFF" display_name="global_gain_reg" range="0x0000 0x8FFF" default="0x0020"><detail>Sets all 4 gain regs. when read reads Green1 gain</detail>
+			<bitfield  name="GLOBAL_GAIN_VALUE" mask="0x007F" display_name="0-6: global_gain_value" range="0x0000 0x007F" datatype="ufixed5"><detail>Initial gain = bits[6:0] * 0.03125</detail></bitfield>
+			<bitfield  name="GLOBAL_GAIN_REG_GLOBAL_GAIN_DOUBLE_7_8" mask="0x0180" display_name="7-8: global_gain_reg_global_gain_double_7_8" range="0x0000 0x0003"><detail>Analog gain = [Bit8 +1]*[Bit7 +1]*Initial gain</detail></bitfield>
+			<bitfield  name="GLOBAL_GAIN_REG_GLOBAL_GAIN_DOUBLE_9_11" mask="0x0E00" display_name="9-11: global_gain_reg_global_gain_double_9_11" range="0x0000 0x0007"><detail>Total gain = [Bit11 +1]*[Bit10 +1]*[Bit9 +1]*Analog gain</detail></bitfield>
+			<bitfield  name="BIT_15" confidential="Y" mask="0x8000" display_name="15: Reserved" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="ROW_NOISE_CONTROL_REG" addr="0x30" space="SENSOR" mask="0x7FFF" display_name="row_noise_control_reg" range="0x0000 0x7FFF" default="0x042A">
+			<bitfield  name="ROW_NOISE_CONSTANT" mask="0x03FF" display_name="0-9: row_noise_constant" range="0x0000 0x03FF"></bitfield>
+			<bitfield  name="EN_CORRECTION" mask="0x0400" display_name="10: en_correction" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="USE_BL_AVG" mask="0x0800" display_name="11: use_bl_avg" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="GAIN_THRESHOLD" mask="0x7000" display_name="12-14: gain_threshold" range="0x0000 0x0007"><detail>0 - x1/32 - x1/16; 1 - x2 - x16; 3 - x4 - x16; 7 - x8 - x16</detail></bitfield>
+			<bitfield  name="EN_FRAME_CORRECTION" mask="0x8000" display_name="15: en_frame_correction" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="RESERVED_SENSOR_31" addr="0x31" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1C00"></reg>
+		<reg  name="RESERVED_SENSOR_32" addr="0x32" space="SENSOR" confidential="Y" mask="0x83FF" display_name="Reserved" range="0x0000 0x83FF" default="0x002A"></reg>
+		<reg  name="RESERVED_SENSOR_33" addr="0x33" space="SENSOR" confidential="Y" mask="0x7FFF" display_name="Reserved" range="0x0000 0x7FFF" default="0x0343"></reg>
+		<reg  name="RESERVED_SENSOR_34" addr="0x34" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0xC00D"></reg>
+		<reg  name="RESERVED_SENSOR_35" addr="0x35" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x2026"></reg>
+		<reg  name="RESERVED_SENSOR_36" addr="0x36" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0xF0F0"></reg>
+		<reg  name="RESERVED_SENSOR_37" addr="0x37" space="SENSOR" confidential="Y" mask="0x3FFF" display_name="Reserved" range="0x0000 0x3FFF"></reg>
+		<reg  name="RESERVED_SENSOR_38" addr="0x38" space="SENSOR" confidential="Y" mask="0xFF0F" display_name="Reserved" range="0x0000 0xFF0F" default="0x2006"></reg>
+		<reg  name="RESERVED_SENSOR_3B" addr="0x3B" space="SENSOR" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F" default="0x0021"></reg>
+		<reg  name="RESERVED_SENSOR_3C" addr="0x3C" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1A20"></reg>
+		<reg  name="RESERVED_SENSOR_3D" addr="0x3D" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x201E"></reg>
+		<reg  name="RESERVED_SENSOR_3E" addr="0x3E" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x2020"></reg>
+		<reg  name="RESERVED_SENSOR_3F" addr="0x3F" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1020"></reg>
+		<reg  name="RESERVED_SENSOR_40" addr="0x40" space="SENSOR" confidential="Y" mask="0x3F3F" display_name="Reserved" range="0x0000 0x3F3F" default="0x200C"></reg>
+		<reg  name="RESERVED_SENSOR_41" addr="0x41" space="SENSOR" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x00D7"></reg>
+		<reg  name="RESERVED_SENSOR_42" addr="0x42" space="SENSOR" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" default="0x0777"></reg>
+		<reg  name="RESERVED_SENSOR_43" addr="0x43" space="SENSOR" confidential="Y" mask="0x1FFF" display_name="Reserved" range="0x0000 0x1FFF" default="0x0410"></reg>
+		<reg  name="RESERVED_SENSOR_58" addr="0x58" space="SENSOR" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007"></reg>
+		<reg  name="RESERVED_SENSOR_59" addr="0x59" space="SENSOR" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x001E"></reg>
+		<reg  name="RESERVED_SENSOR_5A" addr="0x5A" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0xE00A"></reg>
+		<reg  name="DARK_G1_AVG_REG" addr="0x5B" space="SENSOR" mask="0x007F" display_name="dark_g1_avg_reg" range="0x0000 0x007F" rw="RO"></reg>
+		<reg  name="DARK_B_AVG_REG" addr="0x5C" space="SENSOR" mask="0x007F" display_name="dark_b_avg_reg" range="0x0000 0x007F" rw="RO"></reg>
+		<reg  name="DARK_R_AVG_REG" addr="0x5D" space="SENSOR" mask="0x007F" display_name="dark_r_avg_reg" range="0x0000 0x007F" rw="RO"></reg>
+		<reg  name="DARK_G2_AVG_REG" addr="0x5E" space="SENSOR" mask="0x007F" display_name="dark_g2_avg_reg" range="0x0000 0x007F" rw="RO"></reg>
+		<reg  name="CAL_THRESHOLD" addr="0x5F" space="SENSOR" mask="0xFFFF" display_name="cal_threshold" range="0x0000 0xFFFF" default="0x231D">
+			<bitfield  name="CAL_THRESHOLD_MIN" mask="0x007F" display_name="0-6: cal_threshold_min" range="0x0000 0x007F"><detail>Lower threshold for black level in ADC LSBs</detail></bitfield>
+			<bitfield  name="CAL_THRESHOLD_MAX" mask="0x7F00" display_name="8-14: cal_threshold_max" range="0x0000 0x007F"><detail>Maximum allowed black level in ADC LSBs</detail></bitfield></reg>
+		<reg  name="CAL_CTRL" addr="0x60" space="SENSOR" mask="0x11FF" display_name="cal_ctrl" range="0x0000 0x11FF" default="0x0080">
+			<bitfield  name="CAL_CTRL_AUTO" mask="0x0001" display_name="0: cal_ctrl_auto" range="0x0000 0x0001"><detail>1: Override auto black level correction w/ programmed values</detail></bitfield>
+			<bitfield  name="CAL_SAME_GREEN" mask="0x0002" display_name="1: cal_same_green" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="CAL_SAME_BLUERED" mask="0x0004" display_name="2: cal_same_bluered" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_3" confidential="Y" mask="0x0008" display_name="3: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="CAL_STEP_IS_1" mask="0x0010" display_name="4: cal_step_is_1" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="CAL_N_FRAMES" mask="0x00E0" display_name="5-7: cal_n_frames" range="0x0000 0x0007"><detail>in power of 2s</detail></bitfield>
+			<bitfield  name="CAL_SWEEP_MODE" mask="0x0100" display_name="8: cal_sweep_mode" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="CAL_G1" addr="0x61" space="SENSOR" mask="0x01FF" display_name="cal_g1" range="0x0000 0x01FF" datatype="signed"></reg>
+		<reg  name="CAL_B" addr="0x62" space="SENSOR" mask="0x01FF" display_name="cal_b" range="0x0000 0x01FF" datatype="signed"></reg>
+		<reg  name="CAL_R" addr="0x63" space="SENSOR" mask="0x01FF" display_name="cal_r" range="0x0000 0x01FF" datatype="signed"></reg>
+		<reg  name="CAL_G2" addr="0x64" space="SENSOR" mask="0x01FF" display_name="cal_g2" range="0x0000 0x01FF" datatype="signed"></reg>
+		<reg  name="RESERVED_SENSOR_70" addr="0x70" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x8D48"></reg>
+		<reg  name="RESERVED_SENSOR_71" addr="0x71" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x8D48"></reg>
+		<reg  name="RESERVED_SENSOR_72" addr="0x72" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x524A"></reg>
+		<reg  name="RESERVED_SENSOR_73" addr="0x73" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x8A4A"></reg>
+		<reg  name="RESERVED_SENSOR_74" addr="0x74" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x7068"></reg>
+		<reg  name="RESERVED_SENSOR_75" addr="0x75" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x6F69"></reg>
+		<reg  name="RESERVED_SENSOR_76" addr="0x76" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x896A"></reg>
+		<reg  name="RESERVED_SENSOR_77" addr="0x77" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x664E"></reg>
+		<reg  name="RESERVED_SENSOR_78" addr="0x78" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x8C44"></reg>
+		<reg  name="RESERVED_SENSOR_79" addr="0x79" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x8A46"></reg>
+		<reg  name="RESERVED_SENSOR_7A" addr="0x7A" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x8B48"></reg>
+		<reg  name="RESERVED_SENSOR_7B" addr="0x7B" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x8C47"></reg>
+		<reg  name="RESERVED_SENSOR_7C" addr="0x7C" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x8E46"></reg>
+		<reg  name="RESERVED_SENSOR_7D" addr="0x7D" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x664D"></reg>
+		<reg  name="RESERVED_SENSOR_7E" addr="0x7E" space="SENSOR" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x008E"></reg>
+		<reg  name="RESERVED_SENSOR_7F" addr="0x7F" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x8D43"></reg>
+		<reg  name="RESERVED_SENSOR_80" addr="0x80" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x5804"></reg>
+		<reg  name="RESERVED_SENSOR_81" addr="0x81" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x5804"></reg>
+		<reg  name="RESERVED_SENSOR_82" addr="0x82" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x5410"></reg>
+		<reg  name="RESERVED_SENSOR_83" addr="0x83" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x5511"></reg>
+		<reg  name="RESERVED_SENSOR_84" addr="0x84" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x3612"></reg>
+		<reg  name="RESERVED_SENSOR_85" addr="0x85" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x3714"></reg>
+		<reg  name="RESERVED_SENSOR_86" addr="0x86" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x5A02"></reg>
+		<reg  name="RESERVED_SENSOR_87" addr="0x87" space="SENSOR" confidential="Y" mask="0x007F" display_name="Reserved" range="0x0000 0x007F" default="0x005C"></reg>
+		<reg  name="RESERVED_SENSOR_C8" addr="0xC8" space="SENSOR" confidential="Y" mask="0xC000" display_name="Reserved" range="0x0000 0x0003"></reg>
+		<reg  name="ADDR_SPACE_SEL" addr="0xF0" space="SENSOR" mask="0x0007" display_name="addr_space_sel" range="0x0000 0x0007"><detail>0: Sensor Core; 1: ColorPipe; 2: Camera Control</detail></reg>
+		<reg  name="BYTEWISE_ADDR_REG" addr="0xF1" space="SENSOR" mask="0xFFFF" display_name="bytewise_addr_reg" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_SENSOR_F5" addr="0xF5" space="SENSOR" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x03FF"></reg>
+		<reg  name="RESERVED_SENSOR_F6" addr="0xF6" space="SENSOR" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x03FF"></reg>
+		<reg  name="RESERVED_SENSOR_F7" addr="0xF7" space="SENSOR" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" rw="RO"></reg>
+		<reg  name="RESERVED_SENSOR_F8" addr="0xF8" space="SENSOR" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" rw="RO"></reg>
+		<reg  name="RESERVED_SENSOR_F9" addr="0xF9" space="SENSOR" confidential="Y" mask="0xFC82" display_name="Reserved" range="0x0000 0x7C82"></reg>
+		<reg  name="RESERVED_SENSOR_FA" addr="0xFA" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_SENSOR_FB" addr="0xFB" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_SENSOR_FC" addr="0xFC" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_SENSOR_FD" addr="0xFD" space="SENSOR" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="CHIP_VERSION_REG2" addr="0xFF" space="SENSOR" mask="0xFFFF" display_name="chip_version_reg2" range="0x0000 0xFFFF" default="0x129E" rw="RO"><detail>Chip version. Read only.</detail></reg>
+		<reg  name="APERTURE_GAIN" addr="0x05" space="COLPIPE" mask="0x000F" display_name="aperture_gain" range="0x0000 0x000F" default="0x000B"><detail>Aperture correction scale factor used for sharpening.</detail>
+			<bitfield  name="APERTURE_GAIN_VALUE" mask="0x0007" display_name="0-2: aperture_gain_value" range="0x0000 0x0007"><detail>25% * RegValue; 7=200%</detail></bitfield>
+			<bitfield  name="APERTURE_GAIN_AUTO" mask="0x0008" display_name="3: aperture_gain_auto" range="0x0000 0x0001"><detail>1=enable automatic sharpness control</detail></bitfield></reg>
+		<reg  name="MODE_CONTROL" addr="0x06" space="COLPIPE" mask="0xFFFF" display_name="mode_control" range="0x0000 0xFFFF" default="0x640E"><detail>This register specifies the operating mode of the IFP.</detail>
+			<bitfield  name="MODE_CONTROL0" mask="0x0001" display_name="0: mode_control0" range="0x0000 0x0001"><detail>Reserved for future expansion.</detail></bitfield>
+			<bitfield  name="AUTO_WHITE_BALANCE" mask="0x0002" display_name="1: auto_white_balance" range="0x0000 0x0001"><detail>0: Stop AWB at current val; 1: enable AWB</detail></bitfield>
+			<bitfield  name="AE_WINDOW" mask="0x000C" display_name="2-3: ae_window" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="COLOR_PROCESSING" mask="0x0010" display_name="4: color_processing" range="0x0000 0x0001"><detail>0: Normal Color Proc.; 1: output Raw Color</detail></bitfield>
+			<bitfield  name="BIT_5" confidential="Y" mask="0x0020" display_name="5: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="EN_2D_DEFECT_INT" mask="0x0040" display_name="6: en_2d_defect_int" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="FLICKER_DETECT" mask="0x0080" display_name="7: flicker_detect" range="0x0000 0x0001"><detail>0: Flicker Control Off;1: Flicker Control On</detail></bitfield>
+			<bitfield  name="BITS_8_9" confidential="Y" mask="0x0300" display_name="8-9: Reserved" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="LENS_CORRECTION" mask="0x0400" display_name="10: lens_correction" range="0x0000 0x0001"><detail>1: enables lens shading correction &#10;0: disable</detail></bitfield>
+			<bitfield  name="MODE_CONTROL_BIT_11" mask="0x0800" display_name="11: mode_control_bit_11" range="0x0000 0x0001"><detail>Not used.</detail></bitfield>
+			<bitfield  name="APERTURE_CORRECTION" mask="0x1000" display_name="12: aperture_correction" range="0x0000 0x0001"><detail>1: &lt;8 aperture corrections are attenuated</detail></bitfield>
+			<bitfield  name="DEFECT_CORRECTION" mask="0x2000" display_name="13: defect_correction" range="0x0000 0x0001"><detail>1: enables on-the-fly defect correction</detail></bitfield>
+			<bitfield  name="AUTO_EXPOSURE" mask="0x4000" display_name="14: auto_exposure" range="0x0000 0x0001"><detail>1: enables auto exposure</detail></bitfield>
+			<bitfield  name="MANUAL_WHITE_BALANCE" mask="0x8000" display_name="15: manual_white_balance" range="0x0000 0x0001"><detail>1: enables manual white balance</detail></bitfield></reg>
+		<reg  name="FORMAT_CONTROL" addr="0x08" space="COLPIPE" mask="0xFFFF" display_name="format_control" range="0x0000 0xFFFF" default="0x0080">
+			<bitfield  name="HORIZONTAL_SHIFT" mask="0x0001" display_name="0: horizontal_shift" range="0x0000 0x0001"><detail>0: Green first; 1: Red or Blue first</detail></bitfield>
+			<bitfield  name="VERTICAL_SHIFT" mask="0x0002" display_name="1: vertical_shift" range="0x0000 0x0001"><detail>0: Red row first; 1: Blue row first</detail></bitfield>
+			<bitfield  name="DISABLE_CR" mask="0x0004" display_name="2: disable_cr" range="0x0000 0x0001"><detail>1: disables Cr color output channel</detail></bitfield>
+			<bitfield  name="DISABLE_Y" mask="0x0008" display_name="3: disable_y" range="0x0000 0x0001"><detail>1: disables Y color output channel</detail></bitfield>
+			<bitfield  name="DISABLE_CB" mask="0x0010" display_name="4: disable_cb" range="0x0000 0x0001"><detail>1: disables Cb color output channel</detail></bitfield>
+			<bitfield  name="MONOCHROME" mask="0x0020" display_name="5: monochrome" range="0x0000 0x0001"><detail>1: Force Y/G onto all channels</detail></bitfield>
+			<bitfield  name="PROTECTION_BITS" mask="0x0080" display_name="7: protection_bits" range="0x0000 0x0001"><detail>1: User correct bits 0: Use 0s [backward compatibility]</detail></bitfield>
+			<bitfield  name="FLIP_BAYER_ROW" mask="0x0100" display_name="8: flip_bayer_row" range="0x0000 0x0001"><detail>0: 1st row green/red 1: first row blue/green</detail></bitfield>
+			<bitfield  name="FLIP_BAYER_COL" mask="0x0200" display_name="9: flip_bayer_col" range="0x0000 0x0001"><detail>0: col order G R and B G 1: col order R G and G B</detail></bitfield>
+			<bitfield  name="GATE_PIXCLK" mask="0x0400" display_name="10: gate_pixclk" range="0x0000 0x0001"><detail>0: PIXCLK not gated;  1: PIXCLK gated w/ LINE_VALID</detail></bitfield>
+			<bitfield  name="RESERVED_11_15" mask="0xF800" display_name="11-15: reserved_11_15" range="0x0000 0x001F"><detail>Reserved for future expansion.</detail></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_10" addr="0x10" space="COLPIPE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF"></reg>
+		<reg  name="RESERVED_COLPIPE_11" addr="0x11" space="COLPIPE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF"></reg>
+		<reg  name="RESERVED_COLPIPE_12" addr="0x12" space="COLPIPE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF"></reg>
+		<reg  name="CHIP_CR" addr="0x13" space="COLPIPE" mask="0x07DF" display_name="chip_cr" range="0x0000 0x07DF" default="0x0700"><detail>Controls several chip level input/output parameters</detail>
+			<bitfield  name="DOUT_SEL" mask="0x0003" display_name="0-1: dout_sel" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="ENC_SEL_EXT_DSP" mask="0x0004" display_name="2: enc_sel_ext_dsp" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="USE_DIN_CLK_EDGE" mask="0x0008" display_name="3: use_din_clk_edge" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="SEL_DIN_CLK" mask="0x0010" display_name="4: sel_din_clk" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="INV_F" mask="0x0040" display_name="6: inv_f" range="0x0000 0x0001"><detail>Invert the F bit in the 656 generated bit stream.</detail></bitfield>
+			<bitfield  name="BLK_2ND_VBLANK" mask="0x0080" display_name="7: blk_2nd_vblank" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="CLK_IN_HYSTEN" mask="0x0100" display_name="8: clk_in_hysten" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="DIN_CLK_HYSTEN" mask="0x0200" display_name="9: din_clk_hysten" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="DIN_INPUT_ENABLE" mask="0x0400" display_name="10: din_input_enable"></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_14" addr="0x14" space="COLPIPE" confidential="Y" mask="0xC3FF" display_name="Reserved" range="0x0000 0xC3FF"></reg>
+		<reg  name="INV_LAT_PINS" addr="0x15" space="COLPIPE" mask="0x00FF" display_name="inv_lat_pins" range="0x0000 0x00FF">
+			<bitfield  name="INV_NTSC_PAL_SEL" mask="0x0001" display_name="0: inv_ntsc_pal_sel" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="INV_HORIZ_FLIP" mask="0x0002" display_name="1: inv_horiz_flip" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="INV_EN_PEDESTAL" mask="0x0004" display_name="2: inv_en_pedestal" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_16" addr="0x16" space="COLPIPE" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007"></reg>
+		<reg  name="RESERVED_COLPIPE_17" addr="0x17" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_COLPIPE_18" addr="0x18" space="COLPIPE" confidential="Y" mask="0x000F" display_name="Reserved" range="0x0000 0x000F"></reg>
+		<reg  name="RESERVED_COLPIPE_19" addr="0x19" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_COLPIPE_1A" addr="0x1A" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="WO"></reg>
+		<reg  name="RESERVED_COLPIPE_1B" addr="0x1B" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="WO"></reg>
+		<reg  name="RESERVED_COLPIPE_1C" addr="0x1C" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="WO"></reg>
+		<reg  name="DEBUG_LVDS" addr="0x1D" space="COLPIPE" mask="0x3FFF" display_name="debug_lvds" range="0x0000 0x3FFF" default="0x2000"><detail>This is used for debugging/testing the LVDS module.</detail>
+			<bitfield  name="LVDS_DATA" mask="0x03FF" display_name="0-9: lvds_data" range="0x0000 0x03FF"></bitfield>
+			<bitfield  name="LVDS_TEST_DATA" mask="0x0400" display_name="10: lvds_test_data" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="LVDS_TEST" mask="0x0800" display_name="11: lvds_test" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="PLL_TEST" mask="0x1000" display_name="12: pll_test" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="LVDS_PD" mask="0x2000" display_name="13: lvds_pd" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="LATCHED_PIN_STATUS" addr="0x1E" space="COLPIPE" mask="0x00FF" display_name="latched_pin_status" range="0x0000 0x00FF" rw="RO">
+			<bitfield  name="NTSC_PAL_SEL" mask="0x0001" display_name="0: ntsc_pal_sel" range="0x0000 0x0001" rw="RO"><detail>NTSC_PAL_SEL pin latched at reset.</detail></bitfield>
+			<bitfield  name="HORIZ_FLIP" mask="0x0002" display_name="1: horiz_flip" range="0x0000 0x0001" rw="RO"><detail>HORIZ_FLIP pin latched at reset.</detail></bitfield>
+			<bitfield  name="PEDESTAL" mask="0x0004" display_name="2: pedestal" range="0x0000 0x0001" rw="RO"><detail>PEDESTAL pin latched during reset.</detail></bitfield></reg>
+		<reg  name="AWB_SPEED_SATURATION" addr="0x25" space="COLPIPE" mask="0x003F" display_name="awb_speed_saturation" range="0x0000 0x003F" default="0x0005">
+			<bitfield  name="BITS_0_2" confidential="Y" mask="0x0007" display_name="0-2: Reserved" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="AWB_SPEED_SAT" mask="0x0038" display_name="3-5: awb_speed_sat" range="0x0000 0x0007"><detail>0:full sat; 1:75%; 2:50%; 3:37.5%; 4:25%; 5:150%; 6:b&amp;w</detail></bitfield></reg>
+		<reg  name="LUMA_OFFSET" addr="0x34" space="COLPIPE" mask="0xFFFF" display_name="luma_offset" range="0x0000 0xFFFF" default="0x0010"><detail>Offset added to the luma prior to output</detail>
+			<bitfield  name="Y_OFFSET" mask="0x00FF" display_name="0-7: y_offset" range="0x0000 0x00FF"><detail>Y offset in YCbCr mode</detail></bitfield>
+			<bitfield  name="RGB_OFFSET" mask="0xFF00" display_name="8-15: rgb_offset" range="0x0000 0x00FF"><detail>Offset in RGB mode</detail></bitfield></reg>
+		<reg  name="CLIPPING_LIM_OUT_LUMA" addr="0x35" space="COLPIPE" mask="0xFFFF" display_name="clipping_lim_out_luma" range="0x0000 0xFFFF" default="0xF010"><detail>Clipping limits for output luma</detail>
+			<bitfield  name="LOWER_LIMIT" mask="0x00FF" display_name="0-7: lower_limit" range="0x0000 0x00FF"><detail>Lowest value of output luminance.</detail></bitfield>
+			<bitfield  name="UPPER_LIMIT" mask="0xFF00" display_name="8-15: upper_limit" range="0x0000 0x00FF"><detail>Highest value of output luma.</detail></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_3A" addr="0x3A" space="COLPIPE" confidential="Y" mask="0x7FFF" display_name="Reserved" range="0x0000 0x7FFF" default="0x0200"></reg>
+		<reg  name="IFP_BLACK_LEVEL_SUBTRACTION" addr="0x3B" space="COLPIPE" mask="0x07FF" display_name="ifp_black_level_subtraction" range="0x0000 0x07FF" default="0x0426"><detail>IFP Black Level Subtraction pre Lens</detail>
+			<bitfield  name="BLACK_LEVEL_SUB" mask="0x03FF" display_name="0-9: black_level_sub" range="0x0000 0x03FF"></bitfield>
+			<bitfield  name="BLACK_LEVEL_SUB_EN" mask="0x0400" display_name="10: black_level_sub_en" range="0x0000 0x0001"><detail>0: no subtraction; 1: enable subtraction</detail></bitfield></reg>
+		<reg  name="IFP_BLACK_LEVEL_ADDITION" addr="0x3C" space="COLPIPE" mask="0x07FF" display_name="ifp_black_level_addition" range="0x0000 0x07FF" default="0x0400"><detail>IFP black level addition post lens correction</detail>
+			<bitfield  name="BLACK_LEVEL_ADD" mask="0x03FF" display_name="0-9: black_level_add" range="0x0000 0x03FF"></bitfield>
+			<bitfield  name="BLACK_LEVEL_ADD_EN" mask="0x0400" display_name="10: black_level_add_en" range="0x0000 0x0001"><detail>0: no addition; 1: enable addition</detail></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_47" addr="0x47" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0018"></reg>
+		<reg  name="TEST_PATTERN_GEN" addr="0x48" space="COLPIPE" mask="0x00FF" display_name="test_pattern_gen" range="0x0000 0x00FF">
+			<bitfield  name="TEST_PATTERN_SELECT" mask="0x0007" display_name="0-2: test_pattern_select" range="0x0000 0x0007"><detail>Values &gt; 0 turn test generator on</detail></bitfield>
+			<bitfield  name="FORCE_WB_GAINS_UNITY" mask="0x0080" display_name="7: force_wb_gains_unity" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_53" addr="0x53" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1E14"></reg>
+		<reg  name="RESERVED_COLPIPE_54" addr="0x54" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x462E"></reg>
+		<reg  name="RESERVED_COLPIPE_55" addr="0x55" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x876A"></reg>
+		<reg  name="RESERVED_COLPIPE_56" addr="0x56" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0xB7A0"></reg>
+		<reg  name="RESERVED_COLPIPE_57" addr="0x57" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0xE0CC"></reg>
+		<reg  name="RESERVED_COLPIPE_58" addr="0x58" space="COLPIPE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF"></reg>
+		<reg  name="RESERVED_COLPIPE_68" addr="0x68" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0011"></reg>
+		<reg  name="LENS_CORRECT_CONTROL" addr="0x80" space="COLPIPE" mask="0x007F" display_name="lens_correct_control" range="0x0000 0x007F" default="0x0003">
+			<bitfield  name="KX_KY" mask="0x0003" display_name="0-1: kx_ky" range="0x0000 0x0003"><detail>00=/4 01=/8 10=/16 11=/32</detail></bitfield>
+			<bitfield  name="KXY" mask="0x001C" display_name="2-4: kxy" range="0x0000 0x0007"><detail>000=0 001=/4 010=/2 011=*1 100=*2</detail></bitfield>
+			<bitfield  name="BIT5" mask="0x0020" display_name="5: bit5" range="0x0000 0x0001"><detail>This bit is unused. This bit is reserved for future use.</detail></bitfield>
+			<bitfield  name="BIT6" mask="0x0040" display_name="6: bit6" range="0x0000 0x0001"><detail>This bit is unused. This bit is reserved for future use.</detail></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_RED_0" addr="0x81" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_red_0" range="0x0000 0xFFFF" default="0xED05">
+			<bitfield  name="RED_INITIAL" mask="0x00FF" display_name="0-7: red_initial" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="RED_KNEE_0" mask="0xFF00" display_name="8-15: red_knee_0" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_RED_1_2" addr="0x82" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_red_1_2" range="0x0000 0xFFFF" default="0x0EDC">
+			<bitfield  name="RED_KNEE_1" mask="0x00FF" display_name="0-7: red_knee_1" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="RED_KNEE_2" mask="0xFF00" display_name="8-15: red_knee_2" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_RED_3_4" addr="0x83" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_red_3_4" range="0x0000 0xFFFF" default="0xEF09">
+			<bitfield  name="RED_KNEE_3" mask="0x00FF" display_name="0-7: red_knee_3" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="RED_KNEE_4" mask="0xFF00" display_name="8-15: red_knee_4" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_GREEN_0" addr="0x84" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_green_0" range="0x0000 0xFFFF" default="0xED05">
+			<bitfield  name="GREEN_INITIAL" mask="0x00FF" display_name="0-7: green_initial" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="GREEN_KNEE_0" mask="0xFF00" display_name="8-15: green_knee_0" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_GREEN_1_2" addr="0x85" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_green_1_2" range="0x0000 0xFFFF" default="0x0EDC">
+			<bitfield  name="GREEN_KNEE_1" mask="0x00FF" display_name="0-7: green_knee_1" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="GREEN_KNEE_2" mask="0xFF00" display_name="8-15: green_knee_2" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_GREEN_3_4" addr="0x86" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_green_3_4" range="0x0000 0xFFFF" default="0xEF09">
+			<bitfield  name="GREEN_KNEE_3" mask="0x00FF" display_name="0-7: green_knee_3" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="GREEN_KNEE_4" mask="0xFF00" display_name="8-15: green_knee_4" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_BLUE_0" addr="0x87" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_blue_0" range="0x0000 0xFFFF" default="0xED05">
+			<bitfield  name="BLUE_INITIAL" mask="0x00FF" display_name="0-7: blue_initial" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="BLUE_KNEE_0" mask="0xFF00" display_name="8-15: blue_knee_0" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_BLUE_1_2" addr="0x88" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_blue_1_2" range="0x0000 0xFFFF" default="0x0EDC">
+			<bitfield  name="BLUE_KNEE_1" mask="0x00FF" display_name="0-7: blue_knee_1" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="BLUE_KNEE_2" mask="0xFF00" display_name="8-15: blue_knee_2" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_BLUE_3_4" addr="0x89" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_blue_3_4" range="0x0000 0xFFFF" default="0xEF09">
+			<bitfield  name="BLUE_KNEE_3" mask="0x00FF" display_name="0-7: blue_knee_3" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="BLUE_KNEE_4" mask="0xFF00" display_name="8-15: blue_knee_4" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_RED_0" addr="0x8A" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_red_0" range="0x0000 0xFFFF" default="0xE809">
+			<bitfield  name="RED_INITIAL" mask="0x00FF" display_name="0-7: red_initial" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="RED_KNEE_0" mask="0xFF00" display_name="8-15: red_knee_0" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_RED_1_2" addr="0x8B" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_red_1_2" range="0x0000 0xFFFF" default="0xF8F4">
+			<bitfield  name="RED_KNEE_1" mask="0x00FF" display_name="0-7: red_knee_1" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="RED_KNEE_2" mask="0xFF00" display_name="8-15: red_knee_2" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_RED_3_4" addr="0x8C" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_red_3_4" range="0x0000 0xFFFF" default="0xEFF4">
+			<bitfield  name="RED_KNEE_3" mask="0x00FF" display_name="0-7: red_knee_3" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="RED_KNEE_4" mask="0xFF00" display_name="8-15: red_knee_4" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_RED_5" addr="0x8D" space="COLPIPE" mask="0x00FF" display_name="lens_adj_horiz_red_5" range="0x0000 0x00FF" default="0x0002">
+			<bitfield  name="RED_KNEE_5" mask="0x00FF" display_name="0-7: red_knee_5" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_GREEN_0" addr="0x8E" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_green_0" range="0x0000 0xFFFF" default="0xE809">
+			<bitfield  name="GREEN_INITIAL" mask="0x00FF" display_name="0-7: green_initial" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="GREEN_KNEE_0" mask="0xFF00" display_name="8-15: green_knee_0" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_GREEN_1_2" addr="0x8F" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_green_1_2" range="0x0000 0xFFFF" default="0xF8F4">
+			<bitfield  name="GREEN_KNEE_1" mask="0x00FF" display_name="0-7: green_knee_1" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="GREEN_KNEE_2" mask="0xFF00" display_name="8-15: green_knee_2" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_GREEN_3_4" addr="0x90" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_green_3_4" range="0x0000 0xFFFF" default="0xEFF4">
+			<bitfield  name="GREEN_KNEE_3" mask="0x00FF" display_name="0-7: green_knee_3" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="GREEN_KNEE_4" mask="0xFF00" display_name="8-15: green_knee_4" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_GREEN_5" addr="0x91" space="COLPIPE" mask="0x00FF" display_name="lens_adj_horiz_green_5" range="0x0000 0x00FF" default="0x0002">
+			<bitfield  name="GREEN_KNEE_5" mask="0x00FF" display_name="0-7: green_knee_5" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_BLUE_0" addr="0x92" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_blue_0" range="0x0000 0xFFFF" default="0xE809">
+			<bitfield  name="BLUE_INITIAL" mask="0x00FF" display_name="0-7: blue_initial" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="BLUE_KNEE_0" mask="0xFF00" display_name="8-15: blue_knee_0" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_BLUE_1_2" addr="0x93" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_blue_1_2" range="0x0000 0xFFFF" default="0xF8F4">
+			<bitfield  name="BLUE_KNEE_1" mask="0x00FF" display_name="0-7: blue_knee_1" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="BLUE_KNEE_2" mask="0xFF00" display_name="8-15: blue_knee_2" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_BLUE_3_4" addr="0x94" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_blue_3_4" range="0x0000 0xFFFF" default="0xEFF4">
+			<bitfield  name="BLUE_KNEE_3" mask="0x00FF" display_name="0-7: blue_knee_3" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="BLUE_KNEE_4" mask="0xFF00" display_name="8-15: blue_knee_4" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_BLUE_5" addr="0x95" space="COLPIPE" mask="0x00FF" display_name="lens_adj_horiz_blue_5" range="0x0000 0x00FF" default="0x0002">
+			<bitfield  name="BLUE_KNEE_5" mask="0x00FF" display_name="0-7: blue_knee_5" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LINE_COUNTER" addr="0x99" space="COLPIPE" mask="0x1FFF" display_name="line_counter" range="0x0000 0x1FFF" rw="RO"></reg>
+		<reg  name="FRAME_COUNTER" addr="0x9A" space="COLPIPE" mask="0xFFFF" display_name="frame_counter" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="FORMAT_OUTPUT_CONTROL2B" addr="0x9B" space="COLPIPE" mask="0x7FFF" display_name="format_output_control2b" range="0x0000 0x7FFF" default="0x0200"><detail>(Context B)</detail>
+			<bitfield  name="SWAP_CHANNELS" mask="0x0001" display_name="0: swap_channels" range="0x0000 0x0001"><detail>Swap Cb and Cr in YCbCr mode; swap R and B in RGB mode</detail></bitfield>
+			<bitfield  name="SWAP_CHROMINANCE_LUMA" mask="0x0002" display_name="1: swap_chrominance_luma" range="0x0000 0x0001"><detail>Swap C with Y bytes in YCbCr; odd and even in RGB</detail></bitfield>
+			<bitfield  name="BIT_2" confidential="Y" mask="0x0004" display_name="2: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_3" confidential="Y" mask="0x0008" display_name="3: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="TEST_RAMP_OP" mask="0x0030" display_name="4-5: test_ramp_op" range="0x0000 0x0003"><detail>0: off; 1: by column; 2: by row; 3: by frame</detail></bitfield>
+			<bitfield  name="RGB_FORMAT" mask="0x00C0" display_name="6-7: rgb_format" range="0x0000 0x0003"><detail>00:16-bit RGB565 01:15-bit RGB555 10:12-bit RGB444x 11:12-bit RGBx444</detail></bitfield>
+			<bitfield  name="OUTPUT_MODE" mask="0x0100" display_name="8: output_mode" range="0x0000 0x0001"><detail>0: YCrCb [default];1: RGB as defined by bits [6-7]</detail></bitfield>
+			<bitfield  name="INVERT_OUT_PIXCLK" mask="0x0200" display_name="9: invert_out_pixclk" range="0x0000 0x0001"><detail>1: inverts output pixel clock</detail></bitfield>
+			<bitfield  name="BYPASS_IP" mask="0x0400" display_name="10: bypass_ip" range="0x0000 0x0001"><detail>1: image processing bypassed; output raw 8+2 SRGB thru C/I FIFO</detail></bitfield>
+			<bitfield  name="CCIR656" mask="0x0800" display_name="11: ccir656" range="0x0000 0x0001"><detail>1: CCIR656 sync codes in image</detail></bitfield>
+			<bitfield  name="BYPASS_10" mask="0x1000" display_name="12: bypass_10" range="0x0000 0x0001"><detail>1: Raw sensor Bayer to 10bit output including 2 extra LSB pins</detail></bitfield>
+			<bitfield  name="FLICKER_DEBUG" mask="0x2000" display_name="13: flicker_debug" range="0x0000 0x0001"><detail>Forces flicker luma on all color channels upstream of bilinear reducer</detail></bitfield>
+			<bitfield  name="BAYER_OUT" mask="0x4000" display_name="14: bayer_out" range="0x0000 0x0001"><detail>Bit 8 must be set to 1</detail></bitfield></reg>
+		<reg  name="DEFECT_CORRECTION" addr="0x9D" space="COLPIPE" mask="0xFFFF" display_name="defect_correction" range="0x0000 0xFFFF" default="0x24AE"><detail>Defect correction control.</detail>
+			<bitfield  name="ABSOLUTE_THRESHOLD" mask="0x001F" display_name="0-4: absolute_threshold" range="0x0000 0x001F"><detail>Absolute threshold for defect detection.</detail></bitfield>
+			<bitfield  name="RELATIVE_THRESHOLD" mask="0x00E0" display_name="5-7: relative_threshold" range="0x0000 0x0007"><detail>Relative threshold for defect detection.</detail></bitfield>
+			<bitfield  name="BITS_8_14" mask="0x7F00" display_name="8-14: bits_8_14" range="0x0000 0x007F"><detail>Reserved.</detail></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_9F" addr="0x9F" space="COLPIPE" confidential="Y" mask="0x47FF" display_name="Reserved" range="0x0000 0x47FF"></reg>
+		<reg  name="RESERVED_COLPIPE_A0" addr="0xA0" space="COLPIPE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x0280"></reg>
+		<reg  name="RESERVED_COLPIPE_A1" addr="0xA1" space="COLPIPE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x0280"></reg>
+		<reg  name="RESERVED_COLPIPE_A2" addr="0xA2" space="COLPIPE" confidential="Y" mask="0x47FF" display_name="Reserved" range="0x0000 0x47FF"></reg>
+		<reg  name="RESERVED_COLPIPE_A3" addr="0xA3" space="COLPIPE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x00F0"></reg>
+		<reg  name="RESERVED_COLPIPE_A4" addr="0xA4" space="COLPIPE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x00F0"></reg>
+		<reg  name="RESERVED_COLPIPE_A5" addr="0xA5" space="COLPIPE" confidential="Y" mask="0x47FF" display_name="Reserved" range="0x0000 0x47FF"></reg>
+		<reg  name="RESERVED_COLPIPE_A6" addr="0xA6" space="COLPIPE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x0280"></reg>
+		<reg  name="HORIZ_SIZE_RESIZE_A" addr="0xA7" space="COLPIPE" mask="0x07FF" display_name="horiz_size_resize_a" range="0x0000 0x07FF" default="0x0280"><detail>Controls reducer horizontal output size.</detail>
+			<bitfield  name="HORIZ_SIZE" mask="0x07FF" display_name="0-10: horiz_size" range="0x0000 0x07FF"><detail>X Size.</detail></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_A8" addr="0xA8" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_COLPIPE_A9" addr="0xA9" space="COLPIPE" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x00F0"></reg>
+		<reg  name="VERT_SIZE_RESIZE_A" addr="0xAA" space="COLPIPE" mask="0x07FF" display_name="vert_size_resize_a" range="0x0000 0x07FF" default="0x00F0"><detail>Controls reducer vertical output size.</detail>
+			<bitfield  name="VERT_SIZE" mask="0x07FF" display_name="0-10: vert_size" range="0x0000 0x07FF"><detail>Y Size.</detail></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_AB" addr="0xAB" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0280" rw="RO"></reg>
+		<reg  name="RESERVED_COLPIPE_AC" addr="0xAC" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x01E0" rw="RO"></reg>
+		<reg  name="RESERVED_COLPIPE_AE" addr="0xAE" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0C09"></reg>
+		<reg  name="REDUCER_ZOOM_CONTROL" addr="0xAF" space="COLPIPE" mask="0x0FFF" display_name="reducer_zoom_control" range="0x0000 0x0FFF" default="0x0800"><detail>R175:1[11] controls horizontal expansion for NTSC and PAL.</detail>
+			<bitfield  name="BIT_0" confidential="Y" mask="0x0001" display_name="0: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_1" confidential="Y" mask="0x0002" display_name="1: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_3" confidential="Y" mask="0x0008" display_name="3: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_4" confidential="Y" mask="0x0010" display_name="4: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_5" confidential="Y" mask="0x0020" display_name="5: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_6" confidential="Y" mask="0x0040" display_name="6: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_8" confidential="Y" mask="0x0100" display_name="8: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_9" confidential="Y" mask="0x0200" display_name="9: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="EN_EXPAND" mask="0x0800" display_name="11: en_expand" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_B4" addr="0xB4" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0020"></reg>
+		<reg  name="LENS_ADJ_VERT_RED_5_6" addr="0xB6" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_red_5_6" range="0x0000 0xFFFF">
+			<bitfield  name="RED_KNEE_5" mask="0x00FF" display_name="0-7: red_knee_5" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="RED_KNEE_6" mask="0xFF00" display_name="8-15: red_knee_6" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_RED_7_8" addr="0xB7" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_red_7_8" range="0x0000 0xFFFF">
+			<bitfield  name="RED_KNEE_7" mask="0x00FF" display_name="0-7: red_knee_7" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="RED_KNEE_8" mask="0xFF00" display_name="8-15: red_knee_8" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_GREEN_5_6" addr="0xB8" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_green_5_6" range="0x0000 0xFFFF">
+			<bitfield  name="GREEN_KNEE_5" mask="0x00FF" display_name="0-7: green_knee_5" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="GREEN_KNEE_6" mask="0xFF00" display_name="8-15: green_knee_6" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_GREEN_7_8" addr="0xB9" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_green_7_8" range="0x0000 0xFFFF">
+			<bitfield  name="GREEN_KNEE_7" mask="0x00FF" display_name="0-7: green_knee_7" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="GREEN_KNEE_8" mask="0xFF00" display_name="8-15: green_knee_8" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_BLUE_5_6" addr="0xBA" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_blue_5_6" range="0x0000 0xFFFF">
+			<bitfield  name="BLUE_KNEE_5" mask="0x00FF" display_name="0-7: blue_knee_5" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="BLUE_KNEE_6" mask="0xFF00" display_name="8-15: blue_knee_6" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_VERT_BLUE_7_8" addr="0xBB" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_vert_blue_7_8" range="0x0000 0xFFFF">
+			<bitfield  name="BLUE_KNEE_7" mask="0x00FF" display_name="0-7: blue_knee_7" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="BLUE_KNEE_8" mask="0xFF00" display_name="8-15: blue_knee_8" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_RED_6_7" addr="0xBC" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_red_6_7" range="0x0000 0xFFFF" default="0x0210">
+			<bitfield  name="RED_KNEE_6" mask="0x00FF" display_name="0-7: red_knee_6" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="RED_KNEE_7" mask="0xFF00" display_name="8-15: red_knee_7" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_RED_8_9" addr="0xBD" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_red_8_9" range="0x0000 0xFFFF" default="0x020E">
+			<bitfield  name="RED_KNEE_8" mask="0x00FF" display_name="0-7: red_knee_8" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="RED_KNEE_9" mask="0xFF00" display_name="8-15: red_knee_9" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_RED_10" addr="0xBE" space="COLPIPE" mask="0x00FF" display_name="lens_adj_horiz_red_10" range="0x0000 0x00FF" default="0x0017">
+			<bitfield  name="RED_KNEE_10" mask="0x00FF" display_name="0-7: red_knee_10" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_GREEN_6_7" addr="0xBF" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_green_6_7" range="0x0000 0xFFFF" default="0x0210">
+			<bitfield  name="GREEN_KNEE_6" mask="0x00FF" display_name="0-7: green_knee_6" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="GREEN_KNEE_7" mask="0xFF00" display_name="8-15: green_knee_7" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_GREEN_8_9" addr="0xC0" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_green_8_9" range="0x0000 0xFFFF" default="0x020E">
+			<bitfield  name="GREEN_KNEE_8" mask="0x00FF" display_name="0-7: green_knee_8" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="GREEN_KNEE_9" mask="0xFF00" display_name="8-15: green_knee_9" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_GREEN_10" addr="0xC1" space="COLPIPE" mask="0x00FF" display_name="lens_adj_horiz_green_10" range="0x0000 0x00FF" default="0x0017">
+			<bitfield  name="GREEN_KNEE_10" mask="0x00FF" display_name="0-7: green_knee_10" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_BLUE_6_7" addr="0xC2" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_blue_6_7" range="0x0000 0xFFFF" default="0x0210">
+			<bitfield  name="BLUE_KNEE_6" mask="0x00FF" display_name="0-7: blue_knee_6" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="BLUE_KNEE_7" mask="0xFF00" display_name="8-15: blue_knee_7" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_BLUE_8_9" addr="0xC3" space="COLPIPE" mask="0xFFFF" display_name="lens_adj_horiz_blue_8_9" range="0x0000 0xFFFF" default="0x020E">
+			<bitfield  name="BLUE_KNEE_8" mask="0x00FF" display_name="0-7: blue_knee_8" range="0x0000 0x00FF" datatype="signed"></bitfield>
+			<bitfield  name="BLUE_KNEE_9" mask="0xFF00" display_name="8-15: blue_knee_9" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="LENS_ADJ_HORIZ_BLUE_10" addr="0xC4" space="COLPIPE" mask="0x00FF" display_name="lens_adj_horiz_blue_10" range="0x0000 0x00FF" default="0x0017">
+			<bitfield  name="BLUE_KNEE_10" mask="0x00FF" display_name="0-7: blue_knee_10" range="0x0000 0x00FF" datatype="signed"></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_C8" addr="0xC8" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1F0B" rw="RO"></reg>
+		<reg  name="RESERVED_COLPIPE_C9" addr="0xC9" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_COLPIPE_CA" addr="0xCA" space="COLPIPE" confidential="Y" mask="0x3FFF" display_name="Reserved" range="0x0000 0x3FFF" rw="RO"></reg>
+		<reg  name="RESERVED_COLPIPE_CB" addr="0xCB" space="COLPIPE" confidential="Y" mask="0x3FFF" display_name="Reserved" range="0x0000 0x3FFF" rw="RO"></reg>
+		<reg  name="RESERVED_COLPIPE_CC" addr="0xCC" space="COLPIPE" confidential="Y" mask="0x3FFF" display_name="Reserved" range="0x0000 0x3FFF" rw="RO"></reg>
+		<reg  name="RESERVED_COLPIPE_CD" addr="0xCD" space="COLPIPE" confidential="Y" mask="0x3FFF" display_name="Reserved" range="0x0000 0x3FFF" rw="RO"></reg>
+		<reg  name="RESERVED_COLPIPE_CE" addr="0xCE" space="COLPIPE" confidential="Y" mask="0x3FFF" display_name="Reserved" range="0x0000 0x3FFF" rw="RO"></reg>
+		<reg  name="RESERVED_COLPIPE_CF" addr="0xCF" space="COLPIPE" confidential="Y" mask="0x3FFF" display_name="Reserved" range="0x0000 0x3FFF" rw="RO"></reg>
+		<reg  name="RESERVED_COLPIPE_D0" addr="0xD0" space="COLPIPE" confidential="Y" mask="0x01FF" display_name="Reserved" range="0x0000 0x01FF" rw="RO"></reg>
+		<reg  name="GAMMA_B_Y1_Y2" addr="0xDC" space="COLPIPE" mask="0xFFFF" display_name="gamma_b_y1_y2" range="0x0000 0xFFFF" default="0x2010">
+			<bitfield  name="Y1" mask="0x00FF" display_name="0-7: y1" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="Y2" mask="0xFF00" display_name="8-15: y2" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="GAMMA_B_Y3_Y4" addr="0xDD" space="COLPIPE" mask="0xFFFF" display_name="gamma_b_y3_y4" range="0x0000 0xFFFF" default="0x5A3C">
+			<bitfield  name="Y3" mask="0x00FF" display_name="0-7: y3" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="Y4" mask="0xFF00" display_name="8-15: y4" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="GAMMA_B_Y5_Y6" addr="0xDE" space="COLPIPE" mask="0xFFFF" display_name="gamma_b_y5_y6" range="0x0000 0xFFFF" default="0xA082">
+			<bitfield  name="Y5" mask="0x00FF" display_name="0-7: y5" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="Y6" mask="0xFF00" display_name="8-15: y6" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="GAMMA_B_Y7_Y8" addr="0xDF" space="COLPIPE" mask="0xFFFF" display_name="gamma_b_y7_y8" range="0x0000 0xFFFF" default="0xC8B6">
+			<bitfield  name="Y7" mask="0x00FF" display_name="0-7: y7" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="Y8" mask="0xFF00" display_name="8-15: y8" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="GAMMA_B_Y9_Y10" addr="0xE0" space="COLPIPE" mask="0xFFFF" display_name="gamma_b_y9_y10" range="0x0000 0xFFFF" default="0xE0D4">
+			<bitfield  name="Y9" mask="0x00FF" display_name="0-7: y9" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="Y10" mask="0xFF00" display_name="8-15: y10" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="GAMMA_B_Y0" addr="0xE1" space="COLPIPE" mask="0x00FF" display_name="gamma_b_y0" range="0x0000 0x00FF">
+			<bitfield  name="Y0" mask="0x00FF" display_name="0-7: y0" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="RESERVED_COLPIPE_E2" addr="0xE2" space="COLPIPE" confidential="Y" mask="0xFF07" display_name="Reserved" range="0x0000 0xFF07" default="0x7000"></reg>
+		<reg  name="RESERVED_COLPIPE_E3" addr="0xE3" space="COLPIPE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0xB023"></reg>
+		<reg  name="ADDR_SPACE_SEL_COLPIPE" addr="0xF0" space="COLPIPE" mask="0x0007" display_name="addr_space_sel_colpipe" range="0x0000 0x0007"><detail>0: Sensor Core; 1: ColorPipe; 2: Camera Control</detail></reg>
+		<reg  name="BYTEWISE_ADDR_REG_COLPIPE" addr="0xF1" space="COLPIPE" mask="0xFFFF" display_name="bytewise_addr_reg_colpipe" range="0x0000 0xFFFF"></reg>
+		<reg  name="BASE_MATRIX_SIGNS" addr="0x02" space="CAMCTRL" mask="0x01FF" display_name="base_matrix_signs" range="0x0000 0x01FF" default="0x00EE">
+			<bitfield  name="BASE_MATRIX_SIGN_K9" mask="0x0001" display_name="0: base_matrix_sign_k9" range="0x0000 0x0001"><detail>Ignored</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SIGN_K8" mask="0x0002" display_name="1: base_matrix_sign_k8" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SIGN_K7" mask="0x0004" display_name="2: base_matrix_sign_k7" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SIGN_K6" mask="0x0008" display_name="3: base_matrix_sign_k6" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SIGN_K5" mask="0x0010" display_name="4: base_matrix_sign_k5" range="0x0000 0x0001"><detail>Ignored</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SIGN_K4" mask="0x0020" display_name="5: base_matrix_sign_k4" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SIGN_K3" mask="0x0040" display_name="6: base_matrix_sign_k3" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SIGN_K2" mask="0x0080" display_name="7: base_matrix_sign_k2" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SIGN_K1" mask="0x0100" display_name="8: base_matrix_sign_k1" range="0x0000 0x0001"><detail>Ignored</detail></bitfield></reg>
+		<reg  name="BASE_MATRIX_SCALE_K1_K5" addr="0x03" space="CAMCTRL" mask="0x7FFF" display_name="base_matrix_scale_k1_k5" range="0x0000 0x7FFF" default="0x3923">
+			<bitfield  name="BASE_MATRIX_SCALE_K1" mask="0x0007" display_name="0-2: base_matrix_scale_k1" range="0x0000 0x0007"><detail>Scaling factor = 16 * 2^RegValue</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SCALE_K2" mask="0x0038" display_name="3-5: base_matrix_scale_k2" range="0x0000 0x0007"><detail>Scaling factor = 16 * 2^RegValue</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SCALE_K3" mask="0x01C0" display_name="6-8: base_matrix_scale_k3" range="0x0000 0x0007"><detail>Scaling factor = 16 * 2^RegValue</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SCALE_K4" mask="0x0E00" display_name="9-11: base_matrix_scale_k4" range="0x0000 0x0007"><detail>Scaling factor = 16 * 2^RegValue</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SCALE_K5" mask="0x7000" display_name="12-14: base_matrix_scale_k5" range="0x0000 0x0007"><detail>Scaling factor = 16 * 2^RegValue</detail></bitfield></reg>
+		<reg  name="BASE_MATRIX_SCALE_K6_K9" addr="0x04" space="CAMCTRL" mask="0x0FFF" display_name="base_matrix_scale_k6_k9" range="0x0000 0x0FFF" default="0x0724">
+			<bitfield  name="BASE_MATRIX_SCALE_K6" mask="0x0007" display_name="0-2: base_matrix_scale_k6" range="0x0000 0x0007"><detail>Scaling factor = 16 * 2^RegValue</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SCALE_K7" mask="0x0038" display_name="3-5: base_matrix_scale_k7" range="0x0000 0x0007"><detail>Scaling factor = 16 * 2^RegValue</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SCALE_K8" mask="0x01C0" display_name="6-8: base_matrix_scale_k8" range="0x0000 0x0007"><detail>Scaling factor = 16 * 2^RegValue</detail></bitfield>
+			<bitfield  name="BASE_MATRIX_SCALE_K9" mask="0x0E00" display_name="9-11: base_matrix_scale_k9" range="0x0000 0x0007"><detail>Scaling factor = 16 * 2^RegValue</detail></bitfield></reg>
+		<reg  name="BASE_MATRIX_COEF_K1" addr="0x09" space="CAMCTRL" mask="0x00FF" display_name="base_matrix_coef_k1" range="0x0000 0x00FF" default="0x00B1"><detail>Scaled value of K1</detail></reg>
+		<reg  name="BASE_MATRIX_COEF_K2" addr="0x0A" space="CAMCTRL" mask="0x00FF" display_name="base_matrix_coef_k2" range="0x0000 0x00FF" default="0x0033"><detail>Scaled value of K2</detail></reg>
+		<reg  name="BASE_MATRIX_COEF_K3" addr="0x0B" space="CAMCTRL" mask="0x00FF" display_name="base_matrix_coef_k3" range="0x0000 0x00FF" default="0x002F"><detail>Scaled value of K3</detail></reg>
+		<reg  name="BASE_MATRIX_COEF_K4" addr="0x0C" space="CAMCTRL" mask="0x00FF" display_name="base_matrix_coef_k4" range="0x0000 0x00FF" default="0x0080"><detail>Scaled value of K4</detail></reg>
+		<reg  name="BASE_MATRIX_COEF_K5" addr="0x0D" space="CAMCTRL" mask="0x00FF" display_name="base_matrix_coef_k5" range="0x0000 0x00FF" default="0x00F0"><detail>Scaled value of K5</detail></reg>
+		<reg  name="BASE_MATRIX_COEF_K6" addr="0x0E" space="CAMCTRL" mask="0x00FF" display_name="base_matrix_coef_k6" range="0x0000 0x00FF" default="0x0060"><detail>Scaled value of K6</detail></reg>
+		<reg  name="BASE_MATRIX_COEF_K7" addr="0x0F" space="CAMCTRL" mask="0x00FF" display_name="base_matrix_coef_k7" range="0x0000 0x00FF" default="0x0014"><detail>Scaled value of K7</detail></reg>
+		<reg  name="BASE_MATRIX_COEF_K8" addr="0x10" space="CAMCTRL" mask="0x00FF" display_name="base_matrix_coef_k8" range="0x0000 0x00FF" default="0x00A4"><detail>Scaled value of K8</detail></reg>
+		<reg  name="BASE_MATRIX_COEF_K9" addr="0x11" space="CAMCTRL" mask="0x00FF" display_name="base_matrix_coef_k9" range="0x0000 0x00FF" default="0x00DC"><detail>Scaled value of K9</detail></reg>
+		<reg  name="AWB_POSITION" addr="0x12" space="CAMCTRL" mask="0x007F" display_name="awb_position" range="0x0000 0x007F" rw="RO"><detail>Current matrix position</detail></reg>
+		<reg  name="AWB_RED_GAIN" addr="0x13" space="CAMCTRL" mask="0x00FF" display_name="awb_red_gain" range="0x0000 0x00FF" rw="RO" datatype="ufixed7"><detail>Red channel gain value</detail></reg>
+		<reg  name="AWB_BLUE_GAIN" addr="0x14" space="CAMCTRL" mask="0x00FF" display_name="awb_blue_gain" range="0x0000 0x00FF" rw="RO" datatype="ufixed7"><detail>Blue channel gain value</detail></reg>
+		<reg  name="DELTA_COEFS_SIGNS" addr="0x15" space="CAMCTRL" mask="0x01FF" display_name="delta_coefs_signs" range="0x0000 0x01FF">
+			<bitfield  name="DELTA_COEFS_SIGN_D9" mask="0x0001" display_name="0: delta_coefs_sign_d9" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="DELTA_COEFS_SIGN_D8" mask="0x0002" display_name="1: delta_coefs_sign_d8" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="DELTA_COEFS_SIGN_D7" mask="0x0004" display_name="2: delta_coefs_sign_d7" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="DELTA_COEFS_SIGN_D6" mask="0x0008" display_name="3: delta_coefs_sign_d6" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="DELTA_COEFS_SIGN_D5" mask="0x0010" display_name="4: delta_coefs_sign_d5" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="DELTA_COEFS_SIGN_D4" mask="0x0020" display_name="5: delta_coefs_sign_d4" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="DELTA_COEFS_SIGN_D3" mask="0x0040" display_name="6: delta_coefs_sign_d3" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="DELTA_COEFS_SIGN_D2" mask="0x0080" display_name="7: delta_coefs_sign_d2" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield>
+			<bitfield  name="DELTA_COEFS_SIGN_D1" mask="0x0100" display_name="8: delta_coefs_sign_d1" range="0x0000 0x0001"><detail>0: Pos, 1: Neg</detail></bitfield></reg>
+		<reg  name="DELTA_MATRIX_COEF_D1" addr="0x16" space="CAMCTRL" mask="0x00FF" display_name="delta_matrix_coef_d1" range="0x0000 0x00FF"><detail>Scaled value of D1</detail></reg>
+		<reg  name="DELTA_MATRIX_COEF_D2" addr="0x17" space="CAMCTRL" mask="0x00FF" display_name="delta_matrix_coef_d2" range="0x0000 0x00FF"><detail>Scaled value of D2</detail></reg>
+		<reg  name="DELTA_MATRIX_COEF_D3" addr="0x18" space="CAMCTRL" mask="0x00FF" display_name="delta_matrix_coef_d3" range="0x0000 0x00FF"><detail>Scaled value of D3</detail></reg>
+		<reg  name="DELTA_MATRIX_COEF_D4" addr="0x19" space="CAMCTRL" mask="0x00FF" display_name="delta_matrix_coef_d4" range="0x0000 0x00FF"><detail>Scaled value of D4</detail></reg>
+		<reg  name="DELTA_MATRIX_COEF_D5" addr="0x1A" space="CAMCTRL" mask="0x00FF" display_name="delta_matrix_coef_d5" range="0x0000 0x00FF"><detail>Scaled value of D5</detail></reg>
+		<reg  name="DELTA_MATRIX_COEF_D6" addr="0x1B" space="CAMCTRL" mask="0x00FF" display_name="delta_matrix_coef_d6" range="0x0000 0x00FF"><detail>Scaled value of D6</detail></reg>
+		<reg  name="DELTA_MATRIX_COEF_D7" addr="0x1C" space="CAMCTRL" mask="0x00FF" display_name="delta_matrix_coef_d7" range="0x0000 0x00FF"><detail>Scaled value of D7</detail></reg>
+		<reg  name="DELTA_MATRIX_COEF_D8" addr="0x1D" space="CAMCTRL" mask="0x00FF" display_name="delta_matrix_coef_d8" range="0x0000 0x00FF"><detail>Scaled value of D8</detail></reg>
+		<reg  name="DELTA_MATRIX_COEF_D9" addr="0x1E" space="CAMCTRL" mask="0x00FF" display_name="delta_matrix_coef_d9" range="0x0000 0x00FF"><detail>Scaled value of D9</detail></reg>
+		<reg  name="AWB_CR_CB_LIMITS" addr="0x1F" space="CAMCTRL" mask="0x00FF" display_name="awb_cr_cb_limits" range="0x0000 0x00FF" default="0x00A0">
+			<bitfield  name="ABS_LIMIT" mask="0x003F" display_name="0-5: abs_limit" range="0x0000 0x003F"><detail>Absolute test: both chroma must lie below this value</detail></bitfield>
+			<bitfield  name="REL_LIMIT" mask="0x00C0" display_name="6-7: rel_limit" range="0x0000 0x0003"><detail>00: Check Disable; 01: Cb/Cr&lt;0.25*max[RGB]; 10: 0.5*max[RGB]; 11: 1*max[RGB]</detail></bitfield></reg>
+		<reg  name="LUM_LIMITS_WB_STATS" addr="0x20" space="CAMCTRL" mask="0xFFFF" display_name="lum_limits_wb_stats" range="0x0000 0xFFFF" default="0xC814">
+			<bitfield  name="LUM_LOWER_LIMIT" mask="0x00FF" display_name="0-7: lum_lower_limit" range="0x0000 0x00FF"><detail>Lower limit of luminance for white balance statistics.</detail></bitfield>
+			<bitfield  name="LUM_UPPER_LIMIT" mask="0xFF00" display_name="8-15: lum_upper_limit" range="0x0000 0x00FF"><detail>Upper limit of luminance for white balance statistics.</detail></bitfield></reg>
+		<reg  name="R_B_GAIN_MANUAL_WB" addr="0x21" space="CAMCTRL" mask="0xFFFF" display_name="r_b_gain_manual_wb" range="0x0000 0xFFFF" default="0x8080">
+			<bitfield  name="R_B_GAIN_MANUAL_WB_B" mask="0x00FF" display_name="0-7: r_b_gain_manual_wb_b" range="0x0000 0x00FF" datatype="ufixed7"><detail>Gain * 128, for AWB this is an add-on</detail></bitfield>
+			<bitfield  name="R_B_GAIN_MANUAL_WB_R" mask="0xFF00" display_name="8-15: r_b_gain_manual_wb_r" range="0x0000 0x00FF" datatype="ufixed7"><detail>Gain * 128, for AWB this is an add-on</detail></bitfield></reg>
+		<reg  name="AWB_RED_LIMIT" addr="0x22" space="CAMCTRL" mask="0xFFFF" display_name="awb_red_limit" range="0x0000 0xFFFF" default="0xD960">
+			<bitfield  name="AWB_RED_LOWER_LIMIT" mask="0x00FF" display_name="0-7: awb_red_lower_limit" range="0x0000 0x00FF" datatype="ufixed7"><detail>Lower limit of red channel gain.</detail></bitfield>
+			<bitfield  name="AWB_RED_UPPER_LIMIT" mask="0xFF00" display_name="8-15: awb_red_upper_limit" range="0x0000 0x00FF" datatype="ufixed7"><detail>Upper limit of red channel gain.</detail></bitfield></reg>
+		<reg  name="AWB_BLUE_LIMIT" addr="0x23" space="CAMCTRL" mask="0xFFFF" display_name="awb_blue_limit" range="0x0000 0xFFFF" default="0xD960">
+			<bitfield  name="AWB_BLUE_LOWER_LIMIT" mask="0x00FF" display_name="0-7: awb_blue_lower_limit" range="0x0000 0x00FF" datatype="ufixed7"><detail>Lower limit of blue channel gain.</detail></bitfield>
+			<bitfield  name="AWB_BLUE_UPPER_LIMIT" mask="0xFF00" display_name="8-15: awb_blue_upper_limit" range="0x0000 0x00FF" datatype="ufixed7"><detail>Upper limit of blue channel gain.</detail></bitfield></reg>
+		<reg  name="MATRIX_ADJ_LIMITS" addr="0x24" space="CAMCTRL" mask="0x7F7F" display_name="matrix_adj_limits" range="0x0000 0x7F7F" default="0x7F00">
+			<bitfield  name="MATRIX_LOWER_LIMIT" mask="0x007F" display_name="0-6: matrix_lower_limit" range="0x0000 0x007F"><detail>Lower limit of matrix position</detail></bitfield>
+			<bitfield  name="MATRIX_UPPER_LIMIT" mask="0x7F00" display_name="8-14: matrix_upper_limit" range="0x0000 0x007F"><detail>Upper limit of matrix position</detail></bitfield></reg>
+		<reg  name="H_BOUNDS_AE_WIN" addr="0x26" space="CAMCTRL" mask="0xFFFF" display_name="h_bounds_ae_win" range="0x0000 0xFFFF" default="0x8000">
+			<bitfield  name="LEFT_BOUND" mask="0x00FF" display_name="0-7: left_bound" range="0x0000 0x00FF"><detail>Values programmed are desired value /4</detail></bitfield>
+			<bitfield  name="RIGHT_BOUND" mask="0xFF00" display_name="8-15: right_bound" range="0x0000 0x00FF"><detail>Values programmed are desired value /4</detail></bitfield></reg>
+		<reg  name="V_BOUNDS_AE_WIN" addr="0x27" space="CAMCTRL" mask="0xFFFF" display_name="v_bounds_ae_win" range="0x0000 0xFFFF" default="0x8008">
+			<bitfield  name="TOP_BOUND" mask="0x00FF" display_name="0-7: top_bound" range="0x0000 0x00FF"><detail>Values programmed are desired value /2</detail></bitfield>
+			<bitfield  name="BOTTOM_BOUND" mask="0xFF00" display_name="8-15: bottom_bound" range="0x0000 0x00FF"><detail>Values programmed are desired value /2</detail></bitfield></reg>
+		<reg  name="AWB_ADVANCED_CONTROL_REG" addr="0x28" space="CAMCTRL" mask="0xFFFF" display_name="awb_advanced_control_reg" range="0x0000 0xFFFF" default="0xFF02">
+			<bitfield  name="BITS_0_2" confidential="Y" mask="0x0007" display_name="0-2: Reserved" range="0x0000 0x0007"></bitfield>
+			<bitfield  name="BITS_3_6" confidential="Y" mask="0x0078" display_name="3-6: Reserved" range="0x0000 0x000F"></bitfield>
+			<bitfield  name="BITS_8_9" confidential="Y" mask="0x0300" display_name="8-9: Reserved" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="BIT_10" confidential="Y" mask="0x0400" display_name="10: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_11" confidential="Y" mask="0x0800" display_name="11: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_12" confidential="Y" mask="0x1000" display_name="12: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_13" confidential="Y" mask="0x2000" display_name="13: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_14" confidential="Y" mask="0x4000" display_name="14: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="CCM_NORM_ENABLE" mask="0x8000" display_name="15: ccm_norm_enable" range="0x0000 0x0001"><detail>Reserved</detail></bitfield></reg>
+		<reg  name="AWB_WIDE_GATES" addr="0x29" space="CAMCTRL" mask="0xFFFF" display_name="awb_wide_gates" range="0x0000 0xFFFF" default="0x8D73">
+			<bitfield  name="LOWER_GATE" mask="0x00FF" display_name="0-7: lower_gate" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="UPPER_GATE" mask="0xFF00" display_name="8-15: upper_gate" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="STD_LIM_MONO_ZONE" addr="0x2A" space="CAMCTRL" mask="0xFFFF" display_name="std_lim_mono_zone" range="0x0000 0xFFFF" default="0x00D0">
+			<bitfield  name="LOW_LIMIT_STD" mask="0x000F" display_name="0-3: low_limit_std" range="0x0000 0x000F"><detail>Lower bound on the hue variation threshold.</detail></bitfield>
+			<bitfield  name="UPPER_LIMIT_STD" mask="0x00F0" display_name="4-7: upper_limit_std" range="0x0000 0x000F"><detail>Upper bound on the hue variation threshold.</detail></bitfield>
+			<bitfield  name="MIN_OPEN_ZONES_FOR_WB" mask="0xFF00" display_name="8-15: min_open_zones_for_wb" range="0x0000 0x00FF"></bitfield></reg>
+		<reg  name="H_BOUNDS_AE_WIN_C" addr="0x2B" space="CAMCTRL" mask="0xFFFF" display_name="h_bounds_ae_win_c" range="0x0000 0xFFFF" default="0x6020">
+			<bitfield  name="H_LEFT_BOUND_AE_WIN_C" mask="0x00FF" display_name="0-7: h_left_bound_ae_win_c" range="0x0000 0x00FF"><detail>Values programmed are desired value /4</detail></bitfield>
+			<bitfield  name="H_RIGHT_BOUND_AE_WIN_C" mask="0xFF00" display_name="8-15: h_right_bound_ae_win_c" range="0x0000 0x00FF"><detail>Values programmed are desired value /4</detail></bitfield></reg>
+		<reg  name="V_BOUNDS_AE_WIN_C" addr="0x2C" space="CAMCTRL" mask="0xFFFF" display_name="v_bounds_ae_win_c" range="0x0000 0xFFFF" default="0x6020">
+			<bitfield  name="V_BOTTOM_BOUND_AE_WIN_C" mask="0x00FF" display_name="0-7: v_bottom_bound_ae_win_c" range="0x0000 0x00FF"><detail>Values programmed are desired value /2</detail></bitfield>
+			<bitfield  name="V_TOP_BOUND_AE_WIN_C" mask="0xFF00" display_name="8-15: v_top_bound_ae_win_c" range="0x0000 0x00FF"><detail>Values programmed are desired value /2</detail></bitfield></reg>
+		<reg  name="BOUND_AWB_WIN" addr="0x2D" space="CAMCTRL" mask="0xFFFF" display_name="bound_awb_win" range="0x0000 0xFFFF" default="0x6191">
+			<bitfield  name="LEFT_BOUND_AWB_WIN" mask="0x000F" display_name="0-3: left_bound_awb_win" range="0x0000 0x000F"><detail>Units of 2 zones</detail></bitfield>
+			<bitfield  name="RIGHT_BOUND_AWB_WIN" mask="0x00F0" display_name="4-7: right_bound_awb_win" range="0x0000 0x000F"><detail>Units of 2 zones</detail></bitfield>
+			<bitfield  name="TOP_BOUND_AWB_WIN" mask="0x0F00" display_name="8-11: top_bound_awb_win" range="0x0000 0x000F"><detail>Units of 2 zones</detail></bitfield>
+			<bitfield  name="BOTTOM_BOUND_AWB_WIN" mask="0xF000" display_name="12-15: bottom_bound_awb_win" range="0x0000 0x000F"><detail>Units of 2 zones</detail></bitfield></reg>
+		<reg  name="AE_PRECISION_TARGET" addr="0x2E" space="CAMCTRL" mask="0xFFFF" display_name="ae_precision_target" range="0x0000 0xFFFF" default="0x083A">
+			<bitfield  name="AE_TARGET_LUM" mask="0x00FF" display_name="0-7: ae_target_lum" range="0x0000 0x00FF"><detail>Luminance value of the AE target</detail></bitfield>
+			<bitfield  name="AE_STABILITY_RANGE" mask="0xFF00" display_name="8-15: ae_stability_range" range="0x0000 0x00FF"><detail>half-size of the AE stability window/range</detail></bitfield></reg>
+		<reg  name="RESERVED_CAMCTRL_2F" addr="0x2F" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0xDE64"></reg>
+		<reg  name="RED_AWB_MEASUREMENT" addr="0x30" space="CAMCTRL" mask="0x00FF" display_name="red_awb_measurement" range="0x0000 0x00FF" rw="RO"><detail>Normalized measure of red channel</detail></reg>
+		<reg  name="LUMA_AWB_MEASUREMENT" addr="0x31" space="CAMCTRL" mask="0x00FF" display_name="luma_awb_measurement" range="0x0000 0x00FF" rw="RO"><detail>Normalized measure of luminance channel</detail></reg>
+		<reg  name="BLUE_AWB_MEASUREMENT" addr="0x32" space="CAMCTRL" mask="0x00FF" display_name="blue_awb_measurement" range="0x0000 0x00FF" rw="RO"><detail>Normalized measure of blue channel</detail></reg>
+		<reg  name="RESERVED_CAMCTRL_33" addr="0x33" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x2011"></reg>
+		<reg  name="AE_DECISION_FREQ" addr="0x34" space="CAMCTRL" mask="0x00FF" display_name="ae_decision_freq" range="0x0000 0x00FF"><detail>AE Decision Frequency</detail></reg>
+		<reg  name="GAIN_LIM_AE" addr="0x36" space="CAMCTRL" mask="0xFFFF" display_name="gain_lim_ae" range="0x0000 0xFFFF" default="0x7810">
+			<bitfield  name="GAIN_LOWER_LIM_AE" mask="0x00FF" display_name="0-7: gain_lower_lim_ae" range="0x0000 0x00FF" datatype="ufixed4"><detail>These are virtual gains 1-&gt;1/8 127-&gt;8</detail></bitfield>
+			<bitfield  name="GAIN_UPPER_LIM_AE" mask="0xFF00" display_name="8-15: gain_upper_lim_ae" range="0x0000 0x00FF" datatype="ufixed4"><detail>These are virtual gains 1-&gt;1/8 127-&gt;8</detail></bitfield></reg>
+		<reg  name="RESERVED_CAMCTRL_37" addr="0x37" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x0080"></reg>
+		<reg  name="RESERVED_CAMCTRL_38" addr="0x38" space="CAMCTRL" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" default="0x0440"></reg>
+		<reg  name="RESERVED_CAMCTRL_39" addr="0x39" space="CAMCTRL" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x06B4"></reg>
+		<reg  name="RESERVED_CAMCTRL_3A" addr="0x3A" space="CAMCTRL" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x06B4"></reg>
+		<reg  name="RESERVED_CAMCTRL_3B" addr="0x3B" space="CAMCTRL" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x0550"></reg>
+		<reg  name="RESERVED_CAMCTRL_3C" addr="0x3C" space="CAMCTRL" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x04FE"></reg>
+		<reg  name="RESERVED_CAMCTRL_3D" addr="0x3D" space="CAMCTRL" confidential="Y" mask="0x3FFF" display_name="Reserved" range="0x0000 0x3FFF" default="0x17DC"></reg>
+		<reg  name="GAIN_THRESHOLD_REG" addr="0x3E" space="CAMCTRL" mask="0x1FFF" display_name="gain_threshold_reg" range="0x0000 0x1FFF" default="0x1FFF">
+			<bitfield  name="BITS_0_7" confidential="Y" mask="0x00FF" display_name="0-7: Reserved" range="0x0000 0x00FF"></bitfield>
+			<bitfield  name="BITS_8_9" confidential="Y" mask="0x0300" display_name="8-9: Reserved" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="BITS_10_11" confidential="Y" mask="0x0C00" display_name="10-11: Reserved" range="0x0000 0x0003"></bitfield>
+			<bitfield  name="ENABLE_AUTO_SAT_CTL" mask="0x1000" display_name="12: enable_auto_sat_ctl" range="0x0000 0x0001"><detail>1: Enable auto sat ctl as defined in R51:1</detail></bitfield></reg>
+		<reg  name="AE_ZONE_INDEX" addr="0x3F" space="CAMCTRL" mask="0xFFFF" display_name="ae_zone_index" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_46" addr="0x46" space="CAMCTRL" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0xD900"></reg>
+		<reg  name="RESERVED_CAMCTRL_4B" addr="0x4B" space="CAMCTRL" confidential="Y" mask="0x0007" display_name="Reserved" range="0x0000 0x0007" rw="RO"></reg>
+		<reg  name="LUM_SUM_MEASUREMENT" addr="0x4C" space="CAMCTRL" mask="0xFFFF" display_name="lum_sum_measurement" range="0x0000 0xFFFF" rw="RO"><detail>Luma measured by AE engine</detail></reg>
+		<reg  name="TIME_ADV_SUM_LUMA" addr="0x4D" space="CAMCTRL" mask="0x00FF" display_name="time_adv_sum_luma" range="0x0000 0x00FF" rw="RO"><detail>Time-averaged sum of luminance in AE window</detail></reg>
+		<reg  name="RESERVED_CAMCTRL_4F" addr="0x4F" space="CAMCTRL" confidential="Y" mask="0x000F" display_name="Reserved" range="0x0000 0x000F" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_57" addr="0x57" space="CAMCTRL" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" default="0x020D"></reg>
+		<reg  name="RESERVED_CAMCTRL_58" addr="0x58" space="CAMCTRL" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" default="0x0271"></reg>
+		<reg  name="RESERVED_CAMCTRL_59" addr="0x59" space="CAMCTRL" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" default="0x01F4"></reg>
+		<reg  name="RESERVED_CAMCTRL_5A" addr="0x5A" space="CAMCTRL" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" default="0x01F4"></reg>
+		<reg  name="FLICKER_CONTROL" addr="0x5B" space="CAMCTRL" mask="0x8007" display_name="flicker_control" range="0x0000 0x8007" default="0x0002"><detail>Primary flicker control register.</detail>
+			<bitfield  name="FLICKER_CONTROL_MANUAL" mask="0x0001" display_name="0: flicker_control_manual" range="0x0000 0x0001"><detail>0: auto flicker detection; 1: manual flicker select</detail></bitfield>
+			<bitfield  name="FLICKER_CONTROL_50_60" mask="0x0002" display_name="1: flicker_control_50_60" range="0x0000 0x0001"><detail>0: 50Hz; 1: 60Hz [if Bit0=1]</detail></bitfield>
+			<bitfield  name="BIT_2" confidential="Y" mask="0x0004" display_name="2: Reserved" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="BIT_15" confidential="Y" mask="0x8000" display_name="15: Reserved" range="0x0000 0x0001" rw="RO"></bitfield></reg>
+		<reg  name="RESERVED_CAMCTRL_5C" addr="0x5C" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x100C"></reg>
+		<reg  name="RESERVED_CAMCTRL_5D" addr="0x5D" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1510"></reg>
+		<reg  name="RATIO_BASE_REG" addr="0x5E" space="CAMCTRL" mask="0xFFFF" display_name="ratio_base_reg" range="0x0000 0xFFFF" default="0x7845">
+			<bitfield  name="R_RATIO_BASE_REG" mask="0x00FF" display_name="0-7: r_ratio_base_reg" range="0x0000 0x00FF" datatype="ufixed6"></bitfield>
+			<bitfield  name="B_RATIO_BASE_REG" mask="0xFF00" display_name="8-15: b_ratio_base_reg" range="0x0000 0x00FF" datatype="ufixed6"></bitfield></reg>
+		<reg  name="RATIO_DELTA_REG" addr="0x5F" space="CAMCTRL" mask="0xFFFF" display_name="ratio_delta_reg" range="0x0000 0xFFFF" default="0x4E27">
+			<bitfield  name="R_RATIO_DELTA_REG" mask="0x00FF" display_name="0-7: r_ratio_delta_reg" range="0x0000 0x00FF" datatype="ufixed6"></bitfield>
+			<bitfield  name="B_RATIO_DELTA_REG" mask="0xFF00" display_name="8-15: b_ratio_delta_reg" range="0x0000 0x00FF" datatype="ufixed6"></bitfield></reg>
+		<reg  name="SIGNS_DELTA_REG" addr="0x60" space="CAMCTRL" mask="0x0003" display_name="signs_delta_reg" range="0x0000 0x0003" default="0x0002">
+			<bitfield  name="SIGNS_DELTA_R_REG" mask="0x0001" display_name="0: signs_delta_r_reg" range="0x0000 0x0001"></bitfield>
+			<bitfield  name="SIGNS_DELTA_B_REG" mask="0x0002" display_name="1: signs_delta_b_reg" range="0x0000 0x0001"></bitfield></reg>
+		<reg  name="GAIN_RATIOS" addr="0x61" space="CAMCTRL" mask="0xFFFF" display_name="gain_ratios" range="0x0000 0xFFFF" default="0x8080" rw="RO">
+			<bitfield  name="RED_RATIO" mask="0x00FF" display_name="0-7: red_ratio" range="0x0000 0x00FF" rw="RO" datatype="ufixed6"><detail>Sensor analog gain ratio for red and green.</detail></bitfield>
+			<bitfield  name="BLUE_RATIO" mask="0xFF00" display_name="8-15: blue_ratio" range="0x0000 0x00FF" rw="RO" datatype="ufixed6"><detail>Sensor analog gain ratio for blue and green.</detail></bitfield></reg>
+		<reg  name="AE_DIG_GAIN_REG" addr="0x62" space="CAMCTRL" mask="0xFFFF" display_name="ae_dig_gain_reg" range="0x0000 0xFFFF" default="0x1010" rw="RO">
+			<bitfield  name="PRE_LENS_CORR" mask="0x00FF" display_name="0-7: pre_lens_corr" range="0x0000 0x00FF" rw="RO" datatype="ufixed4"><detail>Writable if AE is disabled, otherwise RO.</detail></bitfield>
+			<bitfield  name="POST_LENS_CORR" mask="0xFF00" display_name="8-15: post_lens_corr" range="0x0000 0x00FF" rw="RO" datatype="ufixed4"><detail>Writable if AE is disabled, otherwise RO.</detail></bitfield></reg>
+		<reg  name="RESERVED_CAMCTRL_63" addr="0x63" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_64" addr="0x64" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x59FC"></reg>
+		<reg  name="AE_LUMA_OFFSET" addr="0x65" space="CAMCTRL" mask="0x03FF" display_name="ae_luma_offset" range="0x0000 0x03FF"></reg>
+		<reg  name="DIGITAL_GAIN_LIMITS_AE" addr="0x67" space="CAMCTRL" mask="0xFFFF" display_name="digital_gain_limits_ae" range="0x0000 0xFFFF" default="0x2010">
+			<bitfield  name="MAX_LIMIT_PRE_LENS_CORR" mask="0x00FF" display_name="0-7: max_limit_pre_lens_corr" range="0x0000 0x00FF" datatype="ufixed4"><detail>Maximum limit on pre-lens correction digital gain.</detail></bitfield>
+			<bitfield  name="MAX_LIMIT_POST_LENS_CORR" mask="0xFF00" display_name="8-15: max_limit_post_lens_corr" range="0x0000 0x00FF" datatype="ufixed4"><detail>Maximum limit on post-lens correction digital gain.</detail></bitfield></reg>
+		<reg  name="RESERVED_CAMCTRL_68" addr="0x68" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0011" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_6A" addr="0x6A" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_6B" addr="0x6B" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_6C" addr="0x6C" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_6D" addr="0x6D" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_6E" addr="0x6E" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_6F" addr="0x6F" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_70" addr="0x70" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_71" addr="0x71" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_72" addr="0x72" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_73" addr="0x73" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_74" addr="0x74" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_75" addr="0x75" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_76" addr="0x76" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_77" addr="0x77" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_78" addr="0x78" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_79" addr="0x79" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_7A" addr="0x7A" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_7B" addr="0x7B" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_7C" addr="0x7C" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_7D" addr="0x7D" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_82" addr="0x82" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03FF"></reg>
+		<reg  name="RESERVED_CAMCTRL_83" addr="0x83" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x0301"></reg>
+		<reg  name="RESERVED_CAMCTRL_84" addr="0x84" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x00C1"></reg>
+		<reg  name="RESERVED_CAMCTRL_85" addr="0x85" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03A1"></reg>
+		<reg  name="RESERVED_CAMCTRL_86" addr="0x86" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03D4"></reg>
+		<reg  name="RESERVED_CAMCTRL_87" addr="0x87" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03D7"></reg>
+		<reg  name="RESERVED_CAMCTRL_88" addr="0x88" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x0399"></reg>
+		<reg  name="RESERVED_CAMCTRL_89" addr="0x89" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03F8"></reg>
+		<reg  name="RESERVED_CAMCTRL_8A" addr="0x8A" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x001C"></reg>
+		<reg  name="RESERVED_CAMCTRL_8B" addr="0x8B" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03BD"></reg>
+		<reg  name="RESERVED_CAMCTRL_8C" addr="0x8C" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03DB"></reg>
+		<reg  name="RESERVED_CAMCTRL_8D" addr="0x8D" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03BD"></reg>
+		<reg  name="RESERVED_CAMCTRL_8E" addr="0x8E" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03FC"></reg>
+		<reg  name="RESERVED_CAMCTRL_8F" addr="0x8F" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03DE"></reg>
+		<reg  name="RESERVED_CAMCTRL_90" addr="0x90" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03DE"></reg>
+		<reg  name="RESERVED_CAMCTRL_91" addr="0x91" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03DE"></reg>
+		<reg  name="RESERVED_CAMCTRL_92" addr="0x92" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x03DE"></reg>
+		<reg  name="RESERVED_CAMCTRL_93" addr="0x93" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x001F"></reg>
+		<reg  name="RESERVED_CAMCTRL_94" addr="0x94" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x0041"></reg>
+		<reg  name="RESERVED_CAMCTRL_95" addr="0x95" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" default="0x0363"></reg>
+		<reg  name="RESERVED_CAMCTRL_96" addr="0x96" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CAMCTRL_97" addr="0x97" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_98" addr="0x98" space="CAMCTRL" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x00FF"></reg>
+		<reg  name="RESERVED_CAMCTRL_99" addr="0x99" space="CAMCTRL" confidential="Y" mask="0x0003" display_name="Reserved" range="0x0000 0x0003" default="0x0001"></reg>
+		<reg  name="RESERVED_CAMCTRL_9C" addr="0x9C" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0xDF20"></reg>
+		<reg  name="RESERVED_CAMCTRL_B4" addr="0xB4" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0020"></reg>
+		<reg  name="RESERVED_CAMCTRL_B5" addr="0xB5" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0101" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_C6" addr="0xC6" space="CAMCTRL" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F"></reg>
+		<reg  name="RESERVED_CAMCTRL_C7" addr="0xC7" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_C8" addr="0xC8" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1F0B"></reg>
+		<reg  name="RESERVED_CAMCTRL_C9" addr="0xC9" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_CA" addr="0xCA" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_CB" addr="0xCB" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CAMCTRL_CC" addr="0xCC" space="CAMCTRL" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF"></reg>
+		<reg  name="RESERVED_CAMCTRL_CD" addr="0xCD" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x21A0"></reg>
+		<reg  name="RESERVED_CAMCTRL_CE" addr="0xCE" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x1E9B"></reg>
+		<reg  name="RESERVED_CAMCTRL_CF" addr="0xCF" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x4A4A"></reg>
+		<reg  name="RESERVED_CAMCTRL_D0" addr="0xD0" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x168D"></reg>
+		<reg  name="RESERVED_CAMCTRL_D1" addr="0xD1" space="CAMCTRL" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x004D"></reg>
+		<reg  name="RESERVED_CAMCTRL_D2" addr="0xD2" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CAMCTRL_D3" addr="0xD3" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CAMCTRL_D4" addr="0xD4" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0208"></reg>
+		<reg  name="RESERVED_CAMCTRL_D5" addr="0xD5" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF"></reg>
+		<reg  name="RESERVED_CAMCTRL_EF" addr="0xEF" space="CAMCTRL" confidential="Y" mask="0x003F" display_name="Reserved" range="0x0000 0x003F" default="0x0008"></reg>
+		<reg  name="ADDR_SPACE_SEL_CAMCTL" addr="0xF0" space="CAMCTRL" mask="0x0007" display_name="addr_space_sel_camctl" range="0x0000 0x0007"><detail>0: Sensor Core; 1: ColorPipe; 2: Camera Control</detail></reg>
+		<reg  name="BYTEWISE_ADDR_REG_CAMCTL" addr="0xF1" space="CAMCTRL" mask="0xFFFF" display_name="bytewise_addr_reg_camctl" range="0x0000 0xFFFF"></reg>
+		<reg  name="AWB_R_B_GAIN_OFFSETS" addr="0xF2" space="CAMCTRL" mask="0xFFFF" display_name="awb_r_b_gain_offsets" range="0x0000 0xFFFF">
+			<bitfield  name="AWB_R_B_GAIN_OFFSET_B" mask="0x00FF" display_name="0-7: awb_r_b_gain_offset_b" range="0x0000 0x00FF"><detail>Blue channel gain offset.</detail></bitfield>
+			<bitfield  name="AWB_R_B_GAIN_OFFSET_R" mask="0xFF00" display_name="8-15: awb_r_b_gain_offset_r" range="0x0000 0x00FF"><detail>Red channel gain offset.</detail></bitfield></reg>
+		<reg  name="RESERVED_CAMCTRL_F3" addr="0xF3" space="CAMCTRL" confidential="Y" mask="0x03FF" display_name="Reserved" range="0x0000 0x03FF" rw="RO"></reg>
+		<reg  name="RESERVED_CAMCTRL_F5" addr="0xF5" space="CAMCTRL" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x0040"></reg>
+		<reg  name="RESERVED_CAMCTRL_F6" addr="0xF6" space="CAMCTRL" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x007F"></reg>
+		<reg  name="RESERVED_CAMCTRL_F7" addr="0xF7" space="CAMCTRL" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x06C0"></reg>
+		<reg  name="RESERVED_CAMCTRL_F8" addr="0xF8" space="CAMCTRL" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x06C0"></reg>
+		<reg  name="RESERVED_CAMCTRL_F9" addr="0xF9" space="CAMCTRL" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x0550"></reg>
+		<reg  name="RESERVED_CAMCTRL_FA" addr="0xFA" space="CAMCTRL" confidential="Y" mask="0x07FF" display_name="Reserved" range="0x0000 0x07FF" default="0x0500"></reg>
+		<reg  name="RESERVED_CAMCTRL_FB" addr="0xFB" space="CAMCTRL" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" default="0x020D"></reg>
+		<reg  name="RESERVED_CAMCTRL_FC" addr="0xFC" space="CAMCTRL" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" default="0x0271"></reg>
+		<reg  name="RESERVED_CAMCTRL_FD" addr="0xFD" space="CAMCTRL" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" default="0x01F6"></reg>
+		<reg  name="RESERVED_CAMCTRL_FE" addr="0xFE" space="CAMCTRL" confidential="Y" mask="0x0FFF" display_name="Reserved" range="0x0000 0x0FFF" default="0x0271"></reg>
+		<reg  name="RESERVED_CAMCTRL_FF" addr="0xFF" space="CAMCTRL" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0xA880"></reg>
+
+
+
+	</registers>
+
+<copyright>
+  Copyright (c) 2012 Aptina Imaging Corporation.   All rights reserved.
+
+
+  No permission to use, copy, modify, or distribute this software and/or
+  its documentation for any purpose has been granted by Aptina Imaging Corporation.
+  If any such permission has been granted ( by separate agreement ), it
+  is required that the above copyright notice appear in all copies and
+  that both that copyright notice and this permission notice appear in
+  supporting documentation, and that the name of Aptina Imaging Corporation or any
+  of its trademarks may not be used in advertising or publicity pertaining
+  to distribution of the software without specific, written prior permission.
+
+
+  This software and any associated documentation are provided AS IS and
+  without warranty of any kind.   APTINA IMAGING CORPORATION EXPRESSLY DISCLAIMS
+  ALL WARRANTIES EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO, NONINFRINGEMENT
+  OF THIRD PARTY RIGHTS, AND ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS
+  FOR A PARTICULAR PURPOSE.  APTINA DOES NOT WARRANT THAT THE FUNCTIONS CONTAINED
+  IN THIS SOFTWARE WILL MEET YOUR REQUIREMENTS, OR THAT THE OPERATION OF THIS SOFTWARE
+  WILL BE UNINTERRUPTED OR ERROR-FREE.  FURTHERMORE, APTINA DOES NOT WARRANT OR
+  MAKE ANY REPRESENTATIONS REGARDING THE USE OR THE RESULTS OF THE USE OF ANY
+  ACCOMPANYING DOCUMENTATION IN TERMS OF ITS CORRECTNESS, ACCURACY, RELIABILITY,
+  OR OTHERWISE.
+</copyright>
+<revision>
+// $Revision: 30204 $
+// $Date: 2012-01-02 09:51:53 -0800 (Mon, 02 Jan 2012) $
+//
+// product last modified: none   version last modified: 2009-07-24 10:45:51   register last modified: 2009-11-18 09:03:51 
+</revision>
+</sensor>
