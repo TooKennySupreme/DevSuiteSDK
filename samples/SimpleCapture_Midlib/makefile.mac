@@ -40,7 +40,7 @@
 
 CC=g++
 EMBED_LINUX_FLAGS =
-CCOMPILER= $(CC)  -Wno-unused -g -D_REENTRANT -DMI_STATICLIB  -I .  -I../../include/ -I../../bin_linux/
+CCOMPILER= $(CC)  -Wno-unused -g -D_REENTRANT -DMI_STATICLIB  -I .  -I../../include/ -I../../bin_mac/
 
 
 # system libraries.
@@ -71,7 +71,7 @@ default: $(EXECUTIBLE)
 
 
 $(EXECUTIBLE): SimpleCapture.o
-	$(CC) -o SimpleCapture SimpleCapture.o -lmidlib2 -lparsifal -lusb-1.0 -L../../bin_linux -pthread -ldl -lm
+	$(CC) -o SimpleCapture SimpleCapture.o -lmidlib2 -lparsifal -lusb-1.0 -L../../bin_mac -pthread -ldl -lm
 
 
 %.o: %.c
