@@ -40,11 +40,11 @@
 
 CC=g++
 EMBED_LINUX_FLAGS =
-CCOMPILER= $(CC)  -Wno-unused -g -D_REENTRANT -DMI_STATICLIB  -I .  -I../../include/ -I../../bin_mac/
+CCOMPILER= $(CC)  -Wno-unused -g -D_REENTRANT -DMI_STATICLIB  -I .  -I../../include/ -I../../libraries/midlib2/ -I../../libraries/apbase/apbase/
 
 
 # system libraries.
-SYSLIBRARIES=-pthread
+SYSLIBRARIES= -lusb-1.0 -pthread -lm
 
 
 # all libs together
@@ -67,11 +67,11 @@ STATICLINK=ar -r
 default: $(EXECUTIBLE)
 
 # builds the executable itself
-# don't forget to export LD_LIBRARY_PATH=/artefaktur/acdk/bin before execute the binary
+# don't forget to "export LD_LIBRARY_PATH=/your_directory/" before execute the binary
 
 
 $(EXECUTIBLE): SimpleCapture.o
-	$(CC) -o SimpleCapture SimpleCapture.o -lmidlib2 -lparsifal -lusb-1.0 -L../../bin_mac -pthread -ldl -lm
+	$(CC) -o SimpleCapture SimpleCapture.o  -L../../libraries/midlib2/gccRelease -lmidlib2 -L../../libraries/apbase/gccRelease -lapbase $(LIBS)
 
 
 %.o: %.c

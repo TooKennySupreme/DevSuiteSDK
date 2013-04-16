@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="SimpleQt">
+    <file>Resources/media_play.ico</file>
+    <file>Resources/media_stop.ico</file>
+    <file>Resources/exit.ico</file>
+    <file>Resources/gear.ico</file>
+    <file>Resources/about.ico</file>
+  </qresource>
+</RCC>
