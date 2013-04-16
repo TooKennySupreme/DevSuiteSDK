@@ -1,7 +1,7 @@
 This is a Aptina Qt sample program that opens the camera, initializes it and display images.
 Note: User needs super-user to access the USB devices. (sudo ./SimpleQt)
 
-Instruction for SimpleQt in Linux:
+Instruction for SimpleQt in Mac:
 
 - Build/Test environments
   Mac OS X Lion 10.7.5 and 64-bit GNU C compiler version 4.8.0. XCode 4.5.2 and MacPorts 2.1.2 installed.
