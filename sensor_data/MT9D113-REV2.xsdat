@@ -1005,7 +1005,7 @@
 		<reg  name="AE_VIRTGAIN" addr="0x001C" space="AE" mask="0x00FF" display_name="ae_virtgain" range="0x0000 0x00FF" default="0x0020" rw="RO"><detail>Current virtual gain</detail></reg>
 		<reg  name="RESERVED_AE_1D" addr="0x001D" space="AE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x000D"></reg>
 		<reg  name="RESERVED_AE_1E" addr="0x001E" space="AE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x0007"></reg>
-		<reg  name="RESERVED_AE_1F" addr="0x001F" space="AE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x0080"></reg>
+		<reg  name="AE_DGAIN_AE1" addr="0x001F" space="AE" mask="0xFFFF" display_name="ae_dgain_ae1" range="0x0000 0xFFFF" default="0x0080"><detail>Current digital gain pre-LC</detail></reg>
 		<reg  name="RESERVED_AE_21" addr="0x0021" space="AE" confidential="Y" mask="0x00FF" display_name="Reserved" range="0x0000 0x00FF" default="0x0020"></reg>
 		<reg  name="AE_R9" addr="0x0022" space="AE" mask="0xFFFF" display_name="ae_r9" range="0x0000 0xFFFF" default="0x0010"><detail>Current R9:0 value</detail></reg>
 		<reg  name="RESERVED_AE_24" addr="0x0024" space="AE" confidential="Y" mask="0xFFFF" display_name="Reserved" range="0x0000 0xFFFF" default="0x090D"></reg>
@@ -1510,7 +1510,7 @@
 	</registers>
 
 <copyright>
-  Copyright (c) 2012 Aptina Imaging Corporation.   All rights reserved.
+  Copyright (c) 2013 Aptina Imaging Corporation.   All rights reserved.
 
 
   No permission to use, copy, modify, or distribute this software and/or
@@ -1535,8 +1535,8 @@
   OR OTHERWISE.
 </copyright>
 <revision>
-// $Revision: 33849 $
-// $Date: 2012-11-01 09:20:30 -0700 (Thu, 01 Nov 2012) $
+// $Revision: 34474 $
+// $Date: 2013-01-07 16:17:27 -0800 (Mon, 07 Jan 2013) $
 //
 // product last modified: none   version last modified: 2010-06-01 12:12:39   register last modified: none 
 </revision>

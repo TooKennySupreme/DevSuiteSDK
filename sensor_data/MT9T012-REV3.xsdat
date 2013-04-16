@@ -426,7 +426,7 @@
 	</registers>
 
 <copyright>
-  Copyright (c) 2012 Aptina Imaging Corporation.   All rights reserved.
+  Copyright (c) 2013 Aptina Imaging Corporation.   All rights reserved.
 
 
   No permission to use, copy, modify, or distribute this software and/or
@@ -451,8 +451,8 @@
   OR OTHERWISE.
 </copyright>
 <revision>
-// $Revision: 31146 $
-// $Date: 2012-04-02 11:20:11 -0700 (Mon, 02 Apr 2012) $
+// $Revision: 34474 $
+// $Date: 2013-01-07 16:17:27 -0800 (Mon, 07 Jan 2013) $
 //
 // product last modified: none   version last modified: 2012-03-29 08:00:43   register last modified: 2009-05-11 15:27:18 
 </revision>

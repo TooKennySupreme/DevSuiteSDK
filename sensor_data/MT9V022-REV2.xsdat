@@ -333,7 +333,7 @@
 	</registers>
 
 <copyright>
-  Copyright (c) 2012 Aptina Imaging Corporation.   All rights reserved.
+  Copyright (c) 2013 Aptina Imaging Corporation.   All rights reserved.
 
 
   No permission to use, copy, modify, or distribute this software and/or
@@ -358,8 +358,8 @@
   OR OTHERWISE.
 </copyright>
 <revision>
-// $Revision: 30204 $
-// $Date: 2012-01-02 09:51:53 -0800 (Mon, 02 Jan 2012) $
+// $Revision: 34474 $
+// $Date: 2013-01-07 16:17:27 -0800 (Mon, 07 Jan 2013) $
 //
 // product last modified: 2009-11-17 14:59:00   version last modified: 2009-03-12 13:40:47   register last modified: 2009-07-23 16:43:08 
 </revision>
