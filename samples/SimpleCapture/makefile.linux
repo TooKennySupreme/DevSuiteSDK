@@ -48,7 +48,9 @@ SYSLIBRARIES= -lusb-1.0 -pthread -lm
 
 # all libs together
 
-LIBS = $(SYSLIBRARIES) -Wl,-Bdynamic,-ldl
+LIBS = $(SYSLIBRARIES) -Wl,-Bdynamic,-ldl \
+			-L/opt/python3.3/lib -lpython3.3m \
+			-L../../bin_linux -lmidlib2 -lapbase
 
 
 DYNAMICLIB=midlib2.so

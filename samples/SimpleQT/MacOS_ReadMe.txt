@@ -9,18 +9,22 @@ Instruction for SimpleQt in Mac:
   Qt Creator 2.6.1
 
 - Required run-time libraries (from public domain):
-	1. libusb-1.0
-	2. libpython3.2
-	3. libtbb
+	1. libusb-1.0 (Use MacPorts: sudo port install libusb)
+	2. libpython3.3m (download the Mac dmg file from http://www.python.org/download/)
+	   (Note: Remember create a symbolic link for libpython3.3m.dylib)
+	   (e.g. sudo ln –s /Library/Frameworks/Python.framework/Version/3.3/Python /usr/lib/libpython3.3m.dylib)
+	3. libtbb (sudo port install tbb)
 	
 - Required shared object files (from Aptina):
 	1. libapbase.so
 	2. libmidlib2.so
 	
-- To build SimpleQt onMacOS: Use Qt Creator and open the SimpleQt.pro file then "Build All".
+- To build SimpleQt on MacOS: Use Qt Creator and open the SimpleQt.pro file then "Build All".
   The two .so files required are:
         /DevSuite/libraries/midlib2/gccRelease/libmidlib2.so and
         /DevSuite/libraries/apbase/gccRelease/libapbase.so
+	(In Github: /DevSuiteSDK/bin_mac/libmidlib2.so and
+		    /DevSuiteSDK/bin_mac/libapbase.so)
   Note: export LD_LIBRARY_PATH=SimpleQt_directory before execute the binary
 
 - sdat/xsdat file - are located in /DevSuite/sensor_data directories.
