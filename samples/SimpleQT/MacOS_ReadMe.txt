@@ -12,7 +12,7 @@ Instruction for SimpleQt in Mac:
 	1. libusb-1.0 (Use MacPorts: sudo port install libusb)
 	2. libpython3.3m (download the Mac dmg file from http://www.python.org/download/)
 	   (Note: Remember create a symbolic link for libpython3.3m.dylib)
-	   (e.g. sudo ln –s /Library/Frameworks/Python.framework/Version/3.3/Python /usr/lib/libpython3.3m.dylib)
+	   (e.g. sudo ln â€“s /Library/Frameworks/Python.framework/Versions/3.3/Python /usr/lib/libpython3.3m.dylib)
 	3. libtbb (sudo port install tbb)
 	
 - Required shared object files (from Aptina):
@@ -23,8 +23,8 @@ Instruction for SimpleQt in Mac:
   The two .so files required are:
         /DevSuite/libraries/midlib2/gccRelease/libmidlib2.so and
         /DevSuite/libraries/apbase/gccRelease/libapbase.so
-	(In Github: /DevSuiteSDK/bin_mac/libmidlib2.so and
-		    /DevSuiteSDK/bin_mac/libapbase.so)
+	(In Github: /DevSuiteSDK/lib/macos/libmidlib2.so and
+		    /DevSuiteSDK/lib/macos/libapbase.so)
   Note: export LD_LIBRARY_PATH=SimpleQt_directory before execute the binary
 
 - sdat/xsdat file - are located in /DevSuite/sensor_data directories.
