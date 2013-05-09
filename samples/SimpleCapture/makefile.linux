@@ -26,11 +26,11 @@
 
 #
 #  To compile:
-#		$ make
+#		$ make -f makefile.linux
 #
 #
 #  To remove all compiled objects and libraries
-#		$ make clean
+#		$ make -f makefile.linux clean
 #
 #
 #   This Makefile will produce a executable code SimpleCapture.
