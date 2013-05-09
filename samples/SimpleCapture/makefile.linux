@@ -48,9 +48,13 @@ SYSLIBRARIES= -lusb-1.0 -pthread -lm
 
 # all libs together
 
-LIBS = $(SYSLIBRARIES) -Wl,-Bdynamic,-ldl \
-			-L/opt/python3.3/lib -lpython3.3m \
-			-L../../bin_linux -lmidlib2 -lapbase
+LIBS = $(SYSLIBRARIES) -Wl, -Bdynamic, -ldl \
+			-L../../libraries/midlib2/gccRelease -lmidlib2 \ #Aptina internal only
+			-L../../libraries/apbase/gccRelease -lapbase \ #Aptina internal only
+			-L/opt/python3.3/lib -lpython3.3m \      #Please midify for you python lib file
+#			-L../../lib/linux/x32 -lmidlib2 -lapbase #for 32-bit Linux (Github only)
+			-L../../lib/linux/x64 -lmidlib2 -lapbase #for 64-bit Linux (Github only)
+#			-L../../lib/linux/mac -lmidlib2 -lapbase #for MacOS 10.6 above (Github only)
 
 
 DYNAMICLIB=midlib2.so
@@ -72,7 +76,7 @@ default: $(EXECUTIBLE)
 
 
 $(EXECUTIBLE): SimpleCapture.o
-	$(CC) -o SimpleCapture SimpleCapture.o  -L../../libraries/midlib2/gccRelease -lmidlib2 -L../../libraries/apbase/gccRelease -lapbase $(LIBS)
+	$(CC) -o SimpleCapture SimpleCapture.o $(LIBS)
 
 
 %.o: %.c
