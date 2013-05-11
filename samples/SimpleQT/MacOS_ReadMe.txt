@@ -1,5 +1,5 @@
 This is a Aptina Qt sample program that opens the camera, initializes it and display images.
-Note: User needs super-user to access the USB devices. (sudo ./SimpleQt)
+Note: User needs Administrator account to access the USB devices. (sudo ./SimpleQt)
 
 Instruction for SimpleQt in Mac:
 
@@ -20,16 +20,19 @@ Instruction for SimpleQt in Mac:
 	2. libmidlib2.so
 	
 - To build SimpleQt on MacOS: Use Qt Creator and open the SimpleQt.pro file then "Build All".
-  The two .so files required are:
+  The two .so files required for MacOS are:
         /DevSuite/libraries/midlib2/gccRelease/libmidlib2.so and
         /DevSuite/libraries/apbase/gccRelease/libapbase.so
 	(In Github: /DevSuiteSDK/lib/macos/libmidlib2.so and
-		    /DevSuiteSDK/lib/macos/libapbase.so)
+		        /DevSuiteSDK/lib/macos/libapbase.so)
   Note: export LD_LIBRARY_PATH=SimpleQt_directory before execute the binary
 
-- sdat/xsdat file - are located in /DevSuite/sensor_data directories.
-  The sensor_data file contains the target sdat (or xsdat) files.
+- sdat/xsdat sensor data file - are located in "sensor_data" directory.
 
-- /DevSuite/apps_data - contains INI files for the different supported sensors.
+- INI setting files for the different supported sensors - are located in "apps_data" directory.
 
-- /Devsuite/board_data - contains Aptina Demo board data.
+- cdat files for Aptina Demo board kits - are located in "board_data' directory.
+
+Note:
+In Linux and MacOS, the default locations for above directories are in "../../data/".
+In Windows, the default locations for above directories are in MI_HOME path.

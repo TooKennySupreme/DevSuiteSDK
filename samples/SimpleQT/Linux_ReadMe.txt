@@ -13,15 +13,15 @@ Instruction for SimpleQt in Linux:
 	2. libtbb
 	3. libpython3.3
 	   Note: 1. User needs to download and build the python source code for the Ubuntu earlier than 13.04
-	         2. User needs to activate the shared object option and set prefix to /usr (or your path settings) in the python configuration
+	         2. User needs to activate the shared object option and set prefix to /usr (or your path settings) in the python configuration.
 	            (e.g. ./configure --enable-shared --prefix=/usr)
 	
 - Required shared object files (from Aptina):
 	1. libapbase.so
 	2. libmidlib2.so
 	
-- To build SimpleQt in Linux: Use Qt Creator and open the SimpleQt.pro file then build all.
-  The two .so files required are:
+- To build SimpleQt in Linux: Use Qt Creator and open the SimpleQt.pro file then "Build All".
+  The two .so files required for 64-bit Linux are:
         /DevSuite/libraries/midlib2/gccRelease/libmidlib2.so and
         /DevSuite/libraries/apbase/gccRelease/libapbase.so
 		(In Github: /DevSuiteSDK/lib/linux/x64/libmidlib2.so and
@@ -31,7 +31,12 @@ Instruction for SimpleQt in Linux:
 - run.sh is a sample bash script to run the SimpleQt. (sudo ./run.sh)
   Note: User may need to do (chmod 777 run.sh) first.
 
-- sdat/xsdat file - are located in /DevSuite/sensor_data directories.
-  The sensor_data file contains the target sdat (or xsdat) files.
+- sdat/xsdat sensor data files - are located in "sensor_data" directory.
 
-- /DevSuite/apps_data - contains INI files for the different supported sensors.
+- INI setting files for the different supported sensors - are located in "apps_data" directory.
+
+- cdat files for Aptina Demo board kits - are located in "board_data' directory.
+
+Note:
+In Linux and MacOS, the default locations for above directories are in "../../data/".
+In Windows, the default locations for above directories are in MI_HOME path.

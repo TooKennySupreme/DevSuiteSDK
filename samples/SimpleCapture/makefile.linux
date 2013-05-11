@@ -38,36 +38,20 @@
 
 
 CC=g++
-EMBED_LINUX_FLAGS =
-CCOMPILER= $(CC)  -Wno-unused -g -D_REENTRANT -DMI_STATICLIB  -I .  -I../../include/ -I../../libraries/midlib2/ -I../../libraries/apbase/apbase/
-
-
-# system libraries.
-SYSLIBRARIES= -lusb-1.0 -pthread -lm
+CCOMPILER= $(CC)  -Wno-unused -D_REENTRANT -DMI_STATICLIB  -I .  -I../../include/ -I../../libraries/midlib2/ -I../../libraries/apbase/apbase/
 
 
 # all libs together
+LIBS = -pthread -lm -lusb-1.0 -lmidlib2 -lapbase
 
-LIBS = $(SYSLIBRARIES) -Wl, -Bdynamic, -ldl \
-			-L../../libraries/midlib2/gccRelease -lmidlib2 \ #Aptina internal only
-			-L../../libraries/apbase/gccRelease -lapbase \ #Aptina internal only
-			-L/opt/python3.3/lib -lpython3.3m \      #Please midify for you python lib file
-#			-L../../lib/linux/x32 -lmidlib2 -lapbase #for 32-bit Linux (Github only)
-			-L../../lib/linux/x64 -lmidlib2 -lapbase #for 64-bit Linux (Github only)
-#			-L../../lib/linux/mac -lmidlib2 -lapbase #for MacOS 10.6 above (Github only)
+# all libs directories (Please pick one for your system)
+#LIBDIRS =  -L../../libraries/midlib2/gccRelease/ -L../../libraries/apbase/gccRelease/ #for Aptina internal only
+#LIBDIRS =	-L../../lib/linux/x32/ #for 32-bit Linux (Github only)
+LIBDIRS =	-L../../lib/linux/x64/ #for 64-bit Linux (Github only)
+#LIBDIRS =	-L../../lib/linux/mac #for MacOS 10.6 above (Github only)
 
-
-DYNAMICLIB=midlib2.so
-STATICLIB=libmidlib2.a
 
 EXECUTIBLE=SimpleCapture
-
-# want maybe to debug
-SYSLDFLAGS=-g
-DYNAMICLINK=$(CC) -shared
-STATICLINK=ar -r
-
-
 
 default: $(EXECUTIBLE)
 
@@ -76,7 +60,7 @@ default: $(EXECUTIBLE)
 
 
 $(EXECUTIBLE): SimpleCapture.o
-	$(CC) -o SimpleCapture SimpleCapture.o $(LIBS)
+	$(CC) -o SimpleCapture SimpleCapture.o $(LIBS) $(LIBDIRS)
 
 
 %.o: %.c
