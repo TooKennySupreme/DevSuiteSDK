@@ -48,7 +48,7 @@ LIBS = -pthread -lm -lusb-1.0 -lmidlib2 -lapbase
 #LIBDIRS =  -L../../libraries/midlib2/gccRelease/ -L../../libraries/apbase/gccRelease/ #for Aptina internal only
 #LIBDIRS =	-L../../lib/linux/x32/ #for 32-bit Linux (Github only)
 #LIBDIRS =	-L../../lib/linux/x64/ #for 64-bit Linux (Github only)
-LIBDIRS =	-L../../lib/linux/mac #for MacOS 10.6 above (Github only)
+LIBDIRS =	-L../../lib/macos #for MacOS 10.6 above (Github only)
 
 
 EXECUTIBLE=SimpleCapture

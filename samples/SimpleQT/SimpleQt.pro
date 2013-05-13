@@ -15,8 +15,10 @@ INCLUDEPATH += ./../../common \
 
 LIBS += -L"./../../libraries/midlib2/gccRelease" \  #Aptina internal only
         -L"./../../libraries/apbase/gccRelease" \   #Aptina internal only
-        -L"./../../lib/linux/x32" \ # use this line for 32-bit Linux (download from Github)
-#        -L"./../../lib/linux/x64" \ # use this line for 64-bit Linux (download from Github)
+        -L"/usr/local/lib" \   # Linux default directory for libUSB
+#        -L"/opt/local/lib" \    # MacOS default directory for libUSB
+#        -L"./../../lib/linux/x32" \ # use this line for 32-bit Linux (download from Github)
+        -L"./../../lib/linux/x64" \ # use this line for 64-bit Linux (download from Github)
 #        -L"./../../lib/macos" \     # use this line for MacOS X (download from Github)
         -lusb-1.0 -lmidlib2 -lapbase
 
